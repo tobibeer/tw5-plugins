@@ -10,7 +10,6 @@
     ],
     "includeWikis": [
         "../../../tw5-defaults/editions/defaults",
-        "../../../tw5-defaults/editions/static",
         "../../../tw5-dict/editions/dict",
         "../../../tw5-dom/editions/dom"
     ],
