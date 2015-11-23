@@ -1,0 +1,30 @@
+{
+    "description": "tobibeer plugin documentation",
+    "plugins": [
+        "tiddlywiki/tiddlyweb",
+        "tiddlywiki/filesystem"
+    ],
+    "themes": [
+        "tiddlywiki/vanilla",
+        "tiddlywiki/snowwhite"
+    ],
+    "includeWikis": [
+        "../../../tw5-defaults/editions/defaults",
+        "../../../tw5-defaults/editions/static",
+        "../../../tw5-dict/editions/dict",
+        "../../../tw5-dom/editions/dom"
+    ],
+    "build": {
+        "index": [
+            "--output","../../",
+            "--rendertiddler","$:/plugins/tiddlywiki/tiddlyweb/save/offline","index.html","text/plain"
+        ],
+        "static": [
+            "--output","../../",
+            "--rendertiddler","$:/core/templates/static.template.html","index.html","text/plain",
+            "--rendertiddler","$:/core/templates/alltiddlers.template.html","all.html","text/plain",
+            "--rendertiddlers","[!is[system]]","$:/core/templates/static.tiddler.html","static","text/plain",
+            "--rendertiddler","$:/core/templates/static.template.css","static.css","text/plain"
+        ]
+    }
+}

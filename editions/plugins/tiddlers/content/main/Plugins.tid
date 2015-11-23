@@ -1,0 +1,16 @@
+created: 20151123101206570
+creator: Tobias Beer
+modifier: Tobias Beer
+summary: all plugins by [[Tobias Beer]]
+title: Plugins
+
+<dl>
+<$list filter="[prefix[$:/plugins/tobibeer]]">
+<dt>
+<$list filter="[all[current]removeprefix[$:/plugins/tobibeer/]]">
+<$link>tobibeer/{{!!title}}</$link>
+</$list>
+</dt>
+<dd>{{!!description}}</dd>
+</$list>
+</dl>
