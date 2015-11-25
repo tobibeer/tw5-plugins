@@ -1,16 +1,15 @@
 created: 20151123101206570
 creator: Tobias Beer
+modified: 20151125124052305
 modifier: Tobias Beer
 summary: all plugins by [[Tobias Beer]]
 title: Plugins
+type: text/vnd.tiddlywiki
 
 <dl>
-<$list filter="[prefix[$:/plugins/tobibeer]]">
-<dt>
-<$list filter="[all[current]removeprefix[$:/plugins/tobibeer/]]">
-<$link>tobibeer/{{!!title}}</$link>
-</$list>
-</dt>
-<dd>{{!!description}}</dd>
-</$list>
+<<list-search
+filter:"[prefix[$:/plugins/tobibeer]]"
+search:"search:description"
+state: "$:/temp/list-search/examples"
+template:"$:/.tb/templates/plugin-list">>
 </dl>
