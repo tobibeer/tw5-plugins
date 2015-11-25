@@ -13,7 +13,8 @@
         "../../../tw5-defaults/editions/defaults",
         "../../../tw5-contains/editions/contains",
         "../../../tw5-dict/editions/dict",
-        "../../../tw5-dom/editions/dom"
+        "../../../tw5-dom/editions/dom",
+        "../../../tw5-dict/editions/xlist"
     ],
     "build": {
         "index": [
