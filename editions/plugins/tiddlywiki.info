@@ -14,6 +14,7 @@
         "../../../tw5-contains/editions/contains",
         "../../../tw5-dict/editions/dict",
         "../../../tw5-dom/editions/dom",
+        "../../../tw5-sysinfo/editions/sysinfo",
         "../../../tw5-xlist/editions/xlist"
     ],
     "build": {
