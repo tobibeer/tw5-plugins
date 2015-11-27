@@ -1,0 +1,5 @@
+title: $:/.tb/templates/plugin-topics
+
+\define tabs() $(plugin)$!!tabs
+
+<$list filter="[list<tabs>]"><$list filter="[all[current]addprefix<prefix>]" variable="topic"><$link to=<<topic>>><$view field="title"/></$link></$list></$list>

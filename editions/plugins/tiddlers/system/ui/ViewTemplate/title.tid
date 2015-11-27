@@ -1,0 +1,39 @@
+created: 20151125135422305
+creator: Tobias Beer
+modified: 20151125144547565
+modifier: Tobias Beer
+title: $:/.tb/ui/ViewTemplate/title
+type: text/vnd.tiddlywiki
+
+\define title-popup() <<pop » "$:/.tb/templates/plugin-topics" "pretty pop-tiddler title-popup" btn-class:"tc-btn-invisible btn-title-popup">>
+\define prefix() $(plugin)$-
+\define basic-title()
+<$set name="tv-wikilinks" value={{$:/config/Tiddlers/TitleLinks}}>
+<$link>
+<$view field="title"/>
+</$link>
+</$set>
+\end
+
+<$list filter="[all[current]addprefix[$:/plugins/tobibeer/]is[tiddler]]" variable="pluginTiddler">
+<$vars plugin=<<currentTiddler>>>
+<$link><$view field="title"/></$link> <<title-popup>>
+</$vars>
+</$list>
+<$list filter="[all[current]addprefix[$:/plugins/tobibeer/]!is[tiddler]]" variable="X">
+<$list filter="[all[current]split:first[-]]" variable="plugin">
+<$list filter="[<plugin>addprefix[$:/plugins/tobibeer/]is[tiddler]]" variable="pluginTiddler">
+<$link to=<<plugin>>><$text text=<<plugin>>/></$link>
+<$list filter="[all[current]removeprefix<prefix>]" variable="topic">
+<<title-popup>>
+<$text text=<<topic>>/>
+</$list>
+</$list>
+<$list filter="[<plugin>addprefix[$:/plugins/tobibeer/]!is[tiddler]]" variable="X">
+<<basic-title>>
+</$list>
+</$list>
+<$list filter="[all[current]!split[-]]" variable="X">
+<<basic-title>>
+</$list>
+</$list>
