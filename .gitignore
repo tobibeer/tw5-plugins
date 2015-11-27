@@ -3,3 +3,4 @@
 tmp/
 output/
 **/StoryList.tid
+build.*
