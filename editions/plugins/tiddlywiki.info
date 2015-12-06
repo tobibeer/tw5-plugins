@@ -2,8 +2,7 @@
     "description": "tobibeer plugin documentation",
     "plugins": [
         "tiddlywiki/tiddlyweb",
-        "tiddlywiki/filesystem",
-        "mklauber/math.js"
+        "tiddlywiki/filesystem"
     ],
     "themes": [
         "tiddlywiki/vanilla",
@@ -14,6 +13,8 @@
         "../../../tw5-contains/editions/contains",
         "../../../tw5-dict/editions/dict",
         "../../../tw5-dom/editions/dom",
+        "../../../tw5-eval/editions/eval",
+        "../../../tw5-math.js/editions/math.js",
         "../../../tw5-split/editions/split",
         "../../../tw5-sysinfo/editions/sysinfo",
         "../../../tw5-xlist/editions/xlist"
