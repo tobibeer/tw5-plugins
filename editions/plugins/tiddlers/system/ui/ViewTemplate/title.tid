@@ -1,6 +1,6 @@
 created: 20151125135422305
 creator: Tobias Beer
-modified: 20151125144547565
+modified: 20151207002537754
 modifier: Tobias Beer
 title: $:/.tb/ui/ViewTemplate/title
 type: text/vnd.tiddlywiki
@@ -17,7 +17,7 @@ type: text/vnd.tiddlywiki
 
 <$list filter="[all[current]addprefix[$:/plugins/tobibeer/]is[tiddler]]" variable="pluginTiddler">
 <$vars plugin=<<currentTiddler>>>
-<$link><$view field="title"/></$link> <<title-popup>>
+<$link><<titlePrefix>><$view field="title"/></$link> <<title-popup>>
 </$vars>
 </$list>
 <$list filter="[all[current]addprefix[$:/plugins/tobibeer/]!is[tiddler]]" variable="X">
