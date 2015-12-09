@@ -16,7 +16,7 @@
         "../../../tw5-eval/editions/eval",
         "../../../tw5-inc/editions/inc",
         "../../../tw5-math.js/editions/math.js",
-        "../../../tw5-split/editions/setvars",
+        "../../../tw5-setvars/editions/setvars",
         "../../../tw5-split/editions/split",
         "../../../tw5-sysinfo/editions/sysinfo",
         "../../../tw5-xlist/editions/xlist"
