@@ -9,18 +9,18 @@
         "tiddlywiki/snowwhite"
     ],
     "includeWikis": [
-        "../../../tw5-defaults/editions/defaults",
-        "../../../tw5-contains/editions/contains",
-        "../../../tw5-dict/editions/dict",
-        "../../../tw5-dom/editions/dom",
-        "../../../tw5-eval/editions/eval",
-        "../../../tw5-inc/editions/inc",
-        "../../../tw5-make/editions/make",
-        "../../../tw5-math.js/editions/math.js",
-        "../../../tw5-setvars/editions/setvars",
-        "../../../tw5-split/editions/split",
-        "../../../tw5-sysinfo/editions/sysinfo",
-        "../../../tw5-xlist/editions/xlist"
+        "../../../defaults/editions/defaults",
+        "../../../contains/editions/contains",
+        "../../../dict/editions/dict",
+        "../../../dom/editions/dom",
+        "../../../eval/editions/eval",
+        "../../../inc/editions/inc",
+        "../../../make/editions/make",
+        "../../../math.js/editions/math.js",
+        "../../../setvars/editions/setvars",
+        "../../../split/editions/split",
+        "../../../sysinfo/editions/sysinfo",
+        "../../../xlist/editions/xlist"
     ],
     "build": {
         "index": [
