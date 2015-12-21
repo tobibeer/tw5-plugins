@@ -16,6 +16,7 @@
         "../../../eval/editions/eval",
         "../../../filter/editions/filter",
         "../../../inc/editions/inc",
+        "../../../join/editions/join",
         "../../../make/editions/make",
         "../../../math.js/editions/math.js",
         "../../../random/editions/random",
