@@ -18,6 +18,7 @@
         "../../../inc/editions/inc",
         "../../../make/editions/make",
         "../../../math.js/editions/math.js",
+        "../../../random/editions/random",
         "../../../setvars/editions/setvars",
         "../../../split/editions/split",
         "../../../sysinfo/editions/sysinfo",
