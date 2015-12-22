@@ -1,0 +1,11 @@
+created: 20151222054450895
+creator: Tobias Beer
+modified: 20151222061031292
+modifier: Tobias Beer
+tags: $:/tags/Macro
+title: $://toggler/template
+type: text/vnd.tiddlywiki
+
+\define toggler-template()
+[$(currentTiddler)$] +[!tag<tag>]
+\end

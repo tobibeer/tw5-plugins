@@ -1,0 +1,46 @@
+created: 20151221212919571
+creator: Tobias Beer
+modified: 20151222061625561
+modifier: Tobias Beer
+tags: 
+title: $://toggler
+type: text/vnd.tiddlywiki
+
+\define path() $:/state/selected/$(currentTiddler)$
+\define options-filter() [$(currentTiddler)$tags[]]
+
+\define toggle-tag()
+<$vars state=<<qualify """$:/state/selected/$(currentTiddler)$/$(option)$""">>>
+<$reveal type="match" state=<<state>> text="">
+<$button set=<<state>> setTo=<<option>>>
+<$text text="$(option)$"/>
+</$button>
+</$reveal>
+<$reveal type="nomatch" state=<<state>> text="">
+<$button set=<<state>> setTo="" class="selected">
+<$text text="$(option)$"/>
+</$button>
+</$reveal>
+</$vars>
+\end
+
+\define results()
+XXX<$text text=<<toggler-template>>/>XXX
+
+XXX<$text text="""[$(currentTiddler)$] -[prefix<path>get[text]filter:tag<toggler-template>]"""/>XXX
+
+<ul>
+<$list filter="[$(currentTiddler)$] -[prefix<path>get[text]filter:tag<toggler-template>]">
+<li><$link><$view field="title"/></$link></li>
+</$list>
+</ul>
+\end
+
+<$list filter=<<options-filter>> variable="option"><<toggle-tag>></$list>
+<$list filter="""[prefix<path>get[text]limit[1]]""" variable="none"><!--
+DELETE SELECTION
+--><$button class="tc-btn-invisible"><$action-deletetiddler $filter="[prefix<path>]"/>X</$button></$list>
+
+<<results>>
+
+<style>.selected {color: blue;}</style>

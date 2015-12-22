@@ -1,0 +1,12 @@
+created: 20151222053135955
+creator: Tobias Beer
+modified: 20151222060909326
+modifier: Tobias Beer
+tags: 
+title: Toggler
+type: text/vnd.tiddlywiki
+
+$://toggler
+$://toggler/template
+
+{{ !is[system]sort[title] || $://toggler }}
