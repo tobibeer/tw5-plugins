@@ -10,6 +10,8 @@
     ],
     "includeWikis": [
         "../../../defaults/editions/defaults",
+
+        "../../../appear/editions/appear",
         "../../../contains/editions/contains",
         "../../../dict/editions/dict",
         "../../../dom/editions/dom",
