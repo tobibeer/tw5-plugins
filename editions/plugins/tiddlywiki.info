@@ -13,6 +13,7 @@
 
         "../../../appear/editions/appear",
         "../../../contains/editions/contains",
+        "../../../count/editions/count",
         "../../../dict/editions/dict",
         "../../../dom/editions/dom",
         "../../../eval/editions/eval",
