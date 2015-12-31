@@ -18,6 +18,7 @@
         "../../../dom/editions/dom",
         "../../../eval/editions/eval",
         "../../../filter/editions/filter",
+        "../../../hash/editions/hash",
         "../../../inc/editions/inc",
         "../../../join/editions/join",
         "../../../make/editions/make",
