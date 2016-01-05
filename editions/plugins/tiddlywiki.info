@@ -23,6 +23,7 @@
         "../../../join/editions/join",
         "../../../make/editions/make",
         "../../../math.js/editions/math.js",
+        "../../../rate/editions/rate",
         "../../../random/editions/random",
         "../../../setvars/editions/setvars",
         "../../../split/editions/split",
