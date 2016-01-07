@@ -1,0 +1,30 @@
+created: 20160107114619983
+creator: Tobias Beer
+modified: 20160107115204453
+modifier: Tobias Beer
+summary: use column-count, a remote popup handler, and the [[appear]] widget in the custom template [[$:/.tb/templates/TagTemplate]]
+tags: appear Examples
+title: Tag Button Popups In Columns
+type: text/vnd.tiddlywiki
+
+<$macrocall $name="`" text="""<div class="tb-taglist-columns">
+<$list filter="Filters Libraries Macros Plugins Widgets">
+<div class="tb-taglist-item">
+<small class="tc-menu-list-count"><$count filter="[all[current]tagging[]]"/></small>
+<$transclude tiddler="$:/.tb/templates/TagTemplate"/>
+</div>
+</$list>
+</div>"""/>
+
+<style>
+button.pink {
+color:deeppink;
+}
+</style>
+
+@@.note
+''Note:'' The popups of the above example would be cut-off at the column edge without using the handler attribute, e.g. if using the core <<x PopupMechanism>> alone.
+@@
+
+; $:/.tb/templates/TagTemplate
+: the above uses a modified version of $:/core/ui/TagTemplate, implementing the appear widget and taking popups out of the flow to not cut popups off within columns
