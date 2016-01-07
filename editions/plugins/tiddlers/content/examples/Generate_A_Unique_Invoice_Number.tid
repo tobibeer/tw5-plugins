@@ -1,0 +1,30 @@
+created: 20160107151116142
+creator: Tobias Beer
+customer: Company Foo
+division: Doo
+fiscal-year: 2016
+modified: 20160107152843001
+modifier: Tobias Beer
+summary: using the [[setvars]] widget to generate the variables needed for an action button using the [[make]] filter to generate unique, zero-padded titles
+tags: Examples make setvars
+title: Generate A Unique Invoice Number
+type: text/vnd.tiddlywiki
+
+Below, the action details of a button are specified with a [[setvars]] widget that refreshes at every click and uses the [[make]] filter to join text-bits into the two variables that it sets, a description and a unique, zero-padded invoice number used as the title.
+
+<$macrocall $name="`" text="""<$setvars $refresh
+_desc="[[]make[{{!!customer}}, {{!!division}}]]"
+description="[desc[][][]]"
+_num="[[]make[2016-\pad:5\sep:]]"
+invoice-number="[num[1][][]]">
+<$button>
+<$action-sendmessage
+$message="tm-new-tiddler"
+title=<<invoice-number>>
+tags="Invoice"
+invoice-description=<<description>>/>
+New Invoice
+</$button>
+</$setvars>"""/>
+
+{{{ [tag[Invoice]] }}}
