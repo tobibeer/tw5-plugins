@@ -1,0 +1,66 @@
+created: 20160108175357857
+creator: Tobias Beer
+modified: 20160108181907585
+modifier: Tobias Beer
+summary: how to evaluate subfilters using the operator [[filter]] to search multiple fields at once, optionally using the [[split]] filter
+tags: Examples filter split
+title: Search Multiple Fields With A Subfilter
+type: text/vnd.tiddlywiki
+
+Below, the variable ''find'' defines a subfilter to be searched using the filter operator ''filter'' to search for the word `filter` in both the ''title'' or ''summary'' fields, replaced in the ''find'' subfilter in turn using the placeholder `%inputTitle%`:
+
+<$macrocall $name="`" text="""<$vars term="evaluate"
+find="[all[tiddlers]!is[system]search:%inputTitle%<term>]">
+
+<$count filter="title summary +[filter<find>]"/>:
+
+{{{ title summary +[filter<find>] }}}
+</$vars>"""/>
+
+You can also feed a number of fields using a variable and the [[split]] filter like so:
+
+<$macrocall $name="`" text="""<$vars term="evaluate"
+fields="title summary"
+find="[all[tiddlers]!is[system]search:%inputTitle%<term>]">
+
+<$count filter="[<fields>split[ ]filter<find>]"/>:
+
+{{{ [<fields>split[ ]filter<find>] }}}
+</$vars>"""/>
+
+Here's the same using a named variable:
+
+<$macrocall $name="`" text="""<$vars term="evaluate"
+fields="title summary"
+find="[all[tiddlers]!is[system]search:%field%<term>]">
+
+<$count filter="[<fields>split[ ]filter:var:field<find>]"/>:
+
+{{{ [<fields>split[ ]filter:var:field<find>] }}}
+</$vars>"""/>
+
+Here's the equivalent output using OR syntax:
+
+<$macrocall $name="`" text="""<$vars term="evaluate">
+
+<$count filter="
+[!is[system]search:title<term>]
+[!is[system]search:summary<term>]"/>:
+
+{{{
+[!is[system]search:title<term>]
+[!is[system]search:summary<term>]
+}}}
+
+</$vars>"""/>
+
+This example returns the actual fields where the search term could be found for the fields ''title'', ''tags'', ''summary'' and ''doesnt-exist'':
+
+<$macrocall $name="`" text="""<$vars term="evaluate"
+fields="title tags summary doesnt-exist"
+find="[all[tiddlers]!is[system]search:%inputTitle%<term>]">
+
+<$count filter="[<fields>split[ ]filter:$<find>]"/>:
+
+{{{ [<fields>split[ ]filter:$<find>] }}}
+</$vars>"""/>
