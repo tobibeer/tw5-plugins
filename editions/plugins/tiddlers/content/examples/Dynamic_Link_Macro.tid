@@ -1,0 +1,16 @@
+created: 20160107110353091
+creator: Tobias Beer
+modified: 20160107110610112
+modifier: Tobias Beer
+summary: routes a link to tiddlywiki.com if no local tiddler exists while encoding the title using the [[hash]] filter, allowing a pretty title
+tags: Macros setvars hash Examples
+title: Dynamic Link Macro
+type: text/vnd.tiddlywiki
+
+<<source "$://macro/route">>
+
+@@.note
+''Note:'' Notice how the link variable refers to the title variable declared before it!
+@@
+
+<$macrocall $name="`" text="""Want to <<route "Customise TiddlyWiki" "customize">> TiddlyWiki? Go check out my <<route Plugins plugins>>!"""/>

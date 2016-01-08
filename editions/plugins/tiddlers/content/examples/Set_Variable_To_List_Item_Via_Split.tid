@@ -1,0 +1,30 @@
+created: 20160107105337026
+creator: Tobias Beer
+modified: 20160107114339555
+modifier: Tobias Beer
+summary: using the [[setvars]] widget to declare a variable evaluating an attribute using the [[split]] filter returning a desired list item
+tags: split setvars Examples
+title: Set Variable To List Item Via Split
+type: text/vnd.tiddlywiki
+
+In the below example, the [[setvars]] widget is used to declare a variable called ''7th'' evaluating the attribute ''items'' with the [[split]] filter returning the seventh item in the list:
+
+<$macrocall $name="`" text="""<$setvars 7th="[items[7]]"  _items="[[1 0 0 0 0 3 4 8 9 10]split[ ]]">
+<<7th>>
+</$setvars>"""/>
+
+!! Duplicates
+
+@@.note
+''Important:'' By default, TiddlyWiki does not allowing duplicate titles in filters.
+@@
+
+For example:
+
+<<` """{{{ 1 0 0 0 0 3 4 8 9 10 }}} """>>
+
+And then:
+
+<$macrocall $name="`" text="""<$setvars 7th="[items[7]]"  _items="1 0 0 0 0 3 4 8 9 10">
+<<7th>>
+</$setvars>"""/>
