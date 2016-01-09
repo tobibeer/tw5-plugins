@@ -1,6 +1,6 @@
 created: 20160108175357857
 creator: Tobias Beer
-modified: 20160108181907585
+modified: 20160109205115625
 modifier: Tobias Beer
 summary: how to evaluate subfilters using the operator [[filter]] to search multiple fields at once, optionally using the [[split]] filter
 tags: Examples filter split
@@ -54,7 +54,7 @@ Here's the equivalent output using OR syntax:
 
 </$vars>"""/>
 
-This example returns the actual fields where the search term could be found for the fields ''title'', ''tags'', ''summary'' and ''doesnt-exist'':
+This example returns the actual fields where the search term could be found in the fields ''title'', ''tags'', ''summary'' and ''doesnt-exist'':
 
 <$macrocall $name="`" text="""<$vars term="evaluate"
 fields="title tags summary doesnt-exist"
