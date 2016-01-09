@@ -7,7 +7,7 @@ tags: Examples filter split
 title: Search Multiple Fields With A Subfilter
 type: text/vnd.tiddlywiki
 
-Below, the variable ''find'' defines a subfilter to be searched using the filter operator ''filter'' to search for the word `filter` in both the ''title'' or ''summary'' fields, replaced in the ''find'' subfilter in turn using the placeholder `%inputTitle%`:
+Below, the variable ''find'' defines a subfilter to be searched using the filter operator ''filter'' to search for the word `evaluate` in both the ''title'' or ''summary'' fields, replaced in the ''find'' subfilter in turn using the placeholder `%inputTitle%`:
 
 <$macrocall $name="`" text="""<$vars term="evaluate"
 find="[all[tiddlers]!is[system]search:%inputTitle%<term>]">
