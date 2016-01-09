@@ -457,6 +457,8 @@ Error message and password prompt
 
 <li>rate-Template</li>
 
+<li>Search Multiple Fields With A Subfilter</li>
+
 <li>Set Variable To List Item Via Split</li>
 
 <li>setvars</li>
@@ -8051,18 +8053,18 @@ very-muted-foreground: #888888</pre>
 	{&quot;type&quot;:&quot;js&quot;}
 ]</pre>
 </div>
-<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Evaluate variable subfilters in filter expressions" documentation="https://tobibeer.github.io/tw5-filter" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-filter" title="$:/plugins/tobibeer/filter" type="application/json" version="0.5.5" revision="0" bag="default">
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Evaluate variable subfilters in filter expressions" documentation="https://tobibeer.github.io/tw5-filter" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-filter" title="$:/plugins/tobibeer/filter" type="application/json" version="0.5.6" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tobibeer/filter/filters.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/tobibeer/filter/filters.js\ntype: application/javascript\nmodule-type: filteroperator\n\nFilters tiddlers based on a filter expression given in the operand.\n\n@preserve\n\\*/\n(function(){\&quot;use strict\&quot;;exports.filter=function(e,i,t){var l,s,n,f,r,u=\&quot;inputTitle\&quot;,a=0,p=0,c=t.widget,o=[],d=[],h=\&quot;[all[tiddlers]tag&lt;inputTitle&gt;]\&quot;;e(function(e,i){o.push(i)});$tw.utils.each((i.suffix||\&quot;\&quot;).split(\&quot; \&quot;),function(e){e=e.trim();if(e){if(e.charAt(0)===\&quot;$\&quot;){a=e.length===1?1:2}else if(e.toUpperCase()===\&quot;INPUT\&quot;){p=1}else if(e.toUpperCase().substr(0,4)===\&quot;VAR:\&quot;){r=e.substr(4).trim()}}});if(!r){r=u}s=c&amp;&amp;c.parentWidget?c.parentWidget:null;f=s?s.getVariable(r):null;n=i.operand||h;e(function(e,i){var t=n;if(s){s.setVariable(r,i)}if(c){t=c.substituteVariableReferences(t)}l=$tw.wiki.filterTiddlers(t,c,p?o:[i]);if(l.length){if(a===1){d.push(i)}else{$tw.utils.each(l,function(e){if(d.indexOf(e)&lt;0){d.push(e)}})}}});if(f!==null){s.setVariable(r,f)}if(a===2){if(d.length){d=o}else{d=[]}}return d}})();&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/tobibeer/filter/filters.js\ntype: application/javascript\nmodule-type: filteroperator\n\nFilters tiddlers based on a filter expression given in the operand.\n\n@preserve\n\\*/\n(function(){\&quot;use strict\&quot;;exports.filter=function(e,t,i){var l,n,r,s,f,u=\&quot;inputTitle\&quot;,a=0,p=0,c=i.widget,o=[],g=[],d=\&quot;[all[tiddlers]tag&lt;inputTitle&gt;]\&quot;;e(function(e,t){o.push(t)});$tw.utils.each((t.suffix||\&quot;\&quot;).split(\&quot; \&quot;),function(e){e=e.trim();if(e){if(e.charAt(0)===\&quot;$\&quot;){a=e.length===1?1:2}else if(e.toUpperCase()===\&quot;INPUT\&quot;){p=1}else if(e.toUpperCase().substr(0,4)===\&quot;VAR:\&quot;){f=e.substr(4).trim()}}});if(!f){f=u}n=c&amp;&amp;c.parentWidget?c.parentWidget:null;s=n?n.getVariable(f):null;r=t.operand||d;e(function(e,t){var i=r;if(n){n.setVariable(f,t)}if(c){i=c.substituteVariableReferences(i)}i=i.replace(/%([^(\\s\\%]+)%/gm,function(e,t){return c.getVariable(t,\&quot;\&quot;)});l=$tw.wiki.filterTiddlers(i,c,p?o:[t]);if(l.length){if(a===1){g.push(t)}else{$tw.utils.each(l,function(e){if(g.indexOf(e)&lt;0){g.push(e)}})}}});if(s!==null){n.setVariable(f,s)}if(a===2){if(g.length){g=o}else{g=[]}}return g}})();&quot;,
             &quot;title&quot;: &quot;$:/plugins/tobibeer/filter/filters.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;filteroperator&quot;
         },
         &quot;$:/plugins/tobibeer/filter/readme&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/filter/readme&quot;,
-            &quot;text&quot;: &quot;The plugin $:/plugins/tobibeer/filter provides:\n\n; filter[]\r\n: a filter allowing to evaluate subfilters in a filter expression\n\n!!Syntax Variants\n\n; `[filter&lt;subfilter&gt;]`\r\n: evaluates ''subfilter'' against each input title\r\n: sets the variable ''inputTitle'' to each title in turn\r\n: uses __each__ input title as the source for the subfilter\r\n; `[filter{subfilter}]`\r\n: retrieves the subfilter from a text-reference\r\n; `[filter:input&lt;subfilter&gt;]`\r\n: uses __all__ input titles as the source for the subfilter\r\n; `[filter: var:item&lt;subfilter&gt;]`\r\n: sets variable ''item'' to each input title in turn\r\n; `[filter:$ var:item&lt;subfilter&gt;]`\r\n: returns input titles with matches, sets ''item''\r\n; `[filter:$all input{subfilter}]`\r\n: returns __all__ input titles if __any__ had matches\r\n: evaluates for each input title against __all__ input titles\n\n&lt;br/&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#filter&quot;
+            &quot;text&quot;: &quot;The plugin $:/plugins/tobibeer/filter provides:\n\n; filter[]\r\n: a filter allowing to evaluate subfilters in a filter expression\n\n!!Syntax Variants\n\n; `[filter&lt;subfilter&gt;]`\r\n: evaluates ''subfilter'' against each input title\r\n: sets the variable ''inputTitle'' to each title in turn\r\n: uses __each__ input title as the source for the subfilter\r\n; `[filter{subfilter}]`\r\n: retrieves the subfilter from a text-reference\r\n; `[filter:input&lt;subfilter&gt;]`\r\n: uses __all__ input titles as the source for the subfilter\r\n; `[filter: var:item&lt;subfilter&gt;]`\r\n: sets variable ''item'' to each input title in turn\r\n; `[filter:$ var:item&lt;subfilter&gt;]`\r\n: returns input titles with matches, sets ''item''\r\n; `[filter:$all input{subfilter}]`\r\n: returns __all__ input titles if __any__ had matches\r\n: evaluates for each input title against __all__ input titles\n\n!! Placeholders\n\n; `%variable-name%`\r\n: replace context variables in the subfilter, incl. `%inputTitle%`\n\n&lt;br/&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#filter&quot;
         }
     }
 }</pre>
@@ -9872,7 +9874,7 @@ e;
 :: //also evaluates ''foo'' three times; however, using `[all[tiddlers]]` within ''foo'' the subfilter is evaluated at each turn against any titles imaginable//
 :: the difference to ''1.'' is merely in how the subfilter is defined</pre>
 </div>
-<div created="20151221060854343" creator="Tobias Beer" modified="20160107113220746" modifier="Tobias Beer" summary="examples for the filter operator [[filter]] for evaluating subfilters" tags="filter Examples" test="[&lt;inputTitle&gt;tags[]]" title="filter-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151221060854343" creator="Tobias Beer" modified="20160108184023769" modifier="Tobias Beer" summary="examples for the filter operator [[filter]] for evaluating subfilters" tags="filter Examples" test="[&lt;inputTitle&gt;tags[]]" title="filter-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>// This first example returns all tags of tiddlers prefixed `filter` using a subfilter retrieved from a text-reference, replacing the __default__ variable ''inputTitle'' with each input title in turn: //
 
 &lt;&lt;` &quot;&quot;&quot;; subfilter
@@ -9884,6 +9886,24 @@ e;
 ''Note:'' By default, the subfilter is given only the currently processed input title as its source. To pass all input titles to the subfilter, use the suffix ''input''; see further down. To access all tiddlers in a subfilter, start it by using the &lt;&lt;x &quot;all Operator&quot; &quot;all[] filter operator&quot;&gt;&gt;, e.g.:&lt;br/&gt;
 `[all[tiddlers]!is[system]tag&lt;inputTitle&gt;]`
 @@
+
+!! Using Context Variables
+
+// In this example a lot of context variables are replaced in the subfilter://
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars
+prefix=&quot;!&quot;
+filter=&quot;field&quot;
+suffix=&quot;title&quot;
+operand=&quot;filter&quot;
+subfilter=&quot;[%prefix%%filter%:%suffix%[%operand%]]&quot;&gt;
+
+{{{ [prefix[filter]filter&lt;subfilter&gt;] }}}
+
+vs:
+
+{{{ [prefix[filter]] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;/&gt;
 
 &lt;hr/&gt;
 
@@ -9989,19 +10009,21 @@ filter-tag=&quot;[tag&lt;inputTitle&gt;]&quot; &gt;
 
 &lt;&lt;plugin-docs-cp filter&gt;&gt;</pre>
 </div>
-<div created="20151221060906187" creator="Tobias Beer" modified="20151229084307580" modifier="Tobias Beer" tags="" title="filter-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151221060906187" creator="Tobias Beer" modified="20160108182003593" modifier="Tobias Beer" tags="" title="filter-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-install filter&gt;&gt;
 
 !! Version History
 
-; 0.5.5 / 2016-12-29
+; 0.5.6 / 2016-01-08
+: variable placeholders for use anywhere via `%variable-name%`
+; 0.5.5 / 2015-12-29
 : first release
 :: fixes evaluation algorithm, build error
 :: added tests
-; 0.5.0 / 2016-12-21
+; 0.5.0 / 2015-12-21
 : initial version — retracted</pre>
 </div>
-<div created="20151229083010471" creator="Tobias Beer" modified="20151229085141883" modifier="Tobias Beer" tags="" title="filter-Syntax" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151229083010471" creator="Tobias Beer" modified="20160108182713440" modifier="Tobias Beer" tags="" title="filter-Syntax" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>The filter operator called ''filter'' is specified as follows:
 
 ; operand
@@ -10012,7 +10034,12 @@ filter-tag=&quot;[tag&lt;inputTitle&gt;]&quot; &gt;
 ; suffixes
 : `input` — instead of the current input title (default), passes all input titles as the source to the subfilter when evaluating it with respect to each input title in turn
 : `$` — instead of titles returned by evaluating the subfilter for each input title in turn, returns any input titles for which the subfilter yielded matches
-: `$all` — if any of the input titles evaluated against the subfilter yielded any matches, then ''all'' input titles will be returned, unmodified</pre>
+: `$all` — if any of the input titles evaluated against the subfilter yielded any matches, then ''all'' input titles will be returned, unmodified
+: `var:var-name` — instead of ''inputTitle'', define a variable in which each input title is stored in turn
+; placeholders
+: `%variable-name%` — use this markup for placeholders of any context variables that can be used freely in the sub-filter
+:: so, you could do this: `[%prefix%%filter%:%suffix%%operand%]`
+:: not just via the core &lt;&lt;x &quot;Filter Parameter&quot; &quot;indirect operand&quot;&gt;&gt; syntax: `[tag&lt;tagName&gt;]`</pre>
 </div>
 <div summary="filter plugins by [[Tobias Beer]]" title="Filters" revision="0" bag="default">
 <pre>&lt;&lt;list-plugins&gt;&gt;</pre>
@@ -10791,6 +10818,66 @@ To restrict the tiddlers for which the [[template|rate-Template]] is displayed, 
 Here's how that tiddler is defined in this wiki so that it is only shown for tiddlers documenting this plugin:
 
 &lt;pre&gt;{{$:/plugins/tobibeer/rate/config/filter}}&lt;/pre&gt;</pre>
+</div>
+<div created="20160108175357857" creator="Tobias Beer" modified="20160108181907585" modifier="Tobias Beer" summary="how to evaluate subfilters using the operator [[filter]] to search multiple fields at once, optionally using the [[split]] filter" tags="Examples filter split" title="Search Multiple Fields With A Subfilter" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>Below, the variable ''find'' defines a subfilter to be searched using the filter operator ''filter'' to search for the word `evaluate` in both the ''title'' or ''summary'' fields, replaced in the ''find'' subfilter in turn using the placeholder `%inputTitle%`:
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars term=&quot;evaluate&quot;
+find=&quot;[all[tiddlers]!is[system]search:%inputTitle%&lt;term&gt;]&quot;&gt;
+
+&lt;$count filter=&quot;title summary +[filter&lt;find&gt;]&quot;/&gt;:
+
+{{{ title summary +[filter&lt;find&gt;] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;/&gt;
+
+You can also feed a number of fields using a variable and the [[split]] filter like so:
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars term=&quot;evaluate&quot;
+fields=&quot;title summary&quot;
+find=&quot;[all[tiddlers]!is[system]search:%inputTitle%&lt;term&gt;]&quot;&gt;
+
+&lt;$count filter=&quot;[&lt;fields&gt;split[ ]filter&lt;find&gt;]&quot;/&gt;:
+
+{{{ [&lt;fields&gt;split[ ]filter&lt;find&gt;] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;/&gt;
+
+Here's the same using a named variable:
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars term=&quot;evaluate&quot;
+fields=&quot;title summary&quot;
+find=&quot;[all[tiddlers]!is[system]search:%field%&lt;term&gt;]&quot;&gt;
+
+&lt;$count filter=&quot;[&lt;fields&gt;split[ ]filter:var:field&lt;find&gt;]&quot;/&gt;:
+
+{{{ [&lt;fields&gt;split[ ]filter:var:field&lt;find&gt;] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;/&gt;
+
+Here's the equivalent output using OR syntax:
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars term=&quot;evaluate&quot;&gt;
+
+&lt;$count filter=&quot;
+[!is[system]search:title&lt;term&gt;]
+[!is[system]search:summary&lt;term&gt;]&quot;/&gt;:
+
+{{{
+[!is[system]search:title&lt;term&gt;]
+[!is[system]search:summary&lt;term&gt;]
+}}}
+
+&lt;/$vars&gt;&quot;&quot;&quot;/&gt;
+
+This example returns the actual fields where the search term could be found for the fields ''title'', ''tags'', ''summary'' and ''doesnt-exist'':
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars term=&quot;evaluate&quot;
+fields=&quot;title tags summary doesnt-exist&quot;
+find=&quot;[all[tiddlers]!is[system]search:%inputTitle%&lt;term&gt;]&quot;&gt;
+
+&lt;$count filter=&quot;[&lt;fields&gt;split[ ]filter:$&lt;find&gt;]&quot;/&gt;:
+
+{{{ [&lt;fields&gt;split[ ]filter:$&lt;find&gt;] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;/&gt;
+</pre>
 </div>
 <div created="20160107105337026" creator="Tobias Beer" modified="20160107114339555" modifier="Tobias Beer" summary="using the [[setvars]] widget to declare a variable evaluating an attribute using the [[split]] filter returning a desired list item" tags="split setvars Examples" title="Set Variable To List Item Via Split" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>In the below example, the [[setvars]] widget is used to declare a variable called ''7th'' evaluating the attribute ''items'' with the [[split]] filter returning the seventh item in the list:
