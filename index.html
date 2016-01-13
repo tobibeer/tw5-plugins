@@ -527,6 +527,8 @@ Error message and password prompt
 
 <li>Tag Button Popups In Columns</li>
 
+<li>Templates</li>
+
 <li>Tiddler Popups Via Appear</li>
 
 <li>Tiddler Slider Via Appear Widget</li>
@@ -10820,8 +10822,8 @@ You can specify a title pattern based on whichever strings you desire and variou
 <pre>; repo
 : https://github.com/mklauber/tiddly-mathjs</pre>
 </div>
-<div summary="plugins by [[Tobias Beer]]" title="Plugins" revision="0" bag="default">
-<pre>&lt;$list filter=&quot;Examples Filters Macros Libraries Plugins Widgets&quot;&gt;
+<div created="20160113155958771" creator="Tobias Beer" modified="20160113160003840" modifier="Tobias Beer" summary="plugins by [[Tobias Beer]]" title="Plugins" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>&lt;$list filter=&quot;Examples Filters Macros Libraries Templates Widgets&quot;&gt;
 &lt;div class=&quot;tb-taglist-item&quot;&gt;
 &lt;small class=&quot;tc-menu-list-count&quot;&gt;&lt;$count filter=&quot;[all[current]tagging[]]&quot;/&gt;&lt;/small&gt;
 &lt;$transclude tiddler=&quot;$:/.tb/templates/TagTemplate&quot;/&gt;
@@ -12058,6 +12060,9 @@ color:deeppink;
 
 ; $:/.tb/templates/TagTemplate
 : the above uses a modified version of $:/core/ui/TagTemplate, implementing the appear widget and taking popups out of the flow to not cut popups off within columns</pre>
+</div>
+<div summary="plugins providing view-, edit- or page-templates by [[Tobias Beer]]" title="Templates" revision="0" bag="default">
+<pre>&lt;&lt;list-plugins&gt;&gt;</pre>
 </div>
 <div created="20160107115355209" creator="Tobias Beer" modified="20160107115442497" modifier="Tobias Beer" summary="uses the [[appear]] widget to create popups for tiddlers" tags="appear Examples" title="Tiddler Popups Via Appear" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Lists all node commands and opens the help tiddlers as sticky popups rendered into the global popup handler so as to not cut the popups off at the right tiddler margin:
