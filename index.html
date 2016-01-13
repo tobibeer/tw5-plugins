@@ -746,13 +746,12 @@ show/hide tiddler '$(currentTiddler)$'
 </div>
 <div summary="points to my plugin" tags="$:/tags/Macro" title="$:/.tb/macros/tb" revision="0" bag="default">
 <pre>\define tb(plugin)
-&lt;$list filter=&quot;[[$plugin$]is[tiddler]]&quot;&gt;
-[[tobibeer/$plugin$|$plugin$]]
-&lt;/$list&gt;&lt;$list filter=&quot;[[$plugin$]!is[tiddler]]&quot;&gt;
-&lt;$vars x-url=&quot;tobibeer.github.io/tw5-plugins&quot;&gt;&lt;$macrocall
-$name=&quot;x&quot;
-title=&quot;$plugin$&quot;
-pretty=&quot;tobibeer/$plugin$&quot;/&gt;&lt;/$vars&gt;&lt;/$list&gt;
+&lt;$list filter=&quot;[[$plugin$]is[tiddler]]&quot;
+&gt;[[tobibeer/$plugin$|$plugin$]]&lt;/$list&gt;&lt;$list
+filter=&quot;[[$plugin$]!is[tiddler]]&quot;
+&gt;&lt;$vars x-url=&quot;tobibeer.github.io/tw5-plugins&quot;
+&gt;&lt;$macrocall $name=&quot;x&quot; title=&quot;$plugin$&quot; pretty=&quot;tobibeer/$plugin$&quot;
+/&gt;&lt;/$vars&gt;&lt;/$list&gt;
 \end</pre>
 </div>
 <div summary="returns a link to a tiddler on tw.com" tags="$:/tags/Macro" title="$:/.tb/macros/tw.com" revision="0" bag="default">
