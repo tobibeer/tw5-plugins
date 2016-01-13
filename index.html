@@ -389,6 +389,8 @@ Error message and password prompt
 
 <li>external-Macro</li>
 
+<li>external-Styles</li>
+
 <li>external-Template</li>
 
 <li>filter</li>
@@ -9968,7 +9970,7 @@ e;
 <div created="20160107103708502" creator="Tobias Beer" modified="20160107111304958" modifier="Tobias Beer" tags="" title="Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Demonstations of my [[plugins|Plugins]]:</pre>
 </div>
-<div created="20160113131310042" creator="Tobias Beer" modified="20160113161351999" modifier="Tobias Beer" tabs="Info Macro Template Examples Configure Install" tags="Plugins Macros Templates" title="external" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20160113131310042" creator="Tobias Beer" modified="20160113170806191" modifier="Tobias Beer" tabs="Info Macro Template Examples Configure Styles Install" tags="Plugins Macros Templates" title="external" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs external&gt;&gt;</pre>
 </div>
 <div created="20160113131248808" creator="Tobias Beer" modified="20160113162646808" modifier="Tobias Beer" tags="" title="external-Configure" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -10085,6 +10087,13 @@ All the below parameters are optional:
 Here is the source code for the ''external-tiddler'' macro providing a good example for using both the widget &lt;&lt;tb setvars&gt;&gt; as well as the filter &lt;&lt;tb split&gt;&gt;:
 
 &lt;pre&gt;&lt;$view tiddler=&quot;$:/plugins/tobibeer/external/macro&quot;/&gt;&lt;/pre&gt;</pre>
+</div>
+<div created="20160113170522788" creator="Tobias Beer" modified="20160113170849240" modifier="Tobias Beer" tags="" title="external-Styles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The [[external-tiddler|external-Macro]] macro wraps the iframe it creates in a //div// of the class: 
+
+`tc-external-tiddler`
+
+While the height and top offset are dynamically computed by the macro, some styles are applied to the wrapper and iframe as defined in &lt;&lt;source &quot;$:/plugins/tobibeer/external/styles&quot;&gt;&gt;</pre>
 </div>
 <div created="20160113130108510" creator="Tobias Beer" modified="20160113161318358" modifier="Tobias Beer" title="external-Template" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>The template $:/plugins/tobibeer/external/template provides a view-template that automatically renders the [[external-tiddler|external-Macro]] macro when:
