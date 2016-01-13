@@ -121,6 +121,8 @@ Error message and password prompt
 
 <li>$:/.tb/macros/`</li>
 
+<li>$:/.tb/macros/=</li>
+
 <li>$:/.tb/macros/list-plugins</li>
 
 <li>$:/.tb/macros/list-search</li>
@@ -140,6 +142,8 @@ Error message and password prompt
 <li>$:/.tb/macros/source</li>
 
 <li>$:/.tb/macros/summaries</li>
+
+<li>$:/.tb/macros/tb</li>
 
 <li>$:/.tb/macros/tw.com</li>
 
@@ -181,6 +185,8 @@ Error message and password prompt
 
 <li>$:/config/AutoSave</li>
 
+<li>$:/config/ExternalWiki/tobibeer</li>
+
 <li>$:/config/Navigation/UpdateAddressBar</li>
 
 <li>$:/config/Navigation/UpdateHistory</li>
@@ -220,6 +226,10 @@ Error message and password prompt
 <li>$:/plugins/tobibeer/eval</li>
 
 <li>$:/plugins/tobibeer/eval/libraries</li>
+
+<li>$:/plugins/tobibeer/external</li>
+
+<li>$:/plugins/tobibeer/external/defaults/wiki</li>
 
 <li>$:/plugins/tobibeer/filter</li>
 
@@ -365,7 +375,23 @@ Error message and password prompt
 
 <li>Examples</li>
 
+<li>external</li>
+
+<li>external-Configure</li>
+
+<li>external-Dependencies</li>
+
+<li>external-Info</li>
+
+<li>external-Install</li>
+
+<li>external-Macro</li>
+
+<li>external-Template</li>
+
 <li>filter</li>
+
+<li>filter-Errors</li>
 
 <li>filter-Evaluation</li>
 
@@ -509,6 +535,8 @@ Error message and password prompt
 
 <li>Tobias Beer</li>
 
+<li>tobibeer: external-Install</li>
+
 <li>Welcome</li>
 
 <li>Widgets</li>
@@ -555,6 +583,11 @@ $text$
 $text$
 ```
 
+\end</pre>
+</div>
+<div created="20160112160043010" creator="Tobias Beer" modified="20160112160141725" modifier="Tobias Beer" summary="evaluates any given text as the macro body passing additional parameters" tags="$:/tags/Macro" title="$:/.tb/macros/=" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>\define =(text,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20)
+$text$
 \end</pre>
 </div>
 <div summary="wrapping up the [[list-search]] macro for a category" tags="$:/tags/Macro" title="$:/.tb/macros/list-plugins" revision="0" bag="default">
@@ -707,6 +740,17 @@ show/hide tiddler '$(currentTiddler)$'
 &lt;/dl&gt;
 \end</pre>
 </div>
+<div summary="points to my plugin" tags="$:/tags/Macro" title="$:/.tb/macros/tb" revision="0" bag="default">
+<pre>\define tb(plugin)
+&lt;$list filter=&quot;[[$plugin$]is[tiddler]]&quot;&gt;
+[[tobibeer/$plugin$|$plugin$]]
+&lt;/$list&gt;&lt;$list filter=&quot;[[$plugin$]!is[tiddler]]&quot;&gt;
+&lt;$vars x-url=&quot;tobibeer.github.io/tw5-plugins&quot;&gt;&lt;$macrocall
+$name=&quot;x&quot;
+title=&quot;$plugin$&quot;
+pretty=&quot;tobibeer/$plugin$&quot;/&gt;&lt;/$vars&gt;&lt;/$list&gt;
+\end</pre>
+</div>
 <div summary="returns a link to a tiddler on tw.com" tags="$:/tags/Macro" title="$:/.tb/macros/tw.com" revision="0" bag="default">
 <pre>\define tw(tiddler,pretty)
 &lt;$vars x-url=&quot;http://tiddlywiki.com&quot;&gt;&lt;$macrocall $name=&quot;x&quot; title=&quot;&quot;&quot;$tiddler$&quot;&quot;&quot; pretty=&quot;&quot;&quot;$pretty$&quot;&quot;&quot;/&gt;&lt;/$vars&gt;
@@ -753,7 +797,7 @@ exports.run = function(title,pretty) {
 
 })();</pre>
 </div>
-<div created="20151216093531635" creator="Tobias Beer" list-after="$:/themes/tiddlywiki/vanilla/base" modified="20151216093545129" modifier="Tobias Beer" tags="$:/tags/Stylesheet" title="$:/.tb/styles" type="text/css" revision="0" bag="default">
+<div created="20151216093531635" creator="Tobias Beer" list-after="$:/themes/tiddlywiki/vanilla/base" modified="20160110075513752" modifier="Tobias Beer" tags="$:/tags/Stylesheet" title="$:/.tb/styles" type="text/css" revision="0" bag="default">
 <pre>.tc-tiddler-body {
 clear: both;
 }
@@ -762,12 +806,14 @@ clear: both;
 float:right;
 }
 
-.weight-normal{
-font-weight:normal;
-}
-
-
 /* LINKS */
+
+a{
+	-webkit-transition: 200ms;
+    -moz-transition: 200ms;
+    -o-transition: 200ms;
+    transition: 200ms;
+}
 
 a.tc-tiddlylink-shadow {
 color:#567;
@@ -849,6 +895,12 @@ text-align:right;
 .tb-taglist-item{
 display:inline-block;
 padding-top:5px;
+}
+
+.list-tags {
+float:right;
+font-weight:normal;
+color:#ccc;
 }
 
 
@@ -1101,10 +1153,10 @@ template=&quot;$:/core/ui/TagTemplate&quot;
 storyview=&quot;pop&quot;/&gt;
 &lt;/span&gt;</pre>
 </div>
-<div created="20151126200201056" creator="Tobias Beer" modified="20151207002547761" modifier="Tobias Beer" title="$:/.tb/templates/plugin-list" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151126200201056" creator="Tobias Beer" modified="20160110075424612" modifier="Tobias Beer" title="$:/.tb/templates/plugin-list" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$vars titlePrefix=&quot;tobibeer/&quot;&gt;
 &lt;$list filter=&quot;[all[current]removeprefix[$:/plugins/tobibeer/]]&quot; variable=&quot;plugin&quot;&gt;
-&lt;dt&gt;&lt;$tiddler tiddler=&lt;&lt;plugin&gt;&gt;&gt;{{||$:/.tb/ui/ViewTemplate/title}}&lt;/$tiddler&gt;@@.tb-links.float-right.weight-normal tags: {{{ [title&lt;plugin&gt;tags[]!title&lt;currentTag&gt;sort[title]] }}}@@&lt;/dt&gt;
+&lt;dt&gt;&lt;$tiddler tiddler=&lt;&lt;plugin&gt;&gt;&gt;{{||$:/.tb/ui/ViewTemplate/title}}&lt;/$tiddler&gt;@@.tb-links.list-tags tags: {{{ [title&lt;plugin&gt;tags[]!title&lt;currentTag&gt;sort[title]] }}}@@&lt;/dt&gt;
 &lt;dd&gt;&lt;$transclude tiddler=&lt;&lt;currentTiddler&gt;&gt; field=&quot;description&quot;/&gt;&lt;/dd&gt;
 &lt;/$list&gt;
 &lt;/$vars&gt;</pre>
@@ -1269,6 +1321,9 @@ link=&quot;&quot;&quot;(
 </div>
 <div title="$:/config/AutoSave" revision="0" bag="default">
 <pre>no</pre>
+</div>
+<div title="$:/config/ExternalWiki/tobibeer" top="72px" revision="0" bag="default">
+<pre>http://tobibeer.github.io/tw5-plugins</pre>
 </div>
 <div title="$:/config/Navigation/UpdateAddressBar" revision="0" bag="default">
 <pre>permalink</pre>
@@ -8053,11 +8108,68 @@ very-muted-foreground: #888888</pre>
 	{&quot;type&quot;:&quot;js&quot;}
 ]</pre>
 </div>
-<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Evaluate variable subfilters in filter expressions" documentation="https://tobibeer.github.io/tw5-filter" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-filter" title="$:/plugins/tobibeer/filter" type="application/json" version="0.5.6" revision="0" bag="default">
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="A macro and template to embed tiddlers from external wikis" documentation="https://tobibeer.github.io/tw5-external" list="readme depends config use" plugin-type="plugin" requires="[[tobibeer/setvars|http://tobibeer.github.io/tw5-plugins/#setvars]], [[tobibeer/split|http://tobibeer.github.io/tw5-plugins/#split]] " source="https://github.com/tobibeer/tw5-external" title="$:/plugins/tobibeer/external" type="application/json" version="0.5.0" revision="0" bag="default">
+<pre>{
+    &quot;tiddlers&quot;: {
+        &quot;$:/plugins/tobibeer/external/config&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/config&quot;,
+            &quot;text&quot;: &quot;Configure external wikis under `$:/config/ExternalWiki/&lt;wiki name&gt;` specifying:\n\n; text\r\n: the url of the wiki (w/o final `#`)\r\n; top\r\n: a top margin ignored when rendering, e.g. wiki header\r\n; link\r\n: whether to display a link to the title\r\n; height\r\n: default iframe height for wiki\n\nThese defaults provide global fallbacks:\n\n&lt;&lt;list-links \&quot;height top link wiki +[addprefix[$:/plugins/tobibeer/external/defaults/]]\&quot;&gt;&gt;&quot;
+        },
+        &quot;$:/plugins/tobibeer/external/defaults/top&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/defaults/top&quot;,
+            &quot;text&quot;: &quot;0&quot;
+        },
+        &quot;$:/plugins/tobibeer/external/defaults/height&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/defaults/height&quot;,
+            &quot;text&quot;: &quot;480px&quot;
+        },
+        &quot;$:/plugins/tobibeer/external/defaults/link&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/defaults/link&quot;,
+            &quot;text&quot;: &quot;yes&quot;
+        },
+        &quot;$:/plugins/tobibeer/external/lingo/open&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/lingo/open&quot;,
+            &quot;text&quot;: &quot;view at ''&lt;&lt;WIKI&gt;&gt;''&quot;
+        },
+        &quot;$:/plugins/tobibeer/external/depends&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/depends&quot;,
+            &quot;text&quot;: &quot;This plugin depends on:\n\n* [[tobibeer/setvars|http://tobibeer.github.io/tw5-plugins/#setvars]]\r\n* [[tobibeer/split|http://tobibeer.github.io/tw5-plugins/#split]]\n\n&lt;br&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#external&quot;
+        },
+        &quot;$:/plugins/tobibeer/external/macro&quot;: {
+            &quot;tags&quot;: &quot;$:/tags/Macro&quot;,
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/macro&quot;,
+            &quot;text&quot;: &quot;\\define external-tiddler(wiki,title,height,top,link)\n&lt;$setvars\n  _wiki = \&quot;[all[current]split:first[: ]]\&quot;\n  _wiki_default={{$:/plugins/tobibeer/external/defaults/wiki}}\nWIKI=\&quot;\n  (\\$wiki$\\ ? \\$wiki$\\) ||\n  ([wiki] ? [wiki]) ||\n  wiki_default\&quot;&gt;\n&lt;$setvars CONFIG=\&quot;[config]\&quot;\n  _config=\&quot;[&lt;WIKI&gt;addprefix[$:/config/ExternalWiki/]]\&quot;&gt;\n&lt;$list filter=\&quot;[&lt;CONFIG&gt;]\&quot; variable=\&quot;none\&quot;&gt;\n&lt;$setvars\n  _title=\&quot;\&quot;\&quot;[all[current]split[: ]]\&quot;\&quot;\&quot;\n  _height={{!!height}}\n  _height_wiki=\&quot;[&lt;CONFIG&gt;get[height]]\&quot;\n  _height_default={{$:/plugins/tobibeer/external/defaults/height}}\n  _top=\&quot;[&lt;CONFIG&gt;get[top]]\&quot;\n  _top_default={{$:/plugins/tobibeer/external/defaults/top}}\n  _server=\&quot;[&lt;CONFIG&gt;get[text]]\&quot;\n  _link=\&quot;[&lt;CONFIG&gt;get[link]]\&quot;\n  _link_default={{$:/plugins/tobibeer/external/defaults/link}}\nSERVER=\&quot;[server]\&quot;\nLINK=\&quot;\n  (\\$link$\\ ? \\$link$\\) ||\n  ([link] ? [link]) ||\n  link_default\&quot;\nTITLE=\&quot;\&quot;\&quot;\n  (\\$title$\\ ? \\$title$\\) ||\n  [title[2,n][][: ]]\&quot;\&quot;\&quot;\nURL=\&quot;\&quot;\&quot;SERVER\\#\\TITLE\&quot;\&quot;\&quot;\nTOP=\&quot;\n  (\\$top$\\ ? \\$top$\\ ) ||\n  ([top] ? [top] ) ||\n  top_default\&quot;\nHEIGHT=\&quot;\\calc(\\\n  (\\$height$\\ ? \\$height$\\) ||\n  (height ? height) ||\n  ([height_wiki] ? [height_wiki]) ||\n  height_default\n  \\ + \\ TOP \\)\\\&quot;\nSTYLE=\&quot;\\height:\\HEIGHT\\;\\\&quot;\nSTYLEFRAME=\&quot;\\height:\\HEIGHT\\;top:-\\TOP\\;\\\&quot;&gt;\n&lt;$list filter=\&quot;[&lt;SERVER&gt;]\&quot; variable=\&quot;none\&quot;&gt;\n&lt;$list filter=\&quot;[&lt;LINK&gt;prefix[yes]]\&quot;&gt;\n&lt;a href=&lt;&lt;URL&gt;&gt; target=\&quot;_blank\&quot;&gt;{{$:/plugins/tobibeer/external/lingo/open}}&lt;/a&gt;\n&lt;/$list&gt;\n&lt;div class=\&quot;tc-external-tiddler\&quot; style=&lt;&lt;STYLE&gt;&gt;&gt;\n&lt;iframe src=&lt;&lt;URL&gt;&gt; style=&lt;&lt;STYLEFRAME&gt;&gt; scrolling=\&quot;no\&quot;/&gt;\n&lt;/div&gt;\n&lt;/$list&gt;\n&lt;/$setvars&gt;\n&lt;/$list&gt;\n&lt;/$setvars&gt;\n&lt;/$setvars&gt;\n\\end&quot;
+        },
+        &quot;$:/plugins/tobibeer/external/readme&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/readme&quot;,
+            &quot;text&quot;: &quot;The plugin $:/plugins/tobibeer/external provides:\n\n; &amp;lt;&amp;lt;external-tiddler&gt;&gt;\r\n: a macro to render an iframe with a tiddler of an external wiki\r\n; $:/plugins/tobibeer/external/template\r\n: a view-template displaying an external tiddler when:&lt;div&gt;\r\n&amp;nbsp; &amp;nbsp; » 1. the title matches the remote tiddler pattern\r\n&amp;nbsp; &amp;nbsp; » 2. the external wiki is configured and&lt;br&gt;\r\n&lt;/div&gt;\n\n&lt;br&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#external&quot;
+        },
+        &quot;$:/plugins/tobibeer/external/styles&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/styles&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
+            &quot;text&quot;: &quot;.tc-external-tiddler{\r\nposition:relative;overflow:hidden;\r\n}\r\n.tc-external-tiddler &gt; iframe{\r\nposition:absolute;border:0;width:100%;\r\n}&quot;
+        },
+        &quot;$:/plugins/tobibeer/external/template&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/template&quot;,
+            &quot;list-after&quot;: &quot;$:/core/ui/ViewTemplate/tags&quot;,
+            &quot;tags&quot;: &quot;$:/tags/ViewTemplate&quot;,
+            &quot;text&quot;: &quot;&lt;$list variable=\&quot;none\&quot;\nfilter=\&quot;[all[current]!is[system]split[: ]limit[1]]\&quot;&gt;\n&lt;&lt;external-tiddler&gt;&gt;\n&lt;/$list&gt;&quot;
+        },
+        &quot;$:/plugins/tobibeer/external/use&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/external/use&quot;,
+            &quot;text&quot;: &quot;Configure an external wiki, then create tiddlers titled:\n\n`&lt;external wiki&gt;: &lt;external tiddler name`\n\nAlternatvely, use the ''external-tiddler macro'' with these parameters:\n\n; 1: wiki\r\n: a configured external wiki\r\n; 2: title\r\n: the external tiddler title\r\n; 3: height\r\n: irame height\r\n; 4: height\r\n: negative top offset (define positive)\r\n; 5: link\r\n: display link to tiddler above iframe\n\nYou can also render an external tiddler in wikitext by wrapping the ''external-tiddler'' macro in a ''$tiddler'' widget specifying the above title pattern as the tiddler attribute.&quot;
+        }
+    }
+}</pre>
+</div>
+<div created="20160113143018429" creator="Tobias Beer" modified="20160113143021629" modifier="Tobias Beer" title="$:/plugins/tobibeer/external/defaults/wiki" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>tobibeer</pre>
+</div>
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Evaluate variable subfilters in filter expressions" documentation="https://tobibeer.github.io/tw5-filter" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-filter" title="$:/plugins/tobibeer/filter" type="application/json" version="0.5.7" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tobibeer/filter/filters.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/tobibeer/filter/filters.js\ntype: application/javascript\nmodule-type: filteroperator\n\nFilters tiddlers based on a filter expression given in the operand.\n\n@preserve\n\\*/\n(function(){\&quot;use strict\&quot;;exports.filter=function(e,t,i){var l,n,r,s,f,u=\&quot;inputTitle\&quot;,a=0,p=0,c=i.widget,o=[],g=[],d=\&quot;[all[tiddlers]tag&lt;inputTitle&gt;]\&quot;;e(function(e,t){o.push(t)});$tw.utils.each((t.suffix||\&quot;\&quot;).split(\&quot; \&quot;),function(e){e=e.trim();if(e){if(e.charAt(0)===\&quot;$\&quot;){a=e.length===1?1:2}else if(e.toUpperCase()===\&quot;INPUT\&quot;){p=1}else if(e.toUpperCase().substr(0,4)===\&quot;VAR:\&quot;){f=e.substr(4).trim()}}});if(!f){f=u}n=c&amp;&amp;c.parentWidget?c.parentWidget:null;s=n?n.getVariable(f):null;r=t.operand||d;e(function(e,t){var i=r;if(n){n.setVariable(f,t)}if(c){i=c.substituteVariableReferences(i)}i=i.replace(/%([^(\\s\\%]+)%/gm,function(e,t){return c.getVariable(t,\&quot;\&quot;)});l=$tw.wiki.filterTiddlers(i,c,p?o:[t]);if(l.length){if(a===1){g.push(t)}else{$tw.utils.each(l,function(e){if(g.indexOf(e)&lt;0){g.push(e)}})}}});if(s!==null){n.setVariable(f,s)}if(a===2){if(g.length){g=o}else{g=[]}}return g}})();&quot;,
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/filter/filters.js\r\ntype: application/javascript\r\nmodule-type: filteroperator\r\n\r\nFilters tiddlers based on a filter expression given in the operand.\r\n\r\n@preserve\r\n\\*/\r\n(function(){\&quot;use strict\&quot;;exports.filter=function(t,e,i){try{var r,l,n,s,a,f=\&quot;inputTitle\&quot;,u=0,c=0,p=i.widget,o=[],h=[],g=\&quot;[all[tiddlers]tag&lt;inputTitle&gt;]\&quot;;t(function(t,e){o.push(e)});$tw.utils.each((e.suffix||\&quot;\&quot;).split(\&quot; \&quot;),function(t){t=t.trim();if(t){if(t.charAt(0)===\&quot;$\&quot;){u=t.length===1?1:2}else if(t.toUpperCase()===\&quot;INPUT\&quot;){c=1}else if(t.toUpperCase().substr(0,4)===\&quot;VAR:\&quot;){a=t.substr(4).trim()}}});if(!a){a=f}l=p&amp;&amp;p.parentWidget?p.parentWidget:null;s=l?l.getVariable(a):null;n=e.operand||g;t(function(t,e){try{var i=n;if(l){l.setVariable(a,e)}if(p){i=p.substituteVariableReferences(i)}i=i.replace(/%([^(\\s\\%]+)%/gm,function(t,e){return p.getVariable(e,\&quot;\&quot;)});r=$tw.wiki.filterTiddlers(i,p,c?o:[e]);if(r.length){if(u===1){h.push(e)}else{$tw.utils.each(r,function(t){if(h.indexOf(t)&lt;0){h.push(t)}})}}}catch(s){throw\&quot;can't evaluate subfilter `\&quot;+i+\&quot;`\&quot;}});if(s!==null){l.setVariable(a,s)}if(u===2){if(h.length){h=o}else{h=[]}}return h}catch(b){return[\&quot;filter error: \&quot;+b]}}})();&quot;,
             &quot;title&quot;: &quot;$:/plugins/tobibeer/filter/filters.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;filteroperator&quot;
@@ -9853,8 +9965,153 @@ e;
 <div created="20160107103708502" creator="Tobias Beer" modified="20160107111304958" modifier="Tobias Beer" tags="" title="Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Demonstations of my [[plugins|Plugins]]:</pre>
 </div>
-<div created="20151221060823167" creator="Tobias Beer" modified="20151229085503026" modifier="Tobias Beer" tabs="Info Syntax Evaluation Examples Install" tags="Plugins Filters" title="filter" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20160113131310042" creator="Tobias Beer" modified="20160113132123720" modifier="Tobias Beer" tabs="Info Macro Template Configure Install" tags="Plugins Macros Templates" title="external" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>&lt;&lt;plugin-docs external&gt;&gt;</pre>
+</div>
+<div created="20160113131248808" creator="Tobias Beer" modified="20160113145518424" modifier="Tobias Beer" tags="" title="external-Configure" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>Before you can embed tiddlers from external wikis, create a configuration for __each__ wiki under `$:/config/ExternalWiki/&lt;External Wiki Name&gt;` and specify the ''url'' of the external wiki in the tiddler body. Then:
+
+# use this title pattern to create tiddlers embedding a remote tiddler via the [[template|external-Template]]:
+#*  `&lt;External Wiki Name&gt;: &lt;External Tiddler Title&gt;`
+# use the [[macro|external-Macro]] to embed external tiddlers in wikitext
+
+!! Options
+
+These options can be specified as [[macro parameters|external-Configure]], and otherwise apply as:
+
+; top
+: for a vertical offset for a __wiki__, e.g. to ignore any headers
+:: set the field `top` at the wiki configuration tiddler to the desired value
+:: otherwise defaults to &lt;&lt;source &quot;$:/plugins/tobibeer/external/defaults/top&quot;&gt;&gt;
+; height
+: to specify a height for the embedded tiddler
+:: set the `height` field at the tiddler rendering the external tiddler
+:: defaults to &lt;&lt;source &quot;$:/plugins/tobibeer/external/defaults/height&quot;&gt;&gt;
+; wiki
+: to define a default wiki for use with the [[external-tiddler|external-Macro]] macro
+:: set its title at &lt;&lt;source &quot;$:/plugins/tobibeer/external/defaults/wiki&quot;&gt;&gt;
+; link
+: to specify if a link to the external tiddler is displayed above the iframe
+:: set the field `link` at the wiki configuration tiddler to `yes` or `no`
+:: defaults to &lt;&lt;source &quot;$:/plugins/tobibeer/external/defaults/link&quot;&gt;&gt;
+
+!! Example
+
+An example configuration for a wiki called ''tobibeer'' that points to the below url is defined at &lt;&lt;source &quot;$:/config/ExternalWiki/tobibeer&quot;&gt;&gt;
+
+Here's the top offset for the ''tobibeer'' wiki:
+
+&lt;&lt;` &quot;&quot;&quot;;top
+:{{$:/config/ExternalWiki/tobibeer!!top}}&quot;&quot;&quot;&gt;&gt;
+
+And here's the result: [[tobibeer: external]].</pre>
+</div>
+<div created="20160113125959122" creator="Tobias Beer" modified="20160113151917312" modifier="Tobias Beer" tags="" title="external-Dependencies" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>@@.note
+''Important:'' &lt;&lt;tb external&gt;&gt; depends on &lt;&lt;tb setvars&gt;&gt; and &lt;&lt;tb split&gt;&gt;. Before use, make sure all dependencies are installed.
+@@</pre>
+</div>
+<div created="20160113125329767" creator="Tobias Beer" modified="20160113150801340" modifier="Tobias Beer" title="external-Info" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>{{external-Dependencies}}
+
+The plugin $:/plugins/tobibeer/external provides:
+
+; &amp;lt;&amp;lt;external-tiddler&gt;&gt;
+: a [[macro|external-Macro]] to render an iframe with a tiddler of an external wiki
+; $:/plugins/tobibeer/external/template
+: a view-template displaying an external tiddler when:
+:: 1. the title matches the [[external tiddler tiddler pattern|external-Template]]
+:: 2. the remote wiki is [[configured|external-Configure]]&lt;br&gt;
+
+&lt;&lt;plugin-docs-cp external&gt;&gt;</pre>
+</div>
+<div created="20160113125334275" creator="Tobias Beer" modified="20160113134548145" modifier="Tobias Beer" title="external-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>{{external-Dependencies}}
+
+ &lt;&lt;plugin-install external&gt;&gt;
+
+!! Version History
+
+; 0.5.0 / 2016-01-13
+: initial version</pre>
+</div>
+<div created="20160113130104151" creator="Tobias Beer" modified="20160113153248173" modifier="Tobias Beer" title="external-Macro" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>\define default(option) &lt;code&gt;{{$:/plugins/tobibeer/external/defaults/$option$}}&lt;/code&gt;
+
+The [[external-tiddler|$:/plugins/tobibeer/external/macro]] macro embeds a tiddler from an external wiki using an iframe. It is automatically invoked via the [[view template|external-Template]] for tiddlers following this title pattern:
+
+```
+&lt;External Wiki Name&gt;: &lt;External Tiddler Title&gt;
+```
+
+!! Parameters
+
+All the below parameters are optional:
+
+| !# | !Parameter | !Description | !Default |
+| 1 |wiki|a [[configured|external-Configure]] external wiki which when unspecified:&lt;br&gt;&amp;raquo;  is extracted from the current title&lt;br&gt;&amp;raquo;  otherwise take from the wiki [[configuration|external-Configure]]&lt;br&gt;&amp;raquo;  otherwise the global default|define at [[/defaults/wiki|$:/plugins/tobibeer/external/defaults/wiki]]|
+| 2 |title|the external tiddler title which when unspecified:&lt;br&gt;&amp;raquo; is extracted from the current title||
+| 3 |height|the height of the iframe|&lt;&lt;default height&gt;&gt;|
+| 4 |top|the negative top offset of the iframe|&lt;&lt;default top&gt;&gt;|
+| 5 |link|whether to display a link above the iframe|`yes`|
+
+!! Examples
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;&lt;external-tiddler title:&quot;external-Install&quot; height:&quot;50px&quot;&gt;&gt;&quot;&quot;&quot;/&gt;
+
+You can also use the &lt;&lt;x TiddlerWidget&gt;&gt;  to create a proper context:
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$tiddler tiddler=&quot;tobibeer: external-Install&quot;&gt;
+&lt;&lt;external-tiddler&gt;&gt;
+&lt;/$tiddler&gt;&quot;&quot;&quot;/&gt;
+
+!! Source
+
+Here is the source code for the ''external-tiddler'' macro providing a good example for using both the widget &lt;&lt;tb setvars&gt;&gt; as well as the filter &lt;&lt;tb split&gt;&gt;:
+
+&lt;pre&gt;&lt;$view tiddler=&quot;$:/plugins/tobibeer/external/macro&quot;/&gt;&lt;/pre&gt;</pre>
+</div>
+<div created="20160113130108510" creator="Tobias Beer" modified="20160113154319829" modifier="Tobias Beer" title="external-Template" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The template $:/plugins/tobibeer/external/template provides a view-template that automatically renders the [[external-tiddler|external-Macro]] macro when:
+
+# the current tiddler title matches this pattern
+#* `&lt;External Wiki Name&gt;: &lt;External Tiddler Title&gt;`
+# there is a configuration for the external wiki at:
+#* `$:/config/ExternalWiki/&lt;External Wiki Name&gt;`
+
+To disable the template, remove the tag $:/tags/ViewTemplate from it.
+
+!! Source
+
+This is the template wikitext for &lt;&lt;source &quot;$:/plugins/tobibeer/external/template&quot;&gt;&gt;
+
+!! Example
+
+Open [[tobibeer: external-Install]] to find the tiddler ''external-Install'' automatically embedded via this template from the external wiki called ''tobibeer'' defined at &lt;&lt;source &quot;$:/config/ExternalWiki/tobibeer&quot;&gt;&gt;</pre>
+</div>
+<div created="20151221060823167" creator="Tobias Beer" modified="20160110082225709" modifier="Tobias Beer" tabs="Info Syntax Evaluation Examples Errors Install" tags="Plugins Filters" title="filter" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs filter&gt;&gt;</pre>
+</div>
+<div created="20160110082235278" creator="Tobias Beer" modified="20160110090614615" modifier="Tobias Beer" title="filter-Errors" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>With ''filter'''s powerful syntax allowing you to [[specify flexible subfilters|filter-Syntax]] it is rather easy to construct an invalid subfilter expression, i.e. one that produces a filter error.
+
+Therefore, as of ''version 0.5.7'' onwards, ''filter'' returns any filter errors it encounters as its result and nothing else.
+
+!! Example
+
+Here's what an error looks like based on a modified example of [[Search Multiple Fields With A Subfilter]] where we accidentally feed the default output of the &lt;&lt;x &quot;all Operator&quot; &quot;all filter operator&quot;&gt;&gt; to the subfilter and thus construct an invalid expression with nearly every system tiddler title being passed along:
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars term=&quot;evaluate&quot;
+find=&quot;[all[tiddlers]!is[system]search:%inputTitle%&lt;term&gt;]&quot;&gt;
+
+&lt;$count filter=&quot;[filter&lt;find&gt;]&quot;/&gt;:
+
+{{{ [filter&lt;find&gt;] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;/&gt;
+
+@@.note
+''Tip'': Take a look at you browser's console. You will find that the part `/library/` was interpreted as being the deprecated regexp filter operand. So, anything that follows it was assumed to be a new &lt;&lt;x &quot;Filter Step&quot; &quot;filter step&quot;&gt;&gt;.
+@@</pre>
 </div>
 <div created="20151228210501100" creator="Tobias Beer" modified="20151229085648850" modifier="Tobias Beer" tags="" title="filter-Evaluation" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>The subfilter is always evaluated for each input title in turn with a given variable set to the currently processed title, e.g. ''inputTitle''. There are three ways to define the ''source'' of tiddlers against which the subfilter is evaluated: 
@@ -10014,6 +10271,8 @@ filter-tag=&quot;[tag&lt;inputTitle&gt;]&quot; &gt;
 
 !! Version History
 
+; 0.5.7 / 2017-01-10
+: now reports back on any (fatal) filter errors
 ; 0.5.6 / 2016-01-08
 : variable placeholders for use anywhere via `%variable-name%`
 ; 0.5.5 / 2015-12-29
@@ -10819,7 +11078,7 @@ Here's how that tiddler is defined in this wiki so that it is only shown for tid
 
 &lt;pre&gt;{{$:/plugins/tobibeer/rate/config/filter}}&lt;/pre&gt;</pre>
 </div>
-<div created="20160108175357857" creator="Tobias Beer" modified="20160108181907585" modifier="Tobias Beer" summary="how to evaluate subfilters using the operator [[filter]] to search multiple fields at once, optionally using the [[split]] filter" tags="Examples filter split" title="Search Multiple Fields With A Subfilter" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20160108175357857" creator="Tobias Beer" modified="20160109205115625" modifier="Tobias Beer" summary="how to evaluate subfilters using the operator [[filter]] to search multiple fields at once, optionally using the [[split]] filter" tags="Examples filter split" title="Search Multiple Fields With A Subfilter" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Below, the variable ''find'' defines a subfilter to be searched using the filter operator ''filter'' to search for the word `evaluate` in both the ''title'' or ''summary'' fields, replaced in the ''find'' subfilter in turn using the placeholder `%inputTitle%`:
 
 &lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars term=&quot;evaluate&quot;
@@ -10867,7 +11126,7 @@ Here's the equivalent output using OR syntax:
 
 &lt;/$vars&gt;&quot;&quot;&quot;/&gt;
 
-This example returns the actual fields where the search term could be found for the fields ''title'', ''tags'', ''summary'' and ''doesnt-exist'':
+This example returns the actual fields where the search term could be found in the fields ''title'', ''tags'', ''summary'' and ''doesnt-exist'':
 
 &lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars term=&quot;evaluate&quot;
 fields=&quot;title tags summary doesnt-exist&quot;
@@ -11855,6 +12114,9 @@ $state=&quot;tiddler-widget-slider&quot;&gt;
 <div summary="author of tb5" title="Tobias Beer" url="http://tobibeer.github.io/tb5" revision="0" bag="default">
 <pre>; Github
 : https://github.com/tobibeer</pre>
+</div>
+<div created="20160113130645970" creator="Tobias Beer" modified="20160113153333837" modifier="Tobias Beer" summary="demonstrates &lt;&lt;tb external&gt;&gt; for [[external-Install]] in an iframe" tags="" title="tobibeer: external-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre></pre>
 </div>
 <div title="Welcome" revision="0" bag="default">
 <pre>This wiki provides the documentation for all [[TiddlyWiki]] plugins by [[Tobias Beer]].

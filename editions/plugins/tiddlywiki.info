@@ -17,6 +17,7 @@
         "../../../dict/editions/dict",
         "../../../dom/editions/dom",
         "../../../eval/editions/eval",
+        "../../../external/editions/external",
         "../../../filter/editions/filter",
         "../../../hash/editions/hash",
         "../../../inc/editions/inc",
