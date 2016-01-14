@@ -243,6 +243,10 @@ Error message and password prompt
 
 <li>$:/plugins/tobibeer/math.js</li>
 
+<li>$:/plugins/tobibeer/preview</li>
+
+<li>$:/plugins/tobibeer/preview/defaults/not</li>
+
 <li>$:/plugins/tobibeer/random</li>
 
 <li>$:/plugins/tobibeer/rate</li>
@@ -353,6 +357,8 @@ Error message and password prompt
 
 <li>Dynamic Link Macro</li>
 
+<li>Enhance</li>
+
 <li>eval</li>
 
 <li>eval-Configure</li>
@@ -462,6 +468,18 @@ Error message and password prompt
 <li>mklauber/math.js</li>
 
 <li>Plugins</li>
+
+<li>preview</li>
+
+<li>preview-Configure</li>
+
+<li>preview-Dependencies</li>
+
+<li>preview-Info</li>
+
+<li>preview-Install</li>
+
+<li>preview-Styles</li>
 
 <li>random</li>
 
@@ -8285,6 +8303,95 @@ very-muted-foreground: #888888</pre>
     }
 }</pre>
 </div>
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Shows a tiddler preview when hovering internal links" documentation="https://tobibeer.github.io/tw5-preview" list="readme config" plugin-type="plugin" requires="[[tobibeer/appear|http://tobibeer.github.io/tw5-plugins/#appear]]" source="https://github.com/tobibeer/tw5-preview" title="$:/plugins/tobibeer/preview" type="application/json" version="0.5.0" revision="0" bag="default">
+<pre>{
+    &quot;tiddlers&quot;: {
+        &quot;$:/plugins/tobibeer/preview/config&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/config&quot;,
+            &quot;text&quot;: &quot;\\define default()\r\n&lt;dt&gt;$(defaults)$$(option)$&lt;/dt&gt;\r\n&lt;dd&gt;\r\n//{{$:/plugins/tobibeer/preview/lingo/$(option)$}}&lt;$list\r\nfilter=\&quot;[[$(option)$]prefix[template]]\&quot;&gt;\r\n{{$(defaults)$$(option)$}}&lt;/$list&gt;://&lt;br&gt;\r\n&lt;$edit-text tag=input tiddler=\&quot;$(defaults)$$(option)$\&quot;/&gt;\r\n&lt;/dd&gt;\r\n\\end\n\n&lt;dl class=\&quot;preview-defaults\&quot;&gt;\r\n&lt;$vars defaults=\&quot;$:/plugins/tobibeer/preview/defaults/\&quot;&gt;\r\n&lt;$list filter=\&quot;[all[tiddlers+shadows]removeprefix&lt;defaults&gt;sort[title]]\&quot; variable=\&quot;option\&quot;&gt;\r\n&lt;&lt;default&gt;&gt;\r\n&lt;/$list&gt;\r\n&lt;/$vars&gt;\r\n&lt;/dl&gt;\r\n&lt;style&gt;.preview-defaults input {width:90%;}&lt;/style&gt;&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/lingo/keys&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/lingo/keys&quot;,
+            &quot;text&quot;: &quot;modifier keys to trigger popup directly on-hover (alt, ctrl, shift, meta)&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/defaults/keys&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/defaults/keys&quot;,
+            &quot;text&quot;: &quot;CTRL&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/lingo/delay&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/lingo/delay&quot;,
+            &quot;text&quot;: &quot;delay popup for this many milliseconds&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/defaults/delay&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/defaults/delay&quot;,
+            &quot;text&quot;: &quot;1500&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/lingo/class&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/lingo/class&quot;,
+            &quot;text&quot;: &quot;css classes applied to the popup&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/defaults/class&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/defaults/class&quot;,
+            &quot;text&quot;: &quot;tc-popup-keep&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/lingo/not&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/lingo/not&quot;,
+            &quot;text&quot;: &quot;no preview for links inside elements with these classes&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/defaults/not&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/defaults/not&quot;,
+            &quot;text&quot;: &quot;tc-drop-down tc-sidebar-scrollable tc-topbar tc-tiddler-title&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/lingo/exclude&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/lingo/exclude&quot;,
+            &quot;text&quot;: &quot;no preview for links to tiddlers matching this filter&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/defaults/exclude&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/defaults/exclude&quot;,
+            &quot;text&quot;: &quot;[is[system]] [all[shadows]] [!has[text]]&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/lingo/template&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/lingo/template&quot;,
+            &quot;text&quot;: &quot;the preview template&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/defaults/template&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/defaults/template&quot;,
+            &quot;text&quot;: &quot;$:/plugins/tobibeer/preview/template&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/lingo/open&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/lingo/open&quot;,
+            &quot;text&quot;: &quot;view at ''&lt;&lt;WIKI&gt;&gt;''&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/popup&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/popup&quot;,
+            &quot;tags&quot;: &quot;$:/tags/PageTemplate&quot;,
+            &quot;text&quot;: &quot;\\define state(num)\n$:/temp/tobibeer/preview-$num$\n\\end\n\n\\define classes(num)\ntc-popup appear appear-block tc-preview-tiddler tc-preview-tiddler-$num$ $(default-classes)$\n\\end\n\n\\define level(num)\n&lt;$reveal tag=\&quot;div\&quot; type=\&quot;popup\&quot; state=&lt;&lt;state $num$&gt;&gt; class=&lt;&lt;classes $num$&gt;&gt;&gt;\n&lt;$tiddler tiddler={{$:/temp/tobibeer/preview-$num$-tiddler}}&gt;\n\n&lt;$transclude tiddler={{$:/plugins/tobibeer/preview/defaults/template}} mode=\&quot;block\&quot;/&gt;\n&lt;/$tiddler&gt;\n&lt;/$reveal&gt;\n\\end\n\n&lt;$vars default-classes={{$:/plugins/tobibeer/preview/defaults/class}}&gt;\n&lt;$list filter=\&quot;1 2 3 4 5 6 7\&quot;&gt;\n&lt;$macrocall $name=\&quot;level\&quot; num={{!!title}}/&gt;\n&lt;/$list&gt;\n&lt;/$vars&gt;&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/readme&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/readme&quot;,
+            &quot;text&quot;: &quot;The plugin $:/plugins/tobibeer/preview enhances the core &lt;&lt;x LinkWidget&gt;&gt; to display a preview of tiddlers when hovering an internal link.\n\n&lt;br&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#preview&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/startup.js&quot;: {
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/preview/startup.js\r\ntype: application/javascript\r\nmodule-type: startup\r\n\r\nEnhances the link widget for on-hover previews\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;var e=require(\&quot;$:/core/modules/widgets/link.js\&quot;).link,t=e.prototype.render,i=e.prototype.handleClickEvent,o=require(\&quot;$:/core/modules/utils/dom/popup.js\&quot;).Popup,p=o.prototype.popupInfo;e.prototype.render=function(){t.apply(this,arguments);var e,i=this,o=this.wiki,p=this.domNodes[0],r=o.getTiddler(i.to),u=\&quot;$:/plugins/tobibeer/preview/defaults/\&quot;,s=$tw.utils.parseKeyDescriptor(o.getTextReference(u+\&quot;keys\&quot;,\&quot;\&quot;).toUpperCase()),n=o.getTextReference(u+\&quot;delay\&quot;,\&quot;\&quot;).toUpperCase(),l=function(){var t=$tw.popup.popupInfo(p).popupLevel;clearTimeout(e);$tw.popup.cancel(t-1);t++;o.setText(\&quot;$:/temp/tobibeer/preview-\&quot;+t+\&quot;-tiddler\&quot;,\&quot;text\&quot;,null,i.to);setTimeout(function(){$tw.popup.triggerPopup({domNode:p,title:\&quot;$:/temp/tobibeer/preview-\&quot;+t,wiki:o})},50)},a=function(){var e,t,r=1,s=o.getTextReference(u+\&quot;not\&quot;,\&quot;\&quot;);if(s){$tw.utils.each(s.split(\&quot; \&quot;),function(e){var t=p;while(t&amp;&amp;r){if($tw.utils.hasClass(t,e)){r=0;return false}t=t.parentNode}})}t=o.getTextReference(u+\&quot;exclude\&quot;,\&quot;\&quot;);e=t?o.filterTiddlers(t):[];if(e.indexOf(i.to)&gt;=0){r=0}return r};n=n?parseInt(n):null;if(n!==null&amp;&amp;isNaN(n)){n=0}if(r){$tw.utils.addClass(p,\&quot;tc-popup-handle\&quot;);$tw.utils.addClass(p,\&quot;tc-popup-absolute\&quot;);[\&quot;mouseover\&quot;,\&quot;mouseout\&quot;].forEach(function(t){p.addEventListener(t,function(i){var o=i||window.event;if(t===\&quot;mouseover\&quot;){if(a()){if($tw.utils.checkKeyDescriptor(o,s)){l()}else if(n){e=setTimeout(l,n);p.delayTimeout=e}}}else{clearTimeout(e)}})})}};e.prototype.handleClickEvent=function(){i.apply(this,arguments);clearTimeout(this.delayTimeout)};o.prototype.popupInfo=function(e){var t,i,o=e;while(o&amp;&amp;o.getAttribute){t=o.getAttribute(\&quot;class\&quot;)||\&quot;\&quot;;i=t.indexOf(\&quot;tc-preview-tiddler-\&quot;);if(i&gt;-1){t=t.substr(i).split(\&quot; \&quot;)[0];return{popupLevel:parseInt(t.charAt(t.length-1))}}o=o.parentNode}return p.apply(this,arguments)}})();&quot;,
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/startup.js&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;startup&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/styles&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/styles&quot;,
+            &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
+            &quot;text&quot;: &quot;.tc-popup.tc-preview-tiddler{\r\n\tmax-width:600px;\r\n\twidth:100%;\r\n\tpadding:1em;\r\n}&quot;
+        },
+        &quot;$:/plugins/tobibeer/preview/template&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/template&quot;,
+            &quot;text&quot;: &quot;{{||$:/core/ui/ViewTemplate/tags}}\n\n&lt;$transclude mode=\&quot;block\&quot;/&gt;&quot;
+        }
+    }
+}</pre>
+</div>
+<div title="$:/plugins/tobibeer/preview/defaults/not" revision="0" bag="default">
+<pre>tc-drop-down tc-sidebar-scrollable tc-topbar tc-tiddler-title back-top</pre>
+</div>
 <div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="A filter to return one or more random titles" documentation="https://tobibeer.github.io/tw5-random" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-random" title="$:/plugins/tobibeer/random" type="application/json" version="0.1.0" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -9646,6 +9753,9 @@ text=&quot;&quot;&quot;''current:'' {{!!fibonacci}}
 &lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;Want to &lt;&lt;route &quot;Customise TiddlyWiki&quot; &quot;customize&quot;&gt;&gt; TiddlyWiki? Go check out my &lt;&lt;route Plugins plugins&gt;&gt;!&quot;&quot;&quot;/&gt;
 </pre>
 </div>
+<div summary="plugins enhancing or hacking core features by [[Tobias Beer]]" title="Enhance" revision="0" bag="default">
+<pre>&lt;&lt;list-plugins&gt;&gt;</pre>
+</div>
 <div created="20151206140544579" creator="Tobias Beer" modified="20151206143126828" modifier="Tobias Beer" tabs="Info Filter Widget Examples Configure Install" tags="Plugins Widgets Filters" title="eval" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs eval&gt;&gt;</pre>
 </div>
@@ -10842,8 +10952,8 @@ You can specify a title pattern based on whichever strings you desire and variou
 <pre>; repo
 : https://github.com/mklauber/tiddly-mathjs</pre>
 </div>
-<div created="20160113155958771" creator="Tobias Beer" modified="20160113160003840" modifier="Tobias Beer" summary="plugins by [[Tobias Beer]]" title="Plugins" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>&lt;$list filter=&quot;Examples Filters Macros Libraries Templates Widgets&quot;&gt;
+<div summary="plugins by [[Tobias Beer]]" title="Plugins" revision="0" bag="default">
+<pre>&lt;$list filter=&quot;Enhance Examples Filters Macros Libraries Templates Widgets&quot;&gt;
 &lt;div class=&quot;tb-taglist-item&quot;&gt;
 &lt;small class=&quot;tc-menu-list-count&quot;&gt;&lt;$count filter=&quot;[all[current]tagging[]]&quot;/&gt;&lt;/small&gt;
 &lt;$transclude tiddler=&quot;$:/.tb/templates/TagTemplate&quot;/&gt;
@@ -10851,6 +10961,57 @@ You can specify a title pattern based on whichever strings you desire and variou
 &lt;/$list&gt;
 
 &lt;&lt;list-plugins&gt;&gt;</pre>
+</div>
+<div created="20160113211414255" creator="Tobias Beer" modified="20160114010047545" modifier="Tobias Beer" tabs="Info Configure Styles Install" tags="Plugins Widgets Enhance" title="preview" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>&lt;&lt;plugin-docs preview&gt;&gt;</pre>
+</div>
+<div created="20160113211423872" creator="Tobias Beer" modified="20160114013957588" modifier="Tobias Beer" title="preview-Configure" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The plugin provides the following global configuration tiddlers which you also find in the plugin listing for &lt;&lt;tb preview&gt;&gt; in the [[ControlPanel|$:/ControlPanel]] of your wiki:
+
+{{$:/plugins/tobibeer/preview/config}}</pre>
+</div>
+<div title="preview-Dependencies" revision="0" bag="default">
+<pre>@@.note
+''Important:'' &lt;&lt;tb preview&gt;&gt; depends on &lt;&lt;tb appear&gt;&gt; for positioning popups absolutely, and reusing popup styles. Hence, be sure to install it (first).
+@@</pre>
+</div>
+<div created="20160113211354480" creator="Tobias Beer" modified="20160114020017370" modifier="Tobias Beer" title="preview-Info" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>{{preview-Dependencies}}
+
+The plugin $:/plugins/tobibeer/preview enhances the core &lt;&lt;x LinkWidget&gt;&gt; to display a preview of tiddlers when hovering an internal link.
+
+* link preview popups can even be nested a few levels
+* you can define a ''delay'' or keyboard modifier ''keys'' in the [[configuration|preview-Configure]]
+** or exclude elements cia css ''classes'' or titles using an ''exclude'' filter
+** and make preview popups &quot;sticky&quot; using the class `tc-popup-keep`
+* design a custom [[template|preview-Configure]] or use custom [[styles|preview-Styles]] via css
+
+&lt;&lt;plugin-docs-cp preview&gt;&gt;</pre>
+</div>
+<div created="20160114002002424" creator="Tobias Beer" modified="20160114013714567" modifier="Tobias Beer" title="preview-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>{{preview-Dependencies}}
+
+&lt;&lt;plugin-install preview&gt;&gt;
+
+!! Version History
+
+; 0.5.0 / 2016-01-14
+: initial version</pre>
+</div>
+<div created="20160114002008644" creator="Tobias Beer" modified="20160114003941598" modifier="Tobias Beer" tags="" title="preview-Styles" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The following classes are set to by &lt;&lt;tb preview&gt;&gt;:
+
+; for internal links:
+: `tc-popup-handle` — indicates the link is a popup handle
+: `tc-popup-absolute` — to calculate the popup position absolutely
+; for the popup:
+: `tc-popup-keep` — makes the popups sticky (via [[defaults/class|preview-Configure]])
+: `tc-popup` — standard popup class
+: `appear appear-block` — appear widget styles
+: `tc-preview-tiddler tc-preview-tiddler-&lt;level&gt;` — mark popup as preview
+The default styles for &lt;&lt;tb preview&gt;&gt; are defined in &lt;&lt;source &quot;$:/plugins/tobibeer/preview/styles&quot;&gt;&gt;
+
+Some styles by &lt;&lt;tb appear&gt;&gt; also apply as defined in &lt;&lt;source &quot;$:/plugins/tobibeer/appear/styles&quot;&gt;&gt;</pre>
 </div>
 <div created="20151221124124606" creator="Tobias Beer" modified="20151221124124606" tabs="Info Examples Install" tags="Plugins Filters" title="random" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs random&gt;&gt;</pre>
