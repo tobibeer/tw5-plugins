@@ -24,6 +24,7 @@
         "../../../join/editions/join",
         "../../../make/editions/make",
         "../../../math.js/editions/math.js",
+        "../../../preview/editions/preview",
         "../../../rate/editions/rate",
         "../../../random/editions/random",
         "../../../setvars/editions/setvars",
