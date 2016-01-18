@@ -193,7 +193,11 @@ Error message and password prompt
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/home</li>
 
+<li>$:/config/templates/tabs</li>
+
 <li>$:/core</li>
+
+<li>$:/core/macros/tabs</li>
 
 <li>$:/core/modules/utils/fakedom.js</li>
 
@@ -500,6 +504,8 @@ Error message and password prompt
 <li>preview-Install</li>
 
 <li>preview-Styles</li>
+
+<li>Quick Edit Tabs</li>
 
 <li>random</li>
 
@@ -1376,6 +1382,9 @@ link=&quot;&quot;&quot;(
 </div>
 <div title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/home" revision="0" bag="default">
 <pre>show</pre>
+</div>
+<div title="$:/config/templates/tabs" revision="0" bag="default">
+<pre>$:/plugins/tobibeer/inc/templates/tabs</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.10" revision="0" bag="default">
 <pre>{
@@ -7426,6 +7435,34 @@ link=&quot;&quot;&quot;(
     }
 }</pre>
 </div>
+<div tags="$:/tags/Macro" title="$:/core/macros/tabs" revision="0" bag="default">
+<pre>\define tabs(tabsList,default,state:&quot;$:/state/tab&quot;,class,template)
+&lt;div class=&quot;tc-tab-set $class$&quot;&gt;
+&lt;div class=&quot;tc-tab-buttons $class$&quot;&gt;
+&lt;$list filter=&quot;$tabsList$&quot; variable=&quot;currentTab&quot;&gt;&lt;$set name=&quot;save-currentTiddler&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;&lt;$tiddler tiddler=&lt;&lt;currentTab&gt;&gt;&gt;&lt;$button set=&lt;&lt;qualify &quot;$state$&quot;&gt;&gt; setTo=&lt;&lt;currentTab&gt;&gt; default=&quot;$default$&quot; selectedClass=&quot;tc-tab-selected&quot; tooltip={{!!tooltip}}&gt;
+&lt;$tiddler tiddler=&lt;&lt;save-currentTiddler&gt;&gt;&gt;
+&lt;$set name=&quot;tv-wikilinks&quot; value=&quot;no&quot;&gt;
+&lt;$transclude tiddler=&lt;&lt;currentTab&gt;&gt; field=&quot;caption&quot;&gt;
+&lt;$macrocall $name=&quot;currentTab&quot; $type=&quot;text/plain&quot; $output=&quot;text/plain&quot;/&gt;
+&lt;/$transclude&gt;
+&lt;/$set&gt;&lt;/$tiddler&gt;&lt;/$button&gt;&lt;/$tiddler&gt;&lt;/$set&gt;&lt;/$list&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tc-tab-divider $class$&quot;/&gt;
+&lt;div class=&quot;tc-tab-content $class$&quot;&gt;
+&lt;$list filter=&quot;$tabsList$&quot; variable=&quot;currentTab&quot;&gt;
+
+&lt;$reveal type=&quot;match&quot; state=&lt;&lt;qualify &quot;$state$&quot;&gt;&gt; text=&lt;&lt;currentTab&gt;&gt; default=&quot;$default$&quot;&gt;
+&lt;$set name=&quot;tab-template&quot; value=&quot;&quot;&quot;$template$&quot;&quot;&quot; emptyValue={{$:/config/templates/tabs}}&gt;
+&lt;$transclude tiddler=&lt;&lt;tab-template&gt;&gt; mode=&quot;block&quot;/&gt;
+&lt;/$set&gt;
+&lt;/$reveal&gt;
+
+&lt;/$list&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+\end
+</pre>
+</div>
 <div module-type="global" title="$:/core/modules/utils/fakedom.js" type="application/javascript" revision="0" bag="default">
 <pre>/*\
 title: $:/core/modules/utils/fakedom.js
@@ -8240,7 +8277,7 @@ very-muted-foreground: #888888</pre>
     }
 }</pre>
 </div>
-<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Enhance transclusion by including tiddlers with an on-hover toolbar" documentation="https://tobibeer.github.io/tw5-inc" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-inc" title="$:/plugins/tobibeer/inc" type="application/json" version="0.5.1" revision="0" bag="default">
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Enhance transclusion by including tiddlers with an on-hover toolbar" documentation="https://tobibeer.github.io/tw5-inc" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-inc" title="$:/plugins/tobibeer/inc" type="application/json" version="0.5.2" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tobibeer/inc/buttons/open&quot;: {
@@ -8260,7 +8297,11 @@ very-muted-foreground: #888888</pre>
             &quot;title&quot;: &quot;$:/plugins/tobibeer/inc/styles&quot;,
             &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
             &quot;type&quot;: &quot;text/css&quot;,
-            &quot;text&quot;: &quot;.tb-inc {\r\nmargin:-5px;\r\npadding:5px;\r\n}\r\n.tb-inc:hover {\r\nbackground-color:#fcfcfc;\r\nborder-radius:5px;\r\n}\r\n.tb-inc-controls{\r\nmargin-top:-2em;\r\npadding: 5px;\r\ndisplay:none;\r\n}\r\n.tb-inc:hover .tb-inc-controls{\r\ndisplay:block;\r\n}&quot;
+            &quot;text&quot;: &quot;.tb-inc-controls{\r\nmargin-top:-2em;\r\npadding: 5px;\r\ndisplay:none;\r\n}\r\n.tb-inc-tab-content .tb-inc{\r\nmargin:0;\r\npadding:0;\r\nposition:relative;\r\n}\r\n.tb-inc-tab-content .tb-inc-controls{\r\nposition:absolute;\r\nmargin-top:-5px;\r\nright:0;\r\ntop:0;\r\n}\r\n.tb-inc:hover &gt; .tb-inc-controls{\r\ndisplay:block;\r\nfloat:right;\r\n}&quot;
+        },
+        &quot;$:/plugins/tobibeer/inc/templates/tabs&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/inc/templates/tabs&quot;,
+            &quot;text&quot;: &quot;&lt;div class=\&quot;tb-inc-tab-content\&quot;&gt;\n&lt;$macrocall $name=\&quot;{\&quot; tiddler=&lt;&lt;currentTab&gt;&gt;/&gt;\n&lt;/div&gt;&quot;
         },
         &quot;$:/plugins/tobibeer/inc/toolbar&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/inc/toolbar&quot;,
@@ -8427,6 +8468,12 @@ very-muted-foreground: #888888</pre>
             &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/lingo/open&quot;,
             &quot;text&quot;: &quot;view at ''&lt;&lt;WIKI&gt;&gt;''&quot;
         },
+        &quot;$:/plugins/tobibeer/preview/keyboard.js&quot;: {
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/preview/keyboard.js\r\ntype: application/javascript\r\nmodule-type: utils\r\n\r\nFixes $:/core/modules/utils/dom/keyboard.js by providing an alternative.\r\nDo not use as an API, let's fix the core.\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;var e={BACKSPACE:8,TAB:9,ENTER:13,ESCAPE:27,PAGEUP:33,PAGEDOWN:34,END:35,HOME:36,LEFT:37,UP:38,RIGHT:39,DOWN:40,INSERT:45,DELETE:46};exports.parseKeyDescriptorTB=function(t){var l,r,y,s=t.toUpperCase().split(\&quot;+\&quot;),K={keyCode:null,shiftKey:false,altKey:false,ctrlKey:false};for(y=0;y&lt;s.length;y++){l=false;r=s[y];if(r.substr(0,1)===\&quot;!\&quot;){l=true;r=r.substr(1)}if(r===\&quot;CTRL\&quot;){K.ctrlKey=l?null:true}else if(r===\&quot;SHIFT\&quot;){K.shiftKey=l?null:true}else if(r===\&quot;ALT\&quot;){K.altKey=l?null:true}else if(r===\&quot;META\&quot;){K.metaKey=l?null:true}else if(e[r]){K.keyCode=e[r]}else{K.keyCode=r.charCodeAt(0)}}return K};exports.checkKeyDescriptorTB=function(e,t){var l=!!t.metaKey;return(t.keyCode===null||e.keyCode===t.keyCode)&amp;&amp;(t.shiftKey===null?!e.shiftKey:e.shiftKey===t.shiftKey)&amp;&amp;(t.altKey===null?!e.altKey:e.altKey===t.altKey)&amp;&amp;(t.ctrlKey===null?!e.ctrlKey:e.ctrlKey===t.ctrlKey)&amp;&amp;(t.metaKey===null?!e.metaKey:e.metaKey===l)}})();&quot;,
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/keyboard.js&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;utils&quot;
+        },
         &quot;$:/plugins/tobibeer/preview/popup&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/popup&quot;,
             &quot;tags&quot;: &quot;$:/tags/PageTemplate&quot;,
@@ -8437,7 +8484,7 @@ very-muted-foreground: #888888</pre>
             &quot;text&quot;: &quot;The plugin $:/plugins/tobibeer/preview enhances the core &lt;&lt;x LinkWidget&gt;&gt; to display a preview of tiddlers when hovering an internal link.\n\n&lt;br&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#preview&quot;
         },
         &quot;$:/plugins/tobibeer/preview/startup.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/preview/startup.js\r\ntype: application/javascript\r\nmodule-type: startup\r\n\r\nEnhances the link widget for on-hover previews\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;var e=require(\&quot;$:/core/modules/widgets/link.js\&quot;).link,t=e.prototype.render,p=e.prototype.handleClickEvent,i=require(\&quot;$:/core/modules/utils/dom/popup.js\&quot;).Popup,o=i.prototype.popupInfo;e.prototype.render=function(){t.apply(this,arguments);var e=this,p=this.wiki,i=this.domNodes[0],o=p.getTiddler(e.to),r=\&quot;$:/plugins/tobibeer/preview/defaults/\&quot;,u=$tw.utils.parseKeyDescriptor(p.getTextReference(r+\&quot;keys\&quot;,\&quot;\&quot;).toUpperCase()),n=p.getTextReference(r+\&quot;delay\&quot;).toUpperCase(),s=function(){var t=$tw.popup.popupInfo(i).popupLevel;clearTimeout(e.previewTimeout);$tw.popup.cancel(t-1);t++;p.setText(\&quot;$:/temp/tobibeer/preview-\&quot;+t+\&quot;-tiddler\&quot;,\&quot;text\&quot;,null,e.to);setTimeout(function(){$tw.popup.triggerPopup({domNode:i,title:\&quot;$:/temp/tobibeer/preview-\&quot;+t,wiki:p})},50)},l=function(){var t,o,u=1,n=p.getTextReference(r+\&quot;not\&quot;,\&quot;\&quot;);if(n){$tw.utils.each(n.split(\&quot; \&quot;),function(e){var t=i;while(t&amp;&amp;u){if($tw.utils.hasClass(t,e)){u=0;return false}t=t.parentNode}})}o=p.getTextReference(r+\&quot;exclude\&quot;,\&quot;\&quot;);t=o?p.filterTiddlers(o):[];if(t.indexOf(e.to)&gt;=0){u=0}return u};n=n!==undefined?parseInt(n):null;if(n!==null&amp;&amp;isNaN(n)){n=0}if(o){$tw.utils.addClass(i,\&quot;tc-popup-handle\&quot;);$tw.utils.addClass(i,\&quot;tc-popup-absolute\&quot;);[\&quot;mouseover\&quot;,\&quot;mouseout\&quot;].forEach(function(t){i.addEventListener(t,function(p){var i=p||window.event;if(t===\&quot;mouseover\&quot;){if(l()){if(!i.keyCode){i.keyCode=0}if($tw.utils.checkKeyDescriptor(i,u)){s()}else if(n!==null){e.previewTimeout=setTimeout(s,n)}}}else{clearTimeout(e.previewTimeout)}})})}};e.prototype.handleClickEvent=function(){p.apply(this,arguments);clearTimeout(this.previewTimeout);$tw.popup.cancel(Math.max(0,$tw.popup.popupInfo(this).popupLevel-1))};i.prototype.popupInfo=function(e){var t,p,i=e;while(i&amp;&amp;i.getAttribute){t=i.getAttribute(\&quot;class\&quot;)||\&quot;\&quot;;p=t.indexOf(\&quot;tc-preview-tiddler-\&quot;);if(p&gt;-1){t=t.substr(p).split(\&quot; \&quot;)[0];return{popupLevel:parseInt(t.charAt(t.length-1))}}i=i.parentNode}return o.apply(this,arguments)}})();&quot;,
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/preview/startup.js\r\ntype: application/javascript\r\nmodule-type: startup\r\n\r\nEnhances the link widget for on-hover previews\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;var e=require(\&quot;$:/core/modules/widgets/link.js\&quot;).link,t=e.prototype.render,p=e.prototype.handleClickEvent,i=require(\&quot;$:/core/modules/utils/dom/popup.js\&quot;).Popup,o=i.prototype.popupInfo;e.prototype.render=function(){t.apply(this,arguments);var e=this,p=this.wiki,i=this.domNodes[0],o=p.getTiddler(e.to),r=\&quot;$:/plugins/tobibeer/preview/defaults/\&quot;,u=$tw.utils.parseKeyDescriptorTB(p.getTextReference(r+\&quot;keys\&quot;,\&quot;\&quot;).toUpperCase()),n=p.getTextReference(r+\&quot;delay\&quot;).toUpperCase(),s=function(){var t=$tw.popup.popupInfo(i).popupLevel;clearTimeout(e.previewTimeout);$tw.popup.cancel(t-1);t++;p.setText(\&quot;$:/temp/tobibeer/preview-\&quot;+t+\&quot;-tiddler\&quot;,\&quot;text\&quot;,null,e.to);setTimeout(function(){$tw.popup.triggerPopup({domNode:i,title:\&quot;$:/temp/tobibeer/preview-\&quot;+t,wiki:p})},50)},l=function(){var t,o,u=1,n=p.getTextReference(r+\&quot;not\&quot;,\&quot;\&quot;);if(n){$tw.utils.each(n.split(\&quot; \&quot;),function(e){var t=i;while(t&amp;&amp;u){if($tw.utils.hasClass(t,e)){u=0;return false}t=t.parentNode}})}o=p.getTextReference(r+\&quot;exclude\&quot;,\&quot;\&quot;);t=o?p.filterTiddlers(o):[];if(t.indexOf(e.to)&gt;=0){u=0}return u};n=n!==undefined?parseInt(n):null;if(n!==null&amp;&amp;isNaN(n)){n=0}if(o){$tw.utils.addClass(i,\&quot;tc-popup-handle\&quot;);$tw.utils.addClass(i,\&quot;tc-popup-absolute\&quot;);[\&quot;mouseover\&quot;,\&quot;mouseout\&quot;].forEach(function(t){i.addEventListener(t,function(p){var i=p||window.event;if(t===\&quot;mouseover\&quot;){if(l()){if(!i.keyCode){i.keyCode=0}if($tw.utils.checkKeyDescriptorTB(i,u)){s()}else if(n!==null){e.previewTimeout=setTimeout(s,n)}}}else{clearTimeout(e.previewTimeout)}})})}};e.prototype.handleClickEvent=function(){p.apply(this,arguments);clearTimeout(this.previewTimeout);$tw.popup.cancel(Math.max(0,$tw.popup.popupInfo(this).popupLevel-1))};i.prototype.popupInfo=function(e){var t,p,i=e;while(i&amp;&amp;i.getAttribute){t=i.getAttribute(\&quot;class\&quot;)||\&quot;\&quot;;p=t.indexOf(\&quot;tc-preview-tiddler-\&quot;);if(p&gt;-1){t=t.substr(p).split(\&quot; \&quot;)[0];return{popupLevel:parseInt(t.charAt(t.length-1))}}i=i.parentNode}return o.apply(this,arguments)}})();&quot;,
             &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/startup.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;startup&quot;
@@ -10584,13 +10631,17 @@ In the route macro below, the [[setvars]] widget creates a link to tiddlywiki.co
 <div created="20151208144615451" creator="Tobias Beer" modified="20160107113348820" modifier="Tobias Beer" tabs="Info Examples Configure Install" tags="Plugins Macros" title="inc" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs inc&gt;&gt;</pre>
 </div>
-<div created="20151208150813043" creator="Tobias Beer" modified="20151208155842261" modifier="Tobias Beer" tags="" title="inc-Configure" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151208150813043" creator="Tobias Beer" modified="20160118143301002" modifier="Tobias Beer" tags="" title="inc-Configure" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Specify the buttons displayed in the on-hover toolbar at $:/plugins/tobibeer/inc/toolbar:
 &lt;$edit-text tiddler=&quot;$:/plugins/tobibeer/inc/toolbar&quot; class=&quot;tc-edit-texteditor&quot;/&gt;
 
 @@.note
-''Tip:'' Try removing one or two buttons in the above editor and take another look at the examples.
+''Tip:'' Try removing one or two buttons above and take another look at the examples.
 @@
+
+!! Tabs
+
+For using &lt;&lt;tb inc&gt;&gt; to edit tab contents, please refer to [[Quick Edit Tabs]] which uses the template &lt;&lt;source &quot;$:/plugins/tobibeer/inc/templates/tabs&quot;&gt;&gt;
 
 !! Styles
 
@@ -11346,6 +11397,35 @@ The plugin $:/plugins/tobibeer/preview enhances the core &lt;&lt;x LinkWidget&gt
 The default styles for &lt;&lt;tb preview&gt;&gt; are defined in &lt;&lt;source &quot;$:/plugins/tobibeer/preview/styles&quot;&gt;&gt;
 
 Some styles by &lt;&lt;tb appear&gt;&gt; also apply as defined in &lt;&lt;source &quot;$:/plugins/tobibeer/appear/styles&quot;&gt;&gt;</pre>
+</div>
+<div created="20160118132340543" creator="Tobias Beer" modified="20160118143038391" modifier="Tobias Beer" summary="using &lt;&lt;tb inc&gt;&gt; to quick edit tab contents" tags="Examples inc" title="Quick Edit Tabs" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The below modifications allow to use &lt;&lt;tb inc&gt;&gt; for tab-contents. To make the solution work in your wiki with &lt;&lt;tb inc&gt;&gt; installed, copy these tiddlers to your wiki:
+
+# $:/core/macros/tabs
+#* a modified version of the core &lt;&lt;x &quot;tabs Macro&quot; tabs&gt;&gt; macro using a default template
+# $:/config/templates/tabs
+#* specifies the default template for tab contents
+
+!! Details
+
+As af TiddlyWiki &lt;&lt;version&gt;&gt;, the core does not yet use a template for default tab contents. In this wiki, a default template is defined in an ''overwritten'' version of the core ''tabs'' macro using a &lt;&lt;x SetWidget&gt;&gt; around the tab contents in [[$:/core/macros/tabs]]:
+
+```
+&lt;$set name=&quot;tab-template&quot; value=&quot;&quot;&quot;$template$&quot;&quot;&quot;
+emptyValue={{$:/config/templates/tabs}}&gt;
+&lt;$transclude tiddler=&lt;&lt;tab-template&gt;&gt; mode=&quot;block&quot;/&gt;
+&lt;/$set&gt;
+```
+
+Here, if a template parameter is specified for the ''tabs'' macro it is always used otherwise the template is read from &lt;&lt;source &quot;$:/config/templates/tabs&quot;&gt;&gt;
+
+The actual template in use here being &lt;&lt;source &quot;$:/plugins/tobibeer/inc/templates/tabs&quot;&gt;&gt;
+
+!! Example
+
+Notice the toolbar of &lt;&lt;tb inc&gt;&gt; when hovering the tab contents in the transcluded $:/core/ui/ControlPanel/Appearance below.
+
+{{$:/core/ui/ControlPanel/Appearance}}</pre>
 </div>
 <div created="20151221124124606" creator="Tobias Beer" modified="20151221124124606" tabs="Info Examples Install" tags="Plugins Filters" title="random" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs random&gt;&gt;</pre>
