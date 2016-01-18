@@ -1,0 +1,36 @@
+created: 20160118132340543
+creator: Tobias Beer
+modified: 20160118143038391
+modifier: Tobias Beer
+summary: using <<tb inc>> to quick edit tab contents
+tags: Examples inc
+title: Quick Edit Tabs
+type: text/vnd.tiddlywiki
+
+The below modifications allow to use <<tb inc>> for tab-contents. To make the solution work in your wiki with <<tb inc>> installed, copy these tiddlers to your wiki:
+
+# $:/core/macros/tabs
+#* a modified version of the core <<x "tabs Macro" tabs>> macro using a default template
+# $:/config/templates/tabs
+#* specifies the default template for tab contents
+
+!! Details
+
+As af TiddlyWiki <<version>>, the core does not yet use a template for default tab contents. In this wiki, a default template is defined in an ''overwritten'' version of the core ''tabs'' macro using a <<x SetWidget>> around the tab contents in [[$:/core/macros/tabs]]:
+
+```
+<$set name="tab-template" value="""$template$"""
+emptyValue={{$:/config/templates/tabs}}>
+<$transclude tiddler=<<tab-template>> mode="block"/>
+</$set>
+```
+
+Here, if a template parameter is specified for the ''tabs'' macro it is always used otherwise the template is read from <<source "$:/config/templates/tabs">>
+
+The actual template in use here being <<source "$:/plugins/tobibeer/inc/templates/tabs">>
+
+!! Example
+
+Notice the toolbar of <<tb inc>> when hovering the tab contents in the transcluded $:/core/ui/ControlPanel/Appearance below.
+
+{{$:/core/ui/ControlPanel/Appearance}}
