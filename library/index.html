@@ -1,0 +1,417 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="application-name" content="TiddlyWiki Plugin Library" />
+<meta name="application-version" content="v0.0.0" />
+<meta name="copyright" content="Copyright 2015 Jeremy Ruston" />
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<title>Plugin Library</title>
+<script>
+var assetList = [
+    {
+        "title": "$:/plugins/tobibeer/appear",
+        "description": "Create popups, sliders or accordion menus with the appear widget.",
+        "author": "Tobias Beer",
+        "version": "0.6.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-appear",
+        "documentation": "https://tobibeer.github.io/tw5-appear",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "This plugin provides the ''$appear'' widget that can render popups and sliders (inline or block) as well as accordion menus.\n\n!! Attributes\r\n; type\r\n: set to `popup` to have the content appear as a popup\r\n; show\r\n: the button label\r\n; hide\r\n: the hide button label\r\n; mode\r\n: either `block` or `inline`, with respect to the inner content\r\n: any other mode is interpreted as block mode, without the default styles applying, e.g. drop-shadows\r\n; once\r\n: allows to click the button once, then hides it (unless the state is deleted)\r\n; $state\r\n: the widget calculates a state for you, use this to append a simple id\r\n; state\r\n: alternatively, specify a fully qualified state\r\n; keep\r\n: make popups sticky when `yes` or `true`\r\n; handle / handler / variables\r\n: allows to take the popup contents out of the flow and render them elsewhere on the page\r\n: required to properly create popups in table cells and other constained elements\r\n: specify variables to take along\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#appear\r\n"
+    },
+    {
+        "title": "$:/plugins/tobibeer/contains",
+        "description": "Filter titles/listfields containing a value or any/all values from a list",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-contains",
+        "documentation": "https://tobibeer.github.io/tw5-contains",
+        "plugin-type": "plugin",
+        "dependents": "",
+        "list": "readme",
+        "type": "application/json",
+        "readme": "\\define intro(which) <br>&nbsp;&nbsp;&nbsp;//@@color:grey;returns $which$...@@//\r\n\\define case(code, summary)\r\n//@@color:grey;$summary$:@@//<br>\r\n`$code$`\r\n\\end\n\nProvides the ''contains[]'' [[filter operator|http://tiddlywiki.com#Filters]] returning those titles where the title or titles in a list field contain a value or any/all values from another list.\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#contains\r\n; variants\r\n: ''compare input titles against title(s) in the operand:''<<intro \"all ''input titles'', unmodified, if the input titles\">><ul style=\"margin:0;\">\r\n<li><<case \"contains[<value>]\" \"contain ''&lt;value>''\">></li>\r\n<li><<case \"contains:$any[<list>]\" \"contain ''any'' titles in ''&lt;list>''\">></li>\r\n<li><<case \"contains:$all[<list>]\" \"contain ''all'' titles in ''&lt;list>''\">></li>\r\n</ul>\r\n: ''compare list fields of input titles against title(s) in the operand:''<<intro \"those input titles where the ''&lt;listfield>''\">><ul style=\"margin:0;\">\r\n<li><<case \"contains:<listfield>[<value>]\" \"contains ''&lt;value>''\">></li>\r\n<li><<case \"contains:<listfield> $any[<list>]\" \"contains ''any'' titles in ''&lt;list>''\">></li>\r\n<li><<case \"contains:<listfield> $all[<list>]\" \"contains ''all'' titles in ''&lt;list>''\">></li>\r\n</ul>"
+    },
+    {
+        "title": "$:/plugins/tobibeer/count",
+        "description": "A filter to count titles or compare against a specified count",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-count",
+        "documentation": "https://tobibeer.github.io/tw5-count",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/count provides:\n\n; count[]\r\n: a filter to count input titles or compare the count against a number specified in the operand\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#count\n\n!! Syntax\n\n; `count[]`\r\n: simply count input titles\r\n; `count[<num>]`\r\n: count and return if equal to `<num>`\r\n; `count:$[<num>]`\r\n: count and return input titles if count equals `<num>`\r\n; `count:gt[<num>]`\r\n: count and return count if greater than `<num>`\r\n: compare using any of: `eq` (default), `neq`, `gt`, `gte`, `lt`, `lte`\r\n; `count:$ gt[<num>]`\r\n: count and returns input titles if count greater than `<num>`"
+    },
+    {
+        "title": "$:/plugins/tobibeer/dict",
+        "description": "Display acronyms and definitions from dictionaries",
+        "author": "Tobias Beer",
+        "version": "0.6.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-dict",
+        "documentation": "https://tobibeer.github.io/tw5-dict",
+        "plugin-type": "plugin",
+        "dependents": "",
+        "list": "readme dictionary config",
+        "type": "application/json",
+        "readme": "; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#dict\n\nDefinitions for terms such as acronyms can be...\n\n; defined inline\r\n: `<<? term definition>>` => <<? term definition>>\r\n; fetched from text-references\r\n: `<<? term at:\"!!somefield\">>`\r\n; read from dictionary tiddlers\r\n: `<<? term>>` => <<? term>>\r\n: `<<? term dict:somedict>>`\r\n; displayed with alternative text\r\n: `<<? term as:Term>>`\r\n; displayed via custom template macros\r\n: `<<? term via:?dl>>`"
+    },
+    {
+        "title": "$:/plugins/tobibeer/dom",
+        "description": "Retrieve text or attributes from dom nodes",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-dom",
+        "documentation": "https://tobibeer.github.io/tw5-dom",
+        "plugin-type": "plugin",
+        "dependents": "",
+        "list": "readme",
+        "type": "application/json",
+        "readme": "Provides the macro `<<domtext id [property]>>`, by default retrieving the text contents for the dom element with a specified id, otherwise returns a specified property.\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#dom"
+    },
+    {
+        "title": "$:/plugins/tobibeer/eval",
+        "description": "Evaluate expressions, compute and compare tiddler properties and data",
+        "author": "Tobias Beer",
+        "version": "0.6.9 BETA",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-eval",
+        "documentation": "https://tobibeer.github.io/tw5-plugins#eval",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme filter widget",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "This plugin allows you to compute and compare tiddler propeties using...\n\n; eval[&lt;expression>]\r\n: a ''filter'' evaluating an expression in the operand\r\n; &lt;$eval>{&#123;!!count}} + 1&lt;/eval>\r\n: a ''widget'' evaluating it's content as an expression\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#eval\r\n; configuration\r\n: $:/plugins/tobibeer/eval/libraries (see documentation)"
+    },
+    {
+        "title": "$:/plugins/tobibeer/external",
+        "description": "A macro and template to embed tiddlers from external wikis",
+        "author": "Tobias Beer",
+        "version": "0.5.2",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-external",
+        "documentation": "https://tobibeer.github.io/tw5-external",
+        "plugin-type": "plugin",
+        "requires": "[[tobibeer/setvars|http://tobibeer.github.io/tw5-plugins/#setvars]], [[tobibeer/split|http://tobibeer.github.io/tw5-plugins/#split]] ",
+        "list": "readme depends config use",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/external provides:\n\n; &lt;&lt;external-tiddler>>\r\n: a macro to render an iframe with a tiddler of an external wiki\r\n; $:/plugins/tobibeer/external/template\r\n: a view-template displaying an external tiddler when:<div>\r\n&nbsp; &nbsp; » 1. the title matches the remote tiddler pattern<br>\r\n&nbsp; &nbsp; » 2. the external wiki is configured and<br>\r\n</div>\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#external"
+    },
+    {
+        "title": "$:/plugins/tobibeer/filter",
+        "description": "Evaluate variable subfilters in filter expressions",
+        "author": "Tobias Beer",
+        "version": "0.5.7",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-filter",
+        "documentation": "https://tobibeer.github.io/tw5-filter",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/filter provides:\n\n; filter[]\r\n: a filter allowing to evaluate subfilters in a filter expression\n\n!!Syntax Variants\n\n; `[filter<subfilter>]`\r\n: evaluates ''subfilter'' against each input title\r\n: sets the variable ''inputTitle'' to each title in turn\r\n: uses __each__ input title as the source for the subfilter\r\n; `[filter{subfilter}]`\r\n: retrieves the subfilter from a text-reference\r\n; `[filter:input<subfilter>]`\r\n: uses __all__ input titles as the source for the subfilter\r\n; `[filter: var:item<subfilter>]`\r\n: sets variable ''item'' to each input title in turn\r\n; `[filter:$ var:item<subfilter>]`\r\n: returns input titles with matches, sets ''item''\r\n; `[filter:$all input{subfilter}]`\r\n: returns __all__ input titles if __any__ had matches\r\n: evaluates for each input title against __all__ input titles\n\n!! Placeholders\n\n; `%variable-name%`\r\n: replace context variables in the subfilter, incl. `%inputTitle%`\n\n<br/>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#filter"
+    },
+    {
+        "title": "$:/plugins/tobibeer/hash",
+        "description": "URI-encode permalink or permaview hashes for titles or decode uri hashes",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-hash",
+        "documentation": "https://tobibeer.github.io/tw5-hash",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/hash provides:\n\n; hash[]\r\n: a filter to URI-encode tiddler titles to permalink or permaview hashes or decode hashes back to titles\n\n!! Syntax\n\n; `[hash[foo bar]]`\r\n: encode title to permalink\r\n; `[[foo bar]hash[]]`\r\n: dito\r\n; `[tag[foo]hash[]]`\r\n: encode titles to permaview\r\n; `[foo%20bar]hash:decode[]]`\r\n: decode hash to title(s)\r\n; `[hash:decode full[http://tiddlywiki.com#Customize%20TiddlyWiki]]`\r\n: decode full url to title(s)\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#hash"
+    },
+    {
+        "title": "$:/plugins/tobibeer/inc",
+        "description": "Enhance transclusion by including tiddlers with an on-hover toolbar",
+        "author": "Tobias Beer",
+        "version": "0.5.2",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-inc",
+        "documentation": "https://tobibeer.github.io/tw5-inc",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "Provides the macro `<<{>>` that allows to transclude tiddlers with an on-hover toolbar for editing.\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#inc"
+    },
+    {
+        "title": "$:/plugins/tobibeer/join",
+        "description": "A filter to join titles via template, separator, prefix, suffix, trimmed",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-join",
+        "documentation": "https://tobibeer.github.io/tw5-join",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/join provides:\n\n; join[]\r\n: a filter to join input titles into one string\r\n: allowing prefixes, suffixes, separators or to trim titles or result\n\n!! Syntax\n\n`[join[<item-template>\\<option>:<option-value>]]`\n\nSpecify an item template for the ''join[]'' filter, as well as further options as `key:value`.\n\n* `[join[]]` — simply join input titles\r\n* `[join[<pre>%title%<post>]]` — join via item template\r\n* `[join[sep:- ]]` — join with separator `- `\r\n* `[join[trim:result]]` — trim end result\r\n* `[join[trim:each]]` — trim each input title\r\n* `[join[prefix:+]]` — final prefix\r\n* `[join[suffix:+]]` — final suffix\r\n* `[join[pre-%tile%\\trim:each\\prefix:ok:\\sep:+]]` — combine options\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#join"
+    },
+    {
+        "title": "$:/plugins/tobibeer/make",
+        "description": "Use the make filter to generate unique or random tiddler titles",
+        "author": "Tobias Beer",
+        "version": "0.6.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-make",
+        "documentation": "https://tobibeer.github.io/tw5-make",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "Provides the filter `[make[]]` to create unique, even random titles or text.\n\n; Placeholders\r\n: `%date%` — a datestamp of the current time (format: `YYYY0MM0DD0hh0mm0ss`)\r\n: `%count%` — current count (see options: ''min'', ''inc'', ''max'')\r\n: `%max%` — max number generated\r\n: `%tiddler%` — defined ''tiddler'' or current\r\n: `%title%` — input title\r\n: when not operating on input titles, the (current) tiddler title\n\n: `<<variable>>`\r\n: `{{text!!reference}}`\r\n: `random()` — a 16 letter random string, or short, e.g.: `random(8)`\r\n: `%uuid%` — a universally unique identifier\r\n; Options\r\n: `min:1` — starting number\r\n: `inc:1` — increment\r\n: `max:2` — max number\r\n: `sep:-` — separator before unique count\r\n: `date-format:<dateFormatString>` — for `%date%`\r\n: `tiddler:foo` — used for ''unique'' and text-references\r\n: `unique:field` — unique field-name instead of global titles\r\n: `unique:index` — unique data tiddler index\r\n: `pad:max` — zero-pad count to length of max\r\n: `pad:5` — zero-pad count to 5 digits: 00001\n\n; Documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#make"
+    },
+    {
+        "title": "$:/plugins/tobibeer/math.js",
+        "description": "The math.js library for use with plugins like ''tobibeer/eval''",
+        "author": "Tobias Beer",
+        "version": "2.4.2",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-math.js",
+        "documentation": "https://tobibeer.github.io/tw5-plugins#math.js",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "Provides the [[math.js|http://mathjs.org]] library and that's it, e.g. for use with [[tobibeer/eval|https://tobibeer.github.io/tw5-plugins#eval]]"
+    },
+    {
+        "title": "$:/plugins/tobibeer/plantuml",
+        "description": "Render plantuml diagrams online as image or text",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-plantuml",
+        "documentation": "https://tobibeer.github.io/tw5-plantuml",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/plantuml provides:\n\n; `[[plantuml[<uml>]]]`\r\n: a widget to render [[PlantUML|http://plantuml.org]] diagrams online as either image or text\r\n: allows the same attributes as <<x \"Images in WikiText\">>\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#plantuml"
+    },
+    {
+        "title": "$:/plugins/tobibeer/preview",
+        "description": "Shows a tiddler preview when hovering internal links",
+        "author": "Tobias Beer",
+        "version": "0.5.5",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-preview",
+        "documentation": "https://tobibeer.github.io/tw5-preview",
+        "plugin-type": "plugin",
+        "requires": "[[tobibeer/appear|http://tobibeer.github.io/tw5-plugins/#appear]]",
+        "list": "readme config",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/preview enhances the core <<x LinkWidget>> to display a preview of tiddlers when hovering an internal link.\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#preview"
+    },
+    {
+        "title": "$:/plugins/tobibeer/random",
+        "description": "A filter to return one or more random titles",
+        "author": "Tobias Beer",
+        "version": "0.1.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-random",
+        "documentation": "https://tobibeer.github.io/tw5-random",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/random provides:\n\n; random[]\r\n: a filter retrieving one or more random titles from the input set\r\n: `[tag[Plugins]random[3]]` — returns three titles tagged [[Plugins]]\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#random"
+    },
+    {
+        "title": "$:/plugins/tobibeer/rate",
+        "description": "A macro to rate tiddlers",
+        "author": "Tobias Beer",
+        "version": "0.6.1",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-rate",
+        "documentation": "https://tobibeer.github.io/tw5-rate",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/rate provides:\n\n; &lt;&lt;rate>>\r\n: a macro to rate tiddlers\r\n; Parameters\r\n: ''symbol'' — rating symbol: `★`\r\n: ''class'' — wrapper class: `tc-rating light`\r\n: ''values'' — rating values: `1 2 3 4 5`\r\n: ''reset'' — button to remove rating: `after:<label>` / `before:<label>` / `none`\r\n: ''field'' — default: `rating`\r\n: ''readOnly'' — set to `yes`\n\n!! View-Template\n\n; Template\r\n: view-template underneath the toolbar\r\n: $:/plugins/tobibeer/rate/template\r\n; Configuration\r\n: adjust filter to show / hide:\r\n: $:/plugins/tobibeer/rate/config/filter\n\n!! Ratings\n\n; &lt;&lt;ratings>>\r\n: a macro to list a summary of rated tiddlers\r\n; Parameters\r\n: ''field'': `rating`\r\n: ''filter'' — constrain or sort titles: `[all[]sort[title]]`\r\n: ''template'' — item template: `$:/core/ui/ListItemTemplate`\r\n: ''values'' — indexed ratings: `1 2 3 4 5`\r\n: ''all-values'' — all rating values for the field: `1 2 3 4 5`\r\n: ''symbol'' — rating symbol: `★` (set to `value` for values)\r\n: ''class'' — wrapper class: `tc-ratings`\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#rate"
+    },
+    {
+        "title": "$:/plugins/tobibeer/setvars",
+        "description": "Set multiple, complex variables based on attributes, filters, or conditionals",
+        "author": "Tobias Beer",
+        "version": "0.6.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-setvars",
+        "documentation": "https://tobibeer.github.io/tw5-setvars",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "Provides the widget `<$setvars>`...\n\n!!Usage\n\n```\r\n<$setvars\r\n_attr1=<<currentTiddler>>\r\n_attr2={{!!title}}\r\n_attr3=\"1 2 3\"\r\n_attr4=\"[all[current]tagging[]]\"\r\nvar1=\"attr1 \\ = literal = \\ attr2\"\r\nvar2=\"attr3[n] \\ \\ [attr4[1,2][when-empty]] \\ \\ [attr3[][][ - ]]\"\r\nvar3=\"if(attr1 ? [attr4]) || attr3 attr2\"\r\nvar4=\"if(attr1 == attr2 ? attr3[1]) || [attr3[2]]\">\n\n* <<var1>>\r\n* <<var2>>\r\n* <<var3>>\r\n* <<var4>>\n\n</$setvars>\r\n```\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#setvars"
+    },
+    {
+        "title": "$:/plugins/tobibeer/split",
+        "description": "A filter to split input titles and slice-up the results",
+        "author": "Tobias Beer",
+        "version": "0.7.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-split",
+        "documentation": "https://tobibeer.github.io/tw5-split",
+        "plugin-type": "plugin",
+        "dependents": "",
+        "list": "readme",
+        "type": "application/json",
+        "readme": "Provides the filter `split[by]`, splitting input titles `by` a string defined in the operand, allowing you to slice and dice output elements as needed.\n\n; suffixes\r\n: `$` — return input titles that yield split items\r\n: `$all` — return all input titles if any yield split items\r\n: `+` — append operand to split titles\r\n: `+\\x\\` — append x to split titles\r\n: `\\x\\+` — prepend x to split titles\r\n: `unique` — prevents duplicate titles in the output\r\n: `trim` — no leading/trailing blanks in split titles\r\n: `first` — first title of the split => `!first` — all but first\r\n: `last` — last title of the split => `!last` — all but last\r\n: `at` — split in two at number in the operand\r\n: `pos=2` — 2nd split item of each input title in turn\r\n: `pos=1 num=3` — first three each\r\n: `pos=2 num=n` — 2nd to last each\r\n: `pos=-2 num=-n` — first to 2nd last each\r\n: `strict` — specified `num` is mandatory\r\n: `$pos`, `$num`, `$strict`, `$first`, `$!first`,`$last`, `$!last` — for final list\r\n: `keep` — return title even if not split\r\n: `list[]` — parse list field of input titles\r\n: `list=tags[]` — parse tags field of input titles\r\n: `list<foo>` — parse (soft) operand as list, e.g. variables or text-references\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#split"
+    },
+    {
+        "title": "$:/plugins/tobibeer/sysinfo",
+        "description": "Retrieve system & browser information, e.g. window.location.href",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-sysinfo",
+        "documentation": "https://tobibeer.github.io/tw5-plugins#sysinfo",
+        "plugin-type": "plugin",
+        "dependents": "",
+        "list": "readme",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/sysinfo provides:\n\n; &lt;&lt;sysinfo scope property>>\r\n: a macro returning system information from the browser ''window'' object\n\n!! Parameters\n\n; scope\r\n: a toplevel scope of the window object, allowed are<br>» ''location'', ''navigator'', ''document''\r\n; property\r\n: a property to read from the scope, e.g.:<br>» ''location'': `href`, `host`, `pathname`, `protocol`<br>» ''navigator'': `appCodeName`, `language`, `platform`, `userAgent`<br>» ''document'': `contentType`, `domain`, `title`, `lastModified`\n\n!! Example\n\n`<<sysinfo location href>>`\n\n> <<sysinfo location href>>"
+    },
+    {
+        "title": "$:/plugins/tobibeer/xlist",
+        "description": "Group filtered tiddlers with relations to two categories in a crosslist",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-xlist",
+        "documentation": "https://tobibeer.github.io/tw5-plugins#xlist",
+        "plugin-type": "plugin",
+        "dependents": "",
+        "list": "readme",
+        "type": "application/json",
+        "readme": "Provides the macro `<<xlist>>`, grouping filtered tiddlers with relations to two categories in a crosslist."
+    }
+];
+
+/*\
+title: $:/plugins/tiddlywiki/pluginlibrary/libraryserver.js
+type: application/javascript
+module-type: library
+
+A simple HTTP-over-window.postMessage implementation of a standard TiddlyWeb-compatible server. It uses real HTTP to load the individual tiddler JSON files.
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+// Listen for window messages
+window.addEventListener("message",function listener(event){
+	console.log("plugin library: Received message from",event.origin);
+	console.log("plugin library: Message content",event.data);
+	switch(event.data.verb) {
+		case "GET":
+			if(event.data.url === "recipes/library/tiddlers.json") {
+				// Route for recipes/library/tiddlers.json
+				event.source.postMessage({
+					verb: "GET-RESPONSE",
+					status: "200",
+					cookies: event.data.cookies,
+					url: event.data.url,
+					type: "application/json",
+					body: JSON.stringify(assetList,null,4)
+				},"*");
+			} else if(event.data.url.indexOf("recipes/library/tiddlers/") === 0) {
+				var url = "recipes/library/tiddlers/" + encodeURIComponent(removePrefix(event.data.url,"recipes/library/tiddlers/"));
+				// Route for recipes/library/tiddlers/<uri-encoded-tiddler-title>.json
+				httpGet(url,function(err,responseText) {
+					if(err) {
+						event.source.postMessage({
+							verb: "GET-RESPONSE",
+							status: "404",
+							cookies: event.data.cookies,
+							url: event.data.url,
+							type: "text/plain",
+							body: "Not found"
+						},"*");
+					} else {
+						event.source.postMessage({
+							verb: "GET-RESPONSE",
+							status: "200",
+							cookies: event.data.cookies,
+							url: event.data.url,
+							type: "application/json",
+							body: responseText
+						},"*");
+					}
+				});
+			} else {
+				event.source.postMessage({
+					verb: "GET-RESPONSE",
+					status: "404",
+					cookies: event.data.cookies,
+					url: event.data.url,
+					type: "text/plain",
+					body: "Not found"
+				},"*");
+			}
+			break;
+	}
+},false);
+
+// Helper to remove string prefixes
+function removePrefix(string,prefix) {
+	if(string.indexOf(prefix) === 0) {
+		return string.substr(prefix.length);
+	} else {
+		return string;
+	}
+}
+
+// Helper for HTTP GET
+function httpGet(url,callback) {
+	var http = new XMLHttpRequest();
+	http.open("GET",url,true);
+	http.onreadystatechange = function() {
+		if(http.readyState == 4 && http.status == 200) {
+			callback(null,http.responseText);
+		}
+	};
+	http.send();
+}
+
+})();
+
+</script>
+</head>
+<body><h1>HelloThere</h1><p>This is the TiddlyWiki plugin library. It is not intended to be opened directly in the browser.</p><p>See <a href="http://tiddlywiki.com/" target="_blank">http://tiddlywiki.com/</a> for details of how to install plugins.</p></body>
+</html>

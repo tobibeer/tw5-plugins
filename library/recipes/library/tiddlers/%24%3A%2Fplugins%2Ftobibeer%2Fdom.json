@@ -1,0 +1,14 @@
+{
+    "title": "$:/plugins/tobibeer/dom",
+    "description": "Retrieve text or attributes from dom nodes",
+    "author": "Tobias Beer",
+    "version": "0.5.0",
+    "core-version": ">=5.1.9",
+    "source": "https://github.com/tobibeer/tw5-dom",
+    "documentation": "https://tobibeer.github.io/tw5-dom",
+    "plugin-type": "plugin",
+    "dependents": "",
+    "list": "readme",
+    "type": "application/json",
+    "text": "{\n    \"tiddlers\": {\n        \"$:/plugins/tobibeer/dom/domtext.js\": {\n            \"text\": \"/*\\\\\\r\\ntitle: $:/plugins/tobibeer/dom/domtext.js\\r\\ntype: application/javascript\\r\\nmodule-type: macro\\r\\n\\r\\n<hide id=\\\"foo\\\"><i>bar</i></hide>\\r\\n<$text text=<<domtext foo innerHTML>>/>\\r\\n\\r\\n\\\\*/\\r\\n(function(){\\r\\n\\r\\n/*jslint node: true, browser: true */\\r\\n/*global $tw: false */\\r\\n\\\"use strict\\\";\\r\\n\\r\\n/*\\r\\nReads a property from a dom-node:\\r\\n- textContent (when unspecified)\\r\\n- otherwise an attribute (or innerHTML)\\r\\n*/\\r\\n\\r\\nexports.name = \\\"domtext\\\";\\r\\nexports.params = [\\r\\n\\t{name: \\\"selector\\\"},\\r\\n\\t{name: \\\"attr\\\"}\\r\\n];\\r\\n\\r\\n/*\\r\\nRun the macro\\r\\n*/\\r\\nexports.run = function(selector, attr) {\\r\\n\\tvar el,\\r\\n\\t\\tval=\\\"\\\",\\r\\n\\t\\tref = selector,\\r\\n\\t\\tgetText = function (el) {\\r\\n\\t\\t\\treturn !el ? \\\"\\\" : (\\r\\n\\t\\t\\t\\tattr ? (\\r\\n\\t\\t\\t\\t\\t\\tattr == \\\"$innerHTML\\\" ?\\r\\n\\t\\t\\t\\t\\t\\tel.innerHTML :\\r\\n\\t\\t\\t\\t\\t\\tel.getAttribute(attr)\\r\\n\\t\\t\\t\\t\\t) : el.textContent || el.innerText\\r\\n\\t\\t\\t\\t).trim();\\r\\n\\t\\t};\\r\\n\\tif(selector && this.document.getElementById){\\r\\n\\t\\tel = this.document.getElementById(ref);\\r\\n\\t\\tval = getText(el);\\r\\n\\t}\\r\\n\\treturn val;\\r\\n};\\r\\n\\r\\n})();\",\n            \"title\": \"$:/plugins/tobibeer/dom/domtext.js\",\n            \"type\": \"application/javascript\",\n            \"module-type\": \"macro\"\n        },\n        \"$:/plugins/tobibeer/dom/readme\": {\n            \"title\": \"$:/plugins/tobibeer/dom/readme\",\n            \"text\": \"Provides the macro `<<domtext id [property]>>`, by default retrieving the text contents for the dom element with a specified id, otherwise returns a specified property.\\n\\n; documentation / examples / demos...\\r\\n: http://tobibeer.github.io/tw5-plugins#dom\"\n        }\n    }\n}"
+}

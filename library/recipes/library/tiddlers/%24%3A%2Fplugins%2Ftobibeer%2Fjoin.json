@@ -1,0 +1,15 @@
+{
+    "title": "$:/plugins/tobibeer/join",
+    "description": "A filter to join titles via template, separator, prefix, suffix, trimmed",
+    "author": "Tobias Beer",
+    "version": "0.5.0",
+    "core-version": ">=5.1.9",
+    "source": "https://github.com/tobibeer/tw5-join",
+    "documentation": "https://tobibeer.github.io/tw5-join",
+    "plugin-type": "plugin",
+    "requires": "",
+    "list": "readme",
+    "dependents": "",
+    "type": "application/json",
+    "text": "{\n    \"tiddlers\": {\n        \"$:/plugins/tobibeer/join/filter.js\": {\n            \"text\": \"/*\\\\\\r\\ntitle: $:/plugins/tobibeer/join/filter.js\\r\\ntype: application/javascript\\r\\nmodule-type: filteroperator\\r\\n\\r\\nA filter to seamlessly join input titles\\r\\n\\r\\n@preserve\\r\\n\\\\*/\\r\\n(function(){\\\"use strict\\\";exports.join=function(e,t,i){var r={sep:\\\"\\\",prefix:\\\"\\\",suffix:\\\"\\\",trim:0,template:\\\"%title%\\\"},s=[],a=/\\\\%title\\\\%/gim,f=/^\\\\s*([\\\\$\\\\w\\\\d\\\\-\\\\_\\\\/]*):(.*)$/;$tw.utils.each((t.operand||\\\"\\\").split(\\\"\\\\\\\\\\\"),function(e){var t;if(e.trim()!==\\\"\\\"){t=f.exec(e);if(t){switch(t[1].toLowerCase()){case\\\"trim\\\":r.trim=(t[2]||\\\"\\\").trim()===\\\"each\\\"?2:1;break;case\\\"sep\\\":case\\\"prefix\\\":case\\\"suffix\\\":r[t[1].toLowerCase()]=t[2];break}}else{r.template=e}}});e(function(e,t){var i=r.template.replace(a,r.trim===2?t.trim():t);if(r.trim===2){i=i.trim()}s.push(i)});s=s.join(r.sep);if(r.trim){s=s.trim()}s=r.prefix+s+r.suffix;return[s]}})();\",\n            \"title\": \"$:/plugins/tobibeer/join/filter.js\",\n            \"type\": \"application/javascript\",\n            \"module-type\": \"filteroperator\"\n        },\n        \"$:/plugins/tobibeer/join/readme\": {\n            \"title\": \"$:/plugins/tobibeer/join/readme\",\n            \"text\": \"The plugin $:/plugins/tobibeer/join provides:\\n\\n; join[]\\r\\n: a filter to join input titles into one string\\r\\n: allowing prefixes, suffixes, separators or to trim titles or result\\n\\n!! Syntax\\n\\n`[join[<item-template>\\\\<option>:<option-value>]]`\\n\\nSpecify an item template for the ''join[]'' filter, as well as further options as `key:value`.\\n\\n* `[join[]]` — simply join input titles\\r\\n* `[join[<pre>%title%<post>]]` — join via item template\\r\\n* `[join[sep:- ]]` — join with separator `- `\\r\\n* `[join[trim:result]]` — trim end result\\r\\n* `[join[trim:each]]` — trim each input title\\r\\n* `[join[prefix:+]]` — final prefix\\r\\n* `[join[suffix:+]]` — final suffix\\r\\n* `[join[pre-%tile%\\\\trim:each\\\\prefix:ok:\\\\sep:+]]` — combine options\\n\\n; documentation / examples / demos...\\r\\n: http://tobibeer.github.io/tw5-plugins#join\"\n        }\n    }\n}"
+}
