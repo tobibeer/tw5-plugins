@@ -1,0 +1,21 @@
+created: 20160120130410512
+creator: Tobias Beer
+modified: 20160120132000828
+modifier: Tobias Beer
+summary: keeping up to date and fetching the latest and greatest from [[tobibeer/plugins|Plugins]]
+tags: 
+title: Library
+type: text/vnd.tiddlywiki
+
+Drag this tiddler to your wiki to access my plugin library from within your $:/ControlPanel under ''Plugins'' > ''Get more mlugins'':
+
+$:/pluginlibrary/tobibeer/official
+
+<<<
+
+!! {{$:/pluginlibrary/tobibeer/official!!caption}}
+
+//{{$:/pluginlibrary/tobibeer/official}}//
+
+{{$:/pluginlibrary/tobibeer/official!!url}}
+<<<
