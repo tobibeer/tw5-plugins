@@ -1,6 +1,15 @@
+created: 20160120131619187
+creator: Tobias Beer
+modified: 20160120131727955
+modifier: Tobias Beer
 title: Welcome
+type: text/vnd.tiddlywiki
 
 This wiki provides the documentation for all [[TiddlyWiki]] plugins by [[Tobias Beer]].
+
+@@.note
+''Tip:'' To keep up to date or find new plugins, install my [[Library]] in your wiki.
+@@
 
 {{Plugins}}
 
