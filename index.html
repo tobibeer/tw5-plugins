@@ -201,6 +201,8 @@ Error message and password prompt
 
 <li>$:/core/modules/utils/fakedom.js</li>
 
+<li>$:/core/ui/ControlPanel/Modals/AddPlugins</li>
+
 <li>$:/core/ui/EditTemplate/shadow</li>
 
 <li>$:/core/ui/ViewTemplate/title</li>
@@ -7756,6 +7758,124 @@ var document = {
 exports.fakeDocument = document;
 
 })();
+</pre>
+</div>
+<div issue="2245" subtitle="{{$:/core/images/download-button}} {{$:/language/ControlPanel/Plugins/Add/Caption}}" title="$:/core/ui/ControlPanel/Modals/AddPlugins" revision="0" bag="default">
+<pre>\define lingo-base() $:/language/ControlPanel/Plugins/
+
+\define install-plugin-button()
+&lt;$button&gt;
+&lt;$action-sendmessage $message=&quot;tm-load-plugin-from-library&quot; url={{!!url}} title={{$(assetInfo)$!!original-title}}/&gt;
+&lt;$list filter=&quot;[&lt;assetInfo&gt;get[original-title]get[version]]&quot; variable=&quot;installedVersion&quot; emptyMessage=&quot;&quot;&quot;{{$:/language/ControlPanel/Plugins/Install}}&quot;&quot;&quot;&gt;
+{{$:/language/ControlPanel/Plugins/Reinstall}}
+&lt;/$list&gt;
+&lt;/$button&gt;
+\end
+
+\define popup-state-macro()
+$:/state/add-plugin-info/$(connectionTiddler)$/$(assetInfo)$
+\end
+
+\define display-plugin-info(type)
+&lt;$set name=&quot;popup-state&quot; value=&lt;&lt;popup-state-macro&gt;&gt;&gt;
+&lt;div class=&quot;tc-plugin-info&quot;&gt;
+&lt;div class=&quot;tc-plugin-info-chunk tc-small-icon&quot;&gt;
+&lt;$reveal type=&quot;nomatch&quot; state=&lt;&lt;popup-state&gt;&gt; text=&quot;yes&quot;&gt;
+&lt;$button class=&quot;tc-btn-invisible tc-btn-dropdown&quot; set=&lt;&lt;popup-state&gt;&gt; setTo=&quot;yes&quot;&gt;
+{{$:/core/images/right-arrow}}
+&lt;/$button&gt;
+&lt;/$reveal&gt;
+&lt;$reveal type=&quot;match&quot; state=&lt;&lt;popup-state&gt;&gt; text=&quot;yes&quot;&gt;
+&lt;$button class=&quot;tc-btn-invisible tc-btn-dropdown&quot; set=&lt;&lt;popup-state&gt;&gt; setTo=&quot;no&quot;&gt;
+{{$:/core/images/down-arrow}}
+&lt;/$button&gt;
+&lt;/$reveal&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tc-plugin-info-chunk&quot;&gt;
+&lt;$list filter=&quot;[&lt;assetInfo&gt;has[icon]]&quot; emptyMessage=&quot;&quot;&quot;&lt;$transclude tiddler=&quot;$:/core/images/plugin-generic-$type$&quot;/&gt;&quot;&quot;&quot;&gt;
+&lt;img src={{$(assetInfo)$!!icon}}/&gt;
+&lt;/$list&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tc-plugin-info-chunk&quot;&gt;
+&lt;h1&gt;&lt;$view tiddler=&lt;&lt;assetInfo&gt;&gt; field=&quot;description&quot;/&gt;&lt;/h1&gt;
+&lt;h2&gt;&lt;$view tiddler=&lt;&lt;assetInfo&gt;&gt; field=&quot;original-title&quot;/&gt;&lt;/h2&gt;
+&lt;div&gt;&lt;em&gt;&lt;$view tiddler=&lt;&lt;assetInfo&gt;&gt; field=&quot;version&quot;/&gt;&lt;/em&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tc-plugin-info-chunk&quot;&gt;
+&lt;&lt;install-plugin-button&gt;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;$reveal type=&quot;match&quot; text=&quot;yes&quot; state=&lt;&lt;popup-state&gt;&gt;&gt;
+&lt;div class=&quot;tc-plugin-info-dropdown&quot;&gt;
+&lt;div class=&quot;tc-plugin-info-dropdown-message&quot;&gt;
+&lt;$list filter=&quot;[&lt;assetInfo&gt;get[original-title]get[version]]&quot; variable=&quot;installedVersion&quot; emptyMessage=&quot;&quot;&quot;This plugin is not currently installed&quot;&quot;&quot;&gt;
+&lt;em&gt;
+This plugin is already installed at version &lt;$text text=&lt;&lt;installedVersion&gt;&gt;/&gt;
+&lt;/em&gt;
+&lt;/$list&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tc-plugin-info-dropdown-body&quot;&gt;
+&lt;$transclude tiddler=&lt;&lt;assetInfo&gt;&gt; field=&quot;readme&quot; mode=&quot;block&quot;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/$reveal&gt;
+&lt;/$set&gt;
+\end
+
+\define load-plugin-library-button()
+&lt;$button class=&quot;tc-btn-big-green&quot;&gt;
+&lt;$action-sendmessage $message=&quot;tm-load-plugin-library&quot; url={{!!url}} infoTitlePrefix=&quot;$:/temp/RemoteAssetInfo/&quot;/&gt;
+{{$:/core/images/chevron-right}} {{$:/language/ControlPanel/Plugins/OpenPluginLibrary}}
+&lt;/$button&gt;
+\end
+
+\define display-server-assets(type)
+&lt;$vars search=&quot;&quot;&quot;$:/temp/RemoteAssetSearch/$(currentTiddler)$&quot;&quot;&quot;&gt;
+{{$:/language/Search/Search}}: &lt;$edit-text tiddler=&lt;&lt;search&gt;&gt; default=&quot;&quot; type=&quot;search&quot; tag=&quot;input&quot;/&gt;
+&lt;$reveal state=&lt;&lt;search&gt;&gt; type=&quot;nomatch&quot; text=&quot;&quot;&gt;
+&lt;$button class=&quot;tc-btn-invisible&quot;&gt;
+&lt;$action-setfield $tiddler=&lt;&lt;search&gt;&gt; $field=&quot;text&quot; $value=&quot;&quot;/&gt;
+{{$:/core/images/close-button}}
+&lt;/$button&gt;
+&lt;/$reveal&gt;
+&lt;div class=&quot;tc-plugin-library-listing&quot;&gt;
+&lt;$list filter=&quot;[all[tiddlers+shadows]tag[$:/tags/RemoteAssetInfo]server-url{$(connectionTiddler)$!!url}original-plugin-type[$type$]search{$:/temp/RemoteAssetSearch/$(currentTiddler)$}sort[description]]&quot; variable=&quot;assetInfo&quot;&gt;
+&lt;&lt;display-plugin-info &quot;$type$&quot;&gt;&gt;
+&lt;/$list&gt;
+&lt;/div&gt;
+&lt;/$vars&gt;
+\end
+
+\define display-server-connection()
+&lt;$list filter=&quot;[all[tiddlers+shadows]tag[$:/tags/ServerConnection]suffix{!!url}]&quot; variable=&quot;connectionTiddler&quot; emptyMessage=&lt;&lt;load-plugin-library-button&gt;&gt;&gt;
+
+&lt;&lt;tabs &quot;[[$:/core/ui/ControlPanel/Plugins/Add/Plugins]] [[$:/core/ui/ControlPanel/Plugins/Add/Themes]] [[$:/core/ui/ControlPanel/Plugins/Add/Languages]]&quot; &quot;$:/core/ui/ControlPanel/Plugins/Add/Plugins&quot;&gt;&gt;
+
+&lt;/$list&gt;
+\end
+
+\define plugin-library-listing()
+&lt;$list filter=&quot;[all[tiddlers+shadows]tag[$:/tags/PluginLibrary]]&quot;&gt;
+&lt;div class=&quot;tc-plugin-library&quot;&gt;
+
+!! &lt;$link&gt;&lt;$transclude field=&quot;caption&quot;&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$transclude&gt;&lt;/$link&gt;
+
+//&lt;$view field=&quot;url&quot;/&gt;//
+
+&lt;$transclude/&gt;
+
+&lt;&lt;display-server-connection&gt;&gt;
+&lt;/div&gt;
+&lt;/$list&gt;
+\end
+
+&lt;$importvariables filter=&quot;[[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]&quot;&gt;
+
+&lt;div&gt;
+&lt;&lt;plugin-library-listing&gt;&gt;
+&lt;/div&gt;
+
+&lt;/$importvariables&gt;
 </pre>
 </div>
 <div tags="$:/tags/EditTemplate" title="$:/core/ui/EditTemplate/shadow" revision="0" bag="default">
