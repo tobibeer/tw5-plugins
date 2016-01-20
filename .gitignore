@@ -4,3 +4,6 @@ tmp/
 output/
 **/*StoryList.tid
 build.*
+themes/*
+plugins/*
+languages/*
