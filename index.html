@@ -8859,7 +8859,7 @@ state=&quot;$:/state/menu/accordion&quot;&gt;
 |&gt;|&gt;| ![[Reveal Attributes|http://tiddlywiki.com/#RevealWidget]] |
 |''class'',&lt;br&gt;''position'',&lt;br&gt;''retain'',&lt;br&gt;''state'',&lt;br&gt;''style'',&lt;br&gt;''tag''|see &lt;&lt;x RevealWidget&gt;&gt;&lt;br&gt;&amp;raquo; note that the type attribute of the reveal is explicitly handled by the appear widget|see [[Defaults|appear-Defaults]]|</pre>
 </div>
-<div created="20151216082358246" creator="Tobias Beer" modified="20160120062843330" modifier="Tobias Beer" title="appear-Defaults" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151216082358246" creator="Tobias Beer" modified="20160120074120716" modifier="Tobias Beer" title="appear-Defaults" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>The eventual widget configuration taking effect follows this order of precedence:
 
 # a specifically declared widget attribute value
@@ -8872,7 +8872,7 @@ The appear widget allows to define attribute defaults for __all instances__ usin
 
 &lt;$list filter=&quot;[all[shadows]prefix[$:/plugins/tobibeer/appear/defaults/]sort[title]]&quot;&gt;
 &lt;$appear
-show=&lt;&lt;slider-label&gt;&gt;
+show=&lt;&lt;slider-label suffix:&quot;&quot;&quot; &lt;$link&gt;&amp;raquo;&lt;/$link&gt;&quot;&quot;&quot;&gt;&gt;
 tooltip=&lt;&lt;slider-tooltip&gt;&gt;
 state=&quot;$:/state/menu/accordion&quot;&gt;
 &lt;$transclude mode=&quot;block&quot;/&gt;
