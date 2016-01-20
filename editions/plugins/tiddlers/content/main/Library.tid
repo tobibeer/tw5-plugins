@@ -7,7 +7,7 @@ tags:
 title: Library
 type: text/vnd.tiddlywiki
 
-Drag this tiddler to your wiki to access my plugin library from within your $:/ControlPanel under ''Plugins'' > ''Get more mlugins'':
+Drag this tiddler to your wiki to access my plugin library from within your $:/ControlPanel under ''Plugins'' > ''Get more plugins'':
 
 $:/pluginlibrary/tobibeer/official
 
