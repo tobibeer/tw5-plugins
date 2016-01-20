@@ -1,6 +1,6 @@
 created: 20160118132340543
 creator: Tobias Beer
-modified: 20160118143038391
+modified: 20160118234907003
 modifier: Tobias Beer
 summary: using <<tb inc>> to quick edit tab contents
 tags: Examples inc
@@ -16,7 +16,7 @@ The below modifications allow to use <<tb inc>> for tab-contents. To make the so
 
 !! Details
 
-As af TiddlyWiki <<version>>, the core does not yet use a template for default tab contents. In this wiki, a default template is defined in an ''overwritten'' version of the core ''tabs'' macro using a <<x SetWidget>> around the tab contents in [[$:/core/macros/tabs]]:
+As of TiddlyWiki <<version>>, the core does not yet use [[a template for default tab contents|https://github.com/Jermolene/TiddlyWiki5/issues/2236]]. In this wiki, a default template is defined in an ''overwritten'' version of the core ''tabs'' macro using a <<x SetWidget>> around the tab contents in [[$:/core/macros/tabs]]:
 
 ```
 <$set name="tab-template" value="""$template$"""
@@ -27,7 +27,7 @@ emptyValue={{$:/config/templates/tabs}}>
 
 Here, if a template parameter is specified for the ''tabs'' macro it is always used otherwise the template is read from <<source "$:/config/templates/tabs">>
 
-The actual template in use here being <<source "$:/plugins/tobibeer/inc/templates/tabs">>
+Whereas <<source "$:/plugins/tobibeer/inc/templates/tabs">>
 
 !! Example
 
