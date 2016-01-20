@@ -1267,7 +1267,13 @@ foregroundColor=&lt;&lt;contrastcolour target:&quot;&quot;&quot;$colour$&quot;&q
 <div created="20151124163323041" creator="Tobias Beer" list-after="$:/core/ui/ViewTemplate/body" list-before="$:/.tb/ui/ViewTemplate/back-top" modified="20160107113117911" modifier="Tobias Beer" tags="$:/tags/ViewTemplate" title="$:/.tb/ui/ViewTemplate/examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define state() $:/state/list-search/examples/$(currentTiddler)$
 
-\define filter() [tag[Examples]]-[!tag&lt;currentTiddler&gt;] [list[$(currentTiddler)$!!examples]] +[sort[title]]
+\define filter()
+[tag[Examples]]-[!tag&lt;currentTiddler&gt;]
+[all[current]removesuffix[-Examples]tagging[]tag[Examples]]
+[list[$(currentTiddler)$!!examples]]
+-[all[current]]
++[sort[title]]
+\end
 
 \define show-when() $(filter)$ +[limit[1]]
 
@@ -8892,7 +8898,7 @@ The following attributes have failsafe fallbacks that you cannot actually set to
 ; default-state
 : default: `$:/temp/appear/`</pre>
 </div>
-<div created="20150201173223292" creator="Tobias Beer" modified="20160107120506793" modifier="Tobias Beer" summary="examples for the [[appear]] widget" tags="appear Examples" title="appear-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20150201173223292" creator="Tobias Beer" modified="20160120071231991" modifier="Tobias Beer" summary="examples for the [[appear]] widget" tags="appear Examples" title="appear-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;div class=&quot;grey-svg&quot;&gt;
 
 !! Simple Slider
@@ -8911,19 +8917,23 @@ Some more text.&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;
 
 &lt;&lt;` &quot;&quot;&quot;before &lt;$appear type=&quot;popup&quot;&gt;
 
-! Popup
+! I Am Sticky
 
-Clicking anywhere will close me.&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;
+Clicking anywhere outside will close me.&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;
 
-!! Sticky Popup
+@@.note
+By [[default|appear-Defaults]], all popups created by &lt;&lt;tb appear&gt;&gt; are &quot;sticky&quot;. Meaning: they do not close if you click inside the popup.
+@@
 
-// to keep a popup open when clicking ''inside'' of it, give it the class `tc-popup-keep`//
+!! Non-Sticky Popup
 
-&lt;&lt;` &quot;&quot;&quot;before &lt;$appear type=&quot;popup&quot; class=&quot;tc-popup-keep&quot; $state=&quot;sticky&quot;&gt;
+// to make a popup non-sticky set the attribute ''keep'' to anything but `yes` or `true`.//
 
-! Sticky Popup
+&lt;&lt;` &quot;&quot;&quot;before &lt;$appear type=&quot;popup&quot; keep=&quot;no&quot; $state=&quot;sticky&quot;&gt;
 
-Clicking inside me will not close me.&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;
+! Non-Sticky Popup
+
+I will close as well when you click inside me.&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;
 
 @@.note
 ''Note:'' The above uses the ''$state'' attribute to specify a shortcut way to qualify a unique state with respect to the current tiddler.
@@ -8944,6 +8954,8 @@ Some content for you.&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;
 ! Sliding
 
 Some content for you.&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;
+
+&lt;style&gt;button.pink {color:deeppink}&lt;/style&gt;
 
 !! Simple Slider With Custom Show / Hide Buttons
 
