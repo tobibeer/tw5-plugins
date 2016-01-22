@@ -8144,7 +8144,7 @@ very-muted-foreground: #888888</pre>
     }
 }</pre>
 </div>
-<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Create popups, sliders or accordion menus with the appear widget." documentation="https://tobibeer.github.io/tw5-appear" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-appear" title="$:/plugins/tobibeer/appear" type="application/json" version="0.6.0" revision="0" bag="default">
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Create popups, sliders or accordion menus with the appear widget." documentation="https://tobibeer.github.io/tw5-appear" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-appear" title="$:/plugins/tobibeer/appear" type="application/json" version="0.6.1" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tobibeer/appear/widget.js&quot;: {
@@ -8174,7 +8174,7 @@ very-muted-foreground: #888888</pre>
             &quot;text&quot;: &quot;$:/temp/appear/&quot;
         },
         &quot;$:/plugins/tobibeer/appear/popup.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/appear/popup.js\r\ntype: application/javascript\r\nmodule-type: utils\r\n\r\nAn enhanced version of the core Popup to support:\r\n* absolute popups\r\n* preview popups\r\n* popup z-index\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;var e=require(\&quot;$:/core/modules/utils/dom/popup.js\&quot;).Popup,t=require(\&quot;$:/core/modules/widgets/reveal.js\&quot;).reveal,p=t.prototype.refresh;e.prototype.show=function(e){var t=e.domNode,p=$tw.utils.hasClass(t,\&quot;tc-popup-absolute\&quot;),s=this.popupInfo(t),o=function(e){var t=e,p=0,s=0;do{p+=t.offsetLeft||0;s+=t.offsetTop||0;t=t.offsetParent}while(t);return{left:p,top:s}},i={left:t.offsetLeft,top:t.offsetTop};this.cancel(s.popupLevel);this.popups.push({title:e.title,wiki:e.wiki,domNode:t});i=p?o(t):i;e.wiki.setTextReference(e.title,\&quot;(\&quot;+i.left+\&quot;,\&quot;+i.top+\&quot;,\&quot;+t.offsetWidth+\&quot;,\&quot;+t.offsetHeight+\&quot;)\&quot;);if(this.popups.length&gt;0){this.rootElement.addEventListener(\&quot;click\&quot;,this,true)}};e.prototype.popupInfo=function(e){var t,p=false,s=e;while(s&amp;&amp;t===undefined){if($tw.utils.hasClass(s,\&quot;tc-popup-handle\&quot;)||$tw.utils.hasClass(s,\&quot;tc-popup-keep\&quot;)){p=true}if($tw.utils.hasClass(s,\&quot;tc-popup\&quot;)){t=parseInt(s.style.zIndex)-1e3}s=s.parentNode}var o={popupLevel:t||0,isHandle:p};return o};t.prototype.refresh=function(){var e,t=this.isOpen;p.apply(this,arguments);e=this.domNodes[0];if(this.isOpen&amp;&amp;t!==this.isOpen&amp;&amp;e){e.style.zIndex=1e3+$tw.popup.popups.length}}})();&quot;,
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/appear/popup.js\r\ntype: application/javascript\r\nmodule-type: utils\r\n\r\nAn enhanced version of the core Popup to support:\r\n* absolute popups\r\n* preview popups\r\n* popup z-index\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;var t=require(\&quot;$:/core/modules/utils/dom/popup.js\&quot;).Popup,e=require(\&quot;$:/core/modules/widgets/reveal.js\&quot;).reveal,s=e.prototype.refresh;t.prototype.show=function(t){var e,s=t.domNode,p=$tw.utils.hasClass(s,\&quot;tc-popup-absolute\&quot;),o=this.popupInfo(s),i=function(t){var e=t,s=0,p=0;do{s+=e.offsetLeft||0;p+=e.offsetTop||0;e=e.offsetParent}while(e);return{left:s,top:p}},l={left:s.offsetLeft,top:s.offsetTop};e=o.popupLevel;if(o.isHandle){e++}this.cancel(e);if(this.findPopup(t.title)===-1){this.popups.push({title:t.title,wiki:t.wiki,domNode:s})}l=p?i(s):l;t.wiki.setTextReference(t.title,\&quot;(\&quot;+l.left+\&quot;,\&quot;+l.top+\&quot;,\&quot;+s.offsetWidth+\&quot;,\&quot;+s.offsetHeight+\&quot;)\&quot;);if(this.popups.length&gt;0){this.rootElement.addEventListener(\&quot;click\&quot;,this,true)}};t.prototype.popupInfo=function(t){var e,s=false,p=t;while(p&amp;&amp;e===undefined){if($tw.utils.hasClass(p,\&quot;tc-popup-handle\&quot;)||$tw.utils.hasClass(p,\&quot;tc-popup-keep\&quot;)){s=true}if($tw.utils.hasClass(p,\&quot;tc-reveal\&quot;)&amp;&amp;($tw.utils.hasClass(p,\&quot;tc-popup\&quot;)||$tw.utils.hasClass(p,\&quot;tc-popup-handle\&quot;))){e=parseInt(p.style.zIndex)-1e3}p=p.parentNode}var o={popupLevel:e||0,isHandle:s};return o};t.prototype.handleEvent=function(t){if(t.type===\&quot;click\&quot;){var e=this.popupInfo(t.target),s=e.popupLevel-1;if(e.isHandle){if(s&lt;0){s=1}else{s++}}this.cancel(s)}};e.prototype.refresh=function(){var t,e=this.isOpen;s.apply(this,arguments);t=this.domNodes[0];if(this.isOpen&amp;&amp;(e!==this.isOpen||!t.style.zIndex)&amp;&amp;t&amp;&amp;(this.type===\&quot;popup\&quot;||$tw.utils.hasClass(t,\&quot;tc-block-dropdown\&quot;)&amp;&amp;$tw.utils.hasClass(t,\&quot;tc-reveal\&quot;))){t.style.zIndex=1e3+$tw.popup.popups.length}}})();&quot;,
             &quot;title&quot;: &quot;$:/plugins/tobibeer/appear/popup.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;utils&quot;
@@ -8552,7 +8552,7 @@ very-muted-foreground: #888888</pre>
     }
 }</pre>
 </div>
-<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Shows a tiddler preview when hovering internal links" documentation="https://tobibeer.github.io/tw5-preview" list="readme config" plugin-type="plugin" requires="[[tobibeer/appear|http://tobibeer.github.io/tw5-plugins/#appear]]" source="https://github.com/tobibeer/tw5-preview" title="$:/plugins/tobibeer/preview" type="application/json" version="0.5.5" revision="0" bag="default">
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Shows a tiddler preview when hovering internal links" documentation="https://tobibeer.github.io/tw5-preview" list="readme config" plugin-type="plugin" requires="[[tobibeer/appear|http://tobibeer.github.io/tw5-plugins/#appear]]" source="https://github.com/tobibeer/tw5-preview" title="$:/plugins/tobibeer/preview" type="application/json" version="0.5.6" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tobibeer/preview/config&quot;: {
@@ -8618,7 +8618,7 @@ very-muted-foreground: #888888</pre>
             &quot;module-type&quot;: &quot;utils&quot;
         },
         &quot;$:/plugins/tobibeer/preview/link.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/preview/link.js\r\ntype: application/javascript\r\nmodule-type: startup\r\n\r\nEnhances the link widget for on-hover previews\r\n\r\n@preserve\r\n\\*/\n(function(){var e,t=require(\&quot;$:/core/modules/widgets/link.js\&quot;).link,i=t.prototype.render,o=t.prototype.handleClickEvent;t.prototype.render=function(){i.apply(this,arguments);var t=this,o=this.wiki,p=this.domNodes[0],r=o.getTiddler(t.to),n=\&quot;$:/plugins/tobibeer/preview/defaults/\&quot;,u=\&quot;$:/temp/tobibeer/preview-\&quot;,l=$tw.utils.parseKeyDescriptorTB(o.getTextReference(n+\&quot;keys\&quot;,\&quot;\&quot;).toUpperCase()),s=o.getTextReference(n+\&quot;delay\&quot;).toUpperCase(),a=function(e){var i=$tw.popup.popupInfo(e),p=i.popupLevel;return o.getTextReference(u+p)&amp;&amp;o.getTextReference(u+p+\&quot;-tiddler\&quot;)===t.to?null:i},d=function(){var i,r=a(p);if(r){i=r.popupLevel;clearTimeout(t.previewTimeout);$tw.popup.cancel(i);i++;o.setText(u+i+\&quot;-tiddler\&quot;,\&quot;text\&quot;,null,t.to);setTimeout(function(){$tw.popup.triggerPopup({domNode:p,title:u+i,wiki:o});e=0},50)}},f=function(){var e,i,r=1,u=o.getTextReference(n+\&quot;not\&quot;,\&quot;\&quot;);if(u){$tw.utils.each(u.split(\&quot; \&quot;),function(e){var t=p;while(t&amp;&amp;r){if($tw.utils.hasClass(t,e)){r=0;return false}t=t.parentNode}})}if(r){i=o.getTextReference(n+\&quot;exclude\&quot;,\&quot;\&quot;);e=i?o.filterTiddlers(i):[];if(e.indexOf(t.to)&gt;=0){r=0}}return r};s=s!==undefined?parseInt(s):null;if(s!==null&amp;&amp;isNaN(s)){s=0}if(r){$tw.utils.addClass(p,\&quot;tc-popup-handle\&quot;);$tw.utils.addClass(p,\&quot;tc-popup-absolute\&quot;);[\&quot;mouseover\&quot;,\&quot;mouseout\&quot;].forEach(function(i){p.addEventListener(i,function(o){var p=o||window.event;if(i===\&quot;mouseover\&quot;){if(f()){if(!p.keyCode){p.keyCode=0}if($tw.utils.checkKeyDescriptorTB(p,l)){if(!e){e=1;d()}}else if(s!==null){e=0;t.previewTimeout=setTimeout(d,s)}}}else{e=0;clearTimeout(t.previewTimeout)}})})}};t.prototype.handleClickEvent=function(){o.apply(this,arguments);clearTimeout(this.previewTimeout);$tw.popup.cancel(Math.max(0,$tw.popup.popupInfo(this.domNodes[0]).popupLevel-1))}})();&quot;,
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/preview/link.js\r\ntype: application/javascript\r\nmodule-type: startup\r\n\r\nEnhances the link widget for on-hover previews\r\n\r\n@preserve\r\n\\*/\n(function(){var e,t=require(\&quot;$:/core/modules/widgets/link.js\&quot;).link,i=t.prototype.render,o=t.prototype.handleClickEvent;t.prototype.render=function(){i.apply(this,arguments);var t=this,o=this.wiki,p=this.domNodes[0],r=o.getTiddler(t.to),n=\&quot;$:/plugins/tobibeer/preview/defaults/\&quot;,u=\&quot;$:/temp/tobibeer/preview-\&quot;,l=$tw.utils.parseKeyDescriptorTB(o.getTextReference(n+\&quot;keys\&quot;,\&quot;\&quot;).toUpperCase()),s=o.getTextReference(n+\&quot;delay\&quot;).toUpperCase(),a=function(e){var i=$tw.popup.popupInfo(e),p=i.popupLevel;return o.getTextReference(u+p)&amp;&amp;o.getTextReference(u+p+\&quot;-tiddler\&quot;)===t.to?null:i},f=function(){var i,r=a(p);if(r){i=r.popupLevel;clearTimeout(t.previewTimeout);$tw.popup.cancel(i);i++;o.setText(u+i+\&quot;-tiddler\&quot;,\&quot;text\&quot;,null,t.to);if($tw.popup.findPopup(u+i)===-1){setTimeout(function(){$tw.popup.triggerPopup({domNode:p,title:u+i,wiki:o});e=0},50)}}},d=function(){var e,i,r=1,u=o.getTextReference(n+\&quot;not\&quot;,\&quot;\&quot;);if(u){$tw.utils.each(u.split(\&quot; \&quot;),function(e){var t=p;while(t&amp;&amp;r){if($tw.utils.hasClass(t,e)){r=0;return false}t=t.parentNode}})}if(r){i=o.getTextReference(n+\&quot;exclude\&quot;,\&quot;\&quot;);e=i?o.filterTiddlers(i):[];if(e.indexOf(t.to)&gt;=0){r=0}}return r};s=s!==undefined?parseInt(s):null;if(s!==null&amp;&amp;isNaN(s)){s=0}if(r){$tw.utils.addClass(p,\&quot;tc-popup-handle\&quot;);$tw.utils.addClass(p,\&quot;tc-popup-absolute\&quot;);[\&quot;mouseover\&quot;,\&quot;mouseout\&quot;].forEach(function(i){p.addEventListener(i,function(o){var p=o||window.event;if(i===\&quot;mouseover\&quot;){if(d()){if(!p.keyCode){p.keyCode=0}if($tw.utils.checkKeyDescriptorTB(p,l)){if(!e){e=1;f()}}else if(s!==null){e=0;t.previewTimeout=setTimeout(f,s)}}}else{e=0;clearTimeout(t.previewTimeout)}})})}};t.prototype.handleClickEvent=function(){o.apply(this,arguments);clearTimeout(this.previewTimeout);$tw.popup.cancel(Math.max(0,$tw.popup.popupInfo(this.domNodes[0]).popupLevel))}})();&quot;,
             &quot;title&quot;: &quot;$:/plugins/tobibeer/preview/link.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;startup&quot;
@@ -9025,7 +9025,7 @@ The following attributes have failsafe fallbacks that you cannot actually set to
 ; default-state
 : default: `$:/temp/appear/`</pre>
 </div>
-<div created="20150201173223292" creator="Tobias Beer" modified="20160120071231991" modifier="Tobias Beer" summary="examples for the [[appear]] widget" tags="appear Examples" title="appear-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20150201173223292" creator="Tobias Beer" modified="20160122202311704" modifier="Tobias Beer" summary="examples for the [[appear]] widget" tags="appear Examples" title="appear-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;div class=&quot;grey-svg&quot;&gt;
 
 !! Simple Slider
@@ -9065,6 +9065,19 @@ I will close as well when you click inside me.&lt;/$appear&gt; after&quot;&quot;
 @@.note
 ''Note:'' The above uses the ''$state'' attribute to specify a shortcut way to qualify a unique state with respect to the current tiddler.
 @@
+
+!! Nested Popups
+
+// You can nest popups like so://
+
+&lt;&lt;` &quot;&quot;&quot;&lt;$appear type=&quot;popup&quot; $state=&quot;click&quot; show=&quot;click&quot;&gt;
+&lt;$appear type=&quot;popup&quot; $state=&quot;again&quot; show=&quot;again&quot;&gt;
+&lt;$appear type=&quot;popup&quot; $state=&quot;once more&quot; show=&quot;once more&quot; style=&quot;width:600px&quot;&gt;
+
+{{preview}}
+&lt;/$appear&gt;
+&lt;/$appear&gt;
+&lt;/$appear&gt;&quot;&quot;&quot;&gt;&gt;
 
 !! Simple Slider With Custom Button
 
@@ -9166,11 +9179,13 @@ Under the hood, there is at least one &lt;&lt;x ButtonWidget&gt;&gt; and one &lt
 
 &lt;&lt;plugin-docs-cp appear&gt;&gt;</pre>
 </div>
-<div created="20151209181007989" creator="Tobias Beer" modified="20160120075223451" modifier="Tobias Beer" title="appear-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151209181007989" creator="Tobias Beer" modified="20160122210751570" modifier="Tobias Beer" title="appear-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-install appear&gt;&gt;
 
 !! Version History
 
+; 0.6.1 / 2016-01-22
+: fixed bug concerning search &quot;dropdown&quot;
 ; 0.6.0 / 2016-01-20
 : refactored &amp; improved absolute popup handling
 : nesting support, i.e. for sticky popups with class &quot;tc-popup-keep&quot;
@@ -9210,10 +9225,10 @@ Here's what setting different modes will do to the same text:
 
 &lt;&lt;` &quot;&quot;&quot;before &lt;$appear $state=&quot;none&quot;&gt;text&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;</pre>
 </div>
-<div created="20151216095443224" creator="Tobias Beer" modified="20151216114033941" modifier="Tobias Beer" tags="" title="appear-States" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151216095443224" creator="Tobias Beer" modified="20160122205035302" modifier="Tobias Beer" tags="" title="appear-States" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>The appear widget simplifies &lt;&lt;x StateMechanism &quot;state handling&quot;&gt;&gt; for you, by default not even requiring you to specify a state at all. In that case, a state is automatically qualified for you using the &lt;&lt;x &quot;qualify Macro&quot;&gt;&gt; algorithm and a few extra bits extracted from the attributes.
 
-What's more, you do not need to know anything about how to correctly match the different state attributes of the underlying &lt;&lt;x ButtonWidget&gt;&gt; or &lt;&lt;x RevealWidget&gt;&gt;, i.e. no &quot;popup&quot; attribute&quot; for you to specify. All you need to declare is the state you wish to use and the type with which you wish it displayed.
+What's more, you do not need to know anything about how to correctly match the different state attributes of the underlying &lt;&lt;x ButtonWidget&gt;&gt; or &lt;&lt;x RevealWidget&gt;&gt;, i.e. no &quot;popup&quot; attribute for you to specify. All you need to declare is the state you wish to use and the type with which you wish it displayed.
 
 If the automatically qualified state should not be good enough to create a unique state, you can use the ''$state'' attribute to simply append a unique string to the qualified state already calculated for you.
 
@@ -9229,15 +9244,15 @@ Unless you change the [[default-state|appear-Defaults]], as you can see in the [
 
 Should you render inner reveals at remote locations away from the document flow, the corresponding handler state is managed at a tiddler under the namespace `$:/temp/appear-handlers/`.
 
-For an example, &lt;$appear show=&quot;click me&quot; mode=&quot;inline&quot; type=&quot;popup&quot; handler=&quot;popups&quot;&gt;
+For an example, &lt;$appear show=&quot;click me&quot; type=&quot;popup&quot; handler=&quot;popups&quot;&gt;
 This popup content is actually handled by:&lt;br&gt;
 [[$:/.tb/ui/PageTemplate/popups]]&lt;/$appear&gt;:
 
 Here is the handler state for the widget that does `handle=&quot;popups&quot;`:&lt;br&gt;
-{{{ [prefix[$:/temp/appear-handlers/]] }}}
+{{{ [prefix[$:/temp/appear-handler/]] }}}
 
 @@.note
-''Technical Note:'' It contains the full parse tree for the inner reveal of each appear widget that specifies `handler=&quot;popups&quot;`, thus rendered into the appear widget specifying `handle=&quot;popups&quot;`, e.g. [[$:/.tb/ui/PageTemplate/popups]].
+''Technical Note:'' It merely contains the title of the last appear widget state being set so as to trigger a refresh cycle. The parse-tree rendered into the appear widget specifying `handle=&quot;popups&quot;`, e.g. [[$:/.tb/ui/PageTemplate/popups]] is actually retrieved from a global cache object.
 @@
 
 !! Currently Saved States
@@ -11549,13 +11564,15 @@ The plugin $:/plugins/tobibeer/preview enhances the core &lt;&lt;x LinkWidget&gt
 
 &lt;&lt;plugin-docs-cp preview&gt;&gt;</pre>
 </div>
-<div created="20160114002002424" creator="Tobias Beer" modified="20160120075234828" modifier="Tobias Beer" title="preview-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20160114002002424" creator="Tobias Beer" modified="20160122210847283" modifier="Tobias Beer" title="preview-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>{{preview-Dependencies}}
 
 &lt;&lt;plugin-install preview&gt;&gt;
 
 !! Version History
 
+; 0.5.6 / 2016-01-22
+: fixed positioning issue for links in previews
 ; 0.5.5 / 2016-01-20
 : requires &lt;&lt;tb appear&gt;&gt; [[0.6.0|https://github.com/tobibeer/tw5-appear/releases/tag/0.6.0]]!
 : improved handling for nested popups
