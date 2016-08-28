@@ -8331,7 +8331,7 @@ very-muted-foreground: #888888</pre>
 	{&quot;type&quot;:&quot;js&quot;}
 ]</pre>
 </div>
-<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="A macro and template to embed tiddlers from external wikis" documentation="https://tobibeer.github.io/tw5-external" list="readme depends config use" plugin-type="plugin" requires="[[tobibeer/setvars|http://tobibeer.github.io/tw5-plugins/#setvars]], [[tobibeer/split|http://tobibeer.github.io/tw5-plugins/#split]] " source="https://github.com/tobibeer/tw5-external" title="$:/plugins/tobibeer/external" type="application/json" version="0.5.2" revision="0" bag="default">
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="A macro and template to embed tiddlers from external wikis" documentation="https://tobibeer.github.io/tw5-external" list="readme depends config use" plugin-type="plugin" requires="[[tobibeer/setvars|http://tobibeer.github.io/tw5-plugins/#setvars]], [[tobibeer/split|http://tobibeer.github.io/tw5-plugins/#split]] " source="https://github.com/tobibeer/tw5-external" title="$:/plugins/tobibeer/external" type="application/json" version="0.5.3" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tobibeer/external/config&quot;: {
@@ -8340,7 +8340,7 @@ very-muted-foreground: #888888</pre>
         },
         &quot;$:/plugins/tobibeer/external/defaults/top&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/external/defaults/top&quot;,
-            &quot;text&quot;: &quot;0&quot;
+            &quot;text&quot;: &quot;0px&quot;
         },
         &quot;$:/plugins/tobibeer/external/defaults/height&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/external/defaults/height&quot;,
@@ -8376,7 +8376,7 @@ very-muted-foreground: #888888</pre>
             &quot;title&quot;: &quot;$:/plugins/tobibeer/external/template&quot;,
             &quot;list-after&quot;: &quot;$:/core/ui/ViewTemplate/tags&quot;,
             &quot;tags&quot;: &quot;$:/tags/ViewTemplate&quot;,
-            &quot;text&quot;: &quot;&lt;$reveal type=\&quot;nomatch\&quot; state=\&quot;$:/plugins/tobibeer/external/defaults/wiki\&quot; text=\&quot;\&quot;&gt;\n&lt;$list filter=\&quot;[all[current]!is[system]split[: ]limit[1]]\&quot; variable=\&quot;none\&quot;&gt;\n&lt;&lt;external-tiddler&gt;&gt;\n&lt;/$list&gt;\n&lt;/$reveal&gt;&quot;
+            &quot;text&quot;: &quot;&lt;$list variable=\&quot;none\&quot;\r\nfilter=\&quot;[all[current]!is[system]split[: ]limit[1]addprefix[$:/config/ExternalWiki/]has[text]]\&quot;&gt;\r\n&lt;&lt;external-tiddler&gt;&gt;\r\n&lt;/$list&gt;&quot;
         },
         &quot;$:/plugins/tobibeer/external/use&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/external/use&quot;,
@@ -10449,6 +10449,9 @@ The plugin $:/plugins/tobibeer/external provides:
 
 !! Version History
 
+; 0.5.3 / 2016-06-04
+: improved view-template
+: fixed css default for top
 ; 0.5.2 / 2016-01-13
 : removed explicit wiki url check
 : fixed version number
@@ -12383,7 +12386,7 @@ color: #909;
 <div authors="[[Tobias Beer]]" created="20151230083108819" creator="Tobias Beer" modified="20151230103829768" modifier="Tobias Beer" tabs="Info Syntax Items Lists Examples Install" tags="Plugins Filters" title="split" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs split&gt;&gt;</pre>
 </div>
-<div authors="[[Tobias Beer]] [[Just Tobi]]" created="20151127145153951" creator="Tobias Beer" list="a [[b c]] d" modified="20160107113844166" modifier="Tobias Beer" summary="examples for the [[split]] filter" tags="split Examples" title="split-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div authors="[[Tobias Beer]] [[Just Tobi]]" created="20151127145153951" creator="Tobias Beer" list="a [[b c]] d" modified="20160828054746042" modifier="Tobias Beer" summary="examples for the [[split]] filter" tags="split Examples" title="split-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>For details, see [[split syntax|split-Syntax]]...
 
 !! Basics
@@ -12577,7 +12580,16 @@ compare to:
 
 &lt;&lt;` &quot;&quot;&quot;{{{ a-b-c d-e-f +[split:$num=7[-]] }}}&quot;&quot;&quot;&gt;&gt;
 
-&lt;&lt;` &quot;&quot;&quot;&lt;$list filter=&quot;a-b-c d-e-f +[split:$num=7 $strict[-]]&quot; emptyMessage=&quot;got less than 7 total&quot;/&gt;&quot;&quot;&quot;&gt;&gt;</pre>
+&lt;&lt;` &quot;&quot;&quot;&lt;$list filter=&quot;a-b-c d-e-f +[split:$num=7 $strict[-]]&quot; emptyMessage=&quot;got less than 7 total&quot;/&gt;&quot;&quot;&quot;&gt;&gt;
+
+''split a javascript array into items''&lt;br&gt;
+a [[reply to Danielo Rodriguez|https://groups.google.com/d/msg/tiddlywiki/wC2uxrw5gPg/_eurbeqPBgAJ]]
+
+&lt;$macrocall $name =&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars array=&quot;[ 1, 2 ,3 , 4 , 5]&quot; p=&quot;[&quot; s=&quot;]&quot;&gt;
+&lt;$list filter=&quot;[&lt;array&gt;removeprefix&lt;p&gt;removesuffix&lt;s&gt;split:trim[,]]&quot;&gt;
+-&lt;&lt;currentTiddler&gt;&gt;-&lt;br&gt;
+&lt;/$list&gt;&lt;/$vars&gt;&quot;&quot;&quot;&gt;
+</pre>
 </div>
 <div created="20151127145020936" creator="Tobias Beer" modified="20151230081013245" modifier="Tobias Beer" tags="" title="split-Info" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>The plugin [[$:/plugins/tobibeer/split]] provides:
