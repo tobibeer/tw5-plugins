@@ -1,6 +1,6 @@
 created: 20160107114619983
 creator: Tobias Beer
-modified: 20160107115204453
+modified: 20160907203106972
 modifier: Tobias Beer
 summary: use column-count, a remote popup handler, and the [[appear]] widget in the custom template [[$:/.tb/templates/TagTemplate]]
 tags: appear Examples
@@ -28,3 +28,17 @@ color:deeppink;
 
 ; $:/.tb/templates/TagTemplate
 : the above uses a modified version of $:/core/ui/TagTemplate, implementing the appear widget and taking popups out of the flow to not cut popups off within columns
+
+!! Comparison
+
+Here is what the core, unfortunately, would make of the above. Try clicking a tag button to see the problem.
+
+<$macrocall $name="`" text="""<div class="tb-taglist-columns">
+<$list filter="Filters Libraries Macros Plugins Widgets">
+<div class="tb-taglist-item">
+<small class="tc-menu-list-count"><$count filter="[all[current]tagging[]]"/></small>
+<$transclude tiddler="$:/core/ui/TagTemplate"/>
+</div>
+</$list>
+</div>
+"""/>
