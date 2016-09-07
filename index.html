@@ -12843,7 +12843,7 @@ filter=&quot;[&lt;host&gt;!prefix[http://127.0.0.1]]&quot;
 &lt;/$vars&gt;&quot;&quot;&quot;/&gt;
 </pre>
 </div>
-<div created="20160107114619983" creator="Tobias Beer" modified="20160107115204453" modifier="Tobias Beer" summary="use column-count, a remote popup handler, and the [[appear]] widget in the custom template [[$:/.tb/templates/TagTemplate]]" tags="appear Examples" title="Tag Button Popups In Columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20160107114619983" creator="Tobias Beer" modified="20160907203106972" modifier="Tobias Beer" summary="use column-count, a remote popup handler, and the [[appear]] widget in the custom template [[$:/.tb/templates/TagTemplate]]" tags="appear Examples" title="Tag Button Popups In Columns" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;div class=&quot;tb-taglist-columns&quot;&gt;
 &lt;$list filter=&quot;Filters Libraries Macros Plugins Widgets&quot;&gt;
 &lt;div class=&quot;tb-taglist-item&quot;&gt;
@@ -12864,7 +12864,22 @@ color:deeppink;
 @@
 
 ; $:/.tb/templates/TagTemplate
-: the above uses a modified version of $:/core/ui/TagTemplate, implementing the appear widget and taking popups out of the flow to not cut popups off within columns</pre>
+: the above uses a modified version of $:/core/ui/TagTemplate, implementing the appear widget and taking popups out of the flow to not cut popups off within columns
+
+!! Comparison
+
+Here is what the core, unfortunately, would make of the above. Try clicking a tag button to see the problem.
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;div class=&quot;tb-taglist-columns&quot;&gt;
+&lt;$list filter=&quot;Filters Libraries Macros Plugins Widgets&quot;&gt;
+&lt;div class=&quot;tb-taglist-item&quot;&gt;
+&lt;small class=&quot;tc-menu-list-count&quot;&gt;&lt;$count filter=&quot;[all[current]tagging[]]&quot;/&gt;&lt;/small&gt;
+&lt;$transclude tiddler=&quot;$:/core/ui/TagTemplate&quot;/&gt;
+&lt;/div&gt;
+&lt;/$list&gt;
+&lt;/div&gt;
+&quot;&quot;&quot;/&gt;
+</pre>
 </div>
 <div summary="plugins providing view-, edit- or page-templates by [[Tobias Beer]]" title="Templates" revision="0" bag="default">
 <pre>&lt;&lt;list-plugins&gt;&gt;</pre>
