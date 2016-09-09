@@ -8144,7 +8144,7 @@ very-muted-foreground: #888888</pre>
     }
 }</pre>
 </div>
-<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Create popups, sliders or accordion menus with the appear widget." documentation="https://tobibeer.github.io/tw5-appear" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-appear" title="$:/plugins/tobibeer/appear" type="application/json" version="0.6.1" revision="0" bag="default">
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Create popups, sliders or accordion menus with the appear widget." documentation="https://tobibeer.github.io/tw5-appear" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-appear" title="$:/plugins/tobibeer/appear" type="application/json" version="0.6.2" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tobibeer/appear/widget.js&quot;: {
@@ -8174,7 +8174,7 @@ very-muted-foreground: #888888</pre>
             &quot;text&quot;: &quot;$:/temp/appear/&quot;
         },
         &quot;$:/plugins/tobibeer/appear/popup.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/appear/popup.js\r\ntype: application/javascript\r\nmodule-type: utils\r\n\r\nAn enhanced version of the core Popup to support:\r\n* absolute popups\r\n* preview popups\r\n* popup z-index\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;var t=require(\&quot;$:/core/modules/utils/dom/popup.js\&quot;).Popup,e=require(\&quot;$:/core/modules/widgets/reveal.js\&quot;).reveal,s=e.prototype.refresh;t.prototype.show=function(t){var e,s=t.domNode,p=$tw.utils.hasClass(s,\&quot;tc-popup-absolute\&quot;),o=this.popupInfo(s),i=function(t){var e=t,s=0,p=0;do{s+=e.offsetLeft||0;p+=e.offsetTop||0;e=e.offsetParent}while(e);return{left:s,top:p}},l={left:s.offsetLeft,top:s.offsetTop};e=o.popupLevel;if(o.isHandle){e++}this.cancel(e);if(this.findPopup(t.title)===-1){this.popups.push({title:t.title,wiki:t.wiki,domNode:s})}l=p?i(s):l;t.wiki.setTextReference(t.title,\&quot;(\&quot;+l.left+\&quot;,\&quot;+l.top+\&quot;,\&quot;+s.offsetWidth+\&quot;,\&quot;+s.offsetHeight+\&quot;)\&quot;);if(this.popups.length&gt;0){this.rootElement.addEventListener(\&quot;click\&quot;,this,true)}};t.prototype.popupInfo=function(t){var e,s=false,p=t;while(p&amp;&amp;e===undefined){if($tw.utils.hasClass(p,\&quot;tc-popup-handle\&quot;)||$tw.utils.hasClass(p,\&quot;tc-popup-keep\&quot;)){s=true}if($tw.utils.hasClass(p,\&quot;tc-reveal\&quot;)&amp;&amp;($tw.utils.hasClass(p,\&quot;tc-popup\&quot;)||$tw.utils.hasClass(p,\&quot;tc-popup-handle\&quot;))){e=parseInt(p.style.zIndex)-1e3}p=p.parentNode}var o={popupLevel:e||0,isHandle:s};return o};t.prototype.handleEvent=function(t){if(t.type===\&quot;click\&quot;){var e=this.popupInfo(t.target),s=e.popupLevel-1;if(e.isHandle){if(s&lt;0){s=1}else{s++}}this.cancel(s)}};e.prototype.refresh=function(){var t,e=this.isOpen;s.apply(this,arguments);t=this.domNodes[0];if(this.isOpen&amp;&amp;(e!==this.isOpen||!t.style.zIndex)&amp;&amp;t&amp;&amp;(this.type===\&quot;popup\&quot;||$tw.utils.hasClass(t,\&quot;tc-block-dropdown\&quot;)&amp;&amp;$tw.utils.hasClass(t,\&quot;tc-reveal\&quot;))){t.style.zIndex=1e3+$tw.popup.popups.length}}})();&quot;,
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/appear/popup.js\r\ntype: application/javascript\r\nmodule-type: utils\r\n\r\nAn enhanced version of the core Popup to support:\r\n* absolute popups\r\n* preview popups\r\n* popup z-index\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;var t=require(\&quot;$:/core/modules/utils/dom/popup.js\&quot;).Popup,e=require(\&quot;$:/core/modules/widgets/reveal.js\&quot;).reveal,s=e.prototype.refresh;t.prototype.show=function(t){var e,s=t.domNode,p=$tw.utils.hasClass(s,\&quot;tc-popup-absolute\&quot;),o=this.popupInfo(s),i=function(t){var e=t,s=0,p=0;do{s+=e.offsetLeft||0;p+=e.offsetTop||0;e=e.offsetParent}while(e);return{left:s,top:p}},l={left:s.offsetLeft,top:s.offsetTop};e=o.popupLevel;if(o.isHandle){e++}this.cancel(e);if(this.findPopup(t.title)===-1){this.popups.push({title:t.title,wiki:t.wiki,domNode:s})}l=p?i(s):l;t.wiki.setTextReference(t.title,\&quot;(\&quot;+l.left+\&quot;,\&quot;+l.top+\&quot;,\&quot;+s.offsetWidth+\&quot;,\&quot;+s.offsetHeight+\&quot;)\&quot;);if(this.popups.length&gt;0){this.rootElement.addEventListener(\&quot;click\&quot;,this,true)}};t.prototype.popupInfo=function(t){var e,s=false,p=t;while(p&amp;&amp;e===undefined){if($tw.utils.hasClass(p,\&quot;tc-popup-handle\&quot;)||$tw.utils.hasClass(p,\&quot;tc-popup-keep\&quot;)){s=true}if($tw.utils.hasClass(p,\&quot;tc-reveal\&quot;)&amp;&amp;($tw.utils.hasClass(p,\&quot;tc-popup\&quot;)||$tw.utils.hasClass(p,\&quot;tc-popup-handle\&quot;))){e=parseInt(p.style.zIndex)-1e3}p=p.parentNode}var o={popupLevel:e||0,isHandle:s};return o};t.prototype.handleEvent=function(t){if(t.type===\&quot;click\&quot;){var e=this.popupInfo(t.target),s=e.popupLevel-1;if(e.isHandle){if(s&lt;0){s=1}else{s++}}this.cancel(s)}};e.prototype.refresh=function(){var t,e,p=this.isOpen;e=s.apply(this,arguments);t=this.domNodes[0];if(this.isOpen&amp;&amp;(p!==this.isOpen||!t.style.zIndex)&amp;&amp;t&amp;&amp;(this.type===\&quot;popup\&quot;||$tw.utils.hasClass(t,\&quot;tc-block-dropdown\&quot;)&amp;&amp;$tw.utils.hasClass(t,\&quot;tc-reveal\&quot;))){t.style.zIndex=1e3+$tw.popup.popups.length}return e}})();&quot;,
             &quot;title&quot;: &quot;$:/plugins/tobibeer/appear/popup.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;utils&quot;
@@ -9179,11 +9179,13 @@ Under the hood, there is at least one &lt;&lt;x ButtonWidget&gt;&gt; and one &lt
 
 &lt;&lt;plugin-docs-cp appear&gt;&gt;</pre>
 </div>
-<div created="20151209181007989" creator="Tobias Beer" modified="20160122210751570" modifier="Tobias Beer" title="appear-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151209181007989" creator="Tobias Beer" modified="20160909050225651" modifier="Tobias Beer" title="appear-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-install appear&gt;&gt;
 
 !! Version History
 
+; 0.6.2 / 2016-09-09
+: fixed bug in hijack of core reveal widget affecting the sidebar toggle
 ; 0.6.1 / 2016-01-22
 : fixed bug concerning search &quot;dropdown&quot;
 ; 0.6.0 / 2016-01-20
