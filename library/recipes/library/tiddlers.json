@@ -55,7 +55,7 @@
         "dependents": "",
         "list": "readme dictionary config",
         "type": "application/json",
-        "readme": "; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#dict\n\nDefinitions for terms such as acronyms can be...\n\n; defined inline\r\n: `<<? term definition>>` => <<? term definition>>\r\n; fetched from text-references\r\n: `<<? term at:\"!!somefield\">>`\r\n; read from dictionary tiddlers\r\n: `<<? term>>` => <<? term>>\r\n: `<<? term dict:somedict>>`\r\n; displayed with alternative text\r\n: `<<? term as:Term>>`\r\n; displayed via custom template macros\r\n: `<<? term via:?dl>>`"
+        "readme": "; docs\r\n: http://tobibeer.github.io/tw5-dict\n\nDefinitions for terms such as acronyms can be...\n\n; defined inline\r\n: `<<? term definition>>` => <<? term definition>>\r\n; fetched from text-references\r\n: `<<? term at:\"!!somefield\">>`\r\n; read from dictionary tiddlers\r\n: `<<? term>>` => <<? term>>\r\n: `<<? term dict:somedict>>`\r\n; displayed with alternative text\r\n: `<<? term as:Term>>`\r\n; displayed via custom template macros\r\n: `<<? term via:?dl>>`"
     },
     {
         "title": "$:/plugins/tobibeer/dom",
@@ -293,6 +293,21 @@
         "list": "readme",
         "type": "application/json",
         "readme": "The plugin $:/plugins/tobibeer/sysinfo provides:\n\n; &lt;&lt;sysinfo scope property>>\r\n: a macro returning system information from the browser ''window'' object\n\n!! Parameters\n\n; scope\r\n: a toplevel scope of the window object, allowed are<br>» ''location'', ''navigator'', ''document''\r\n; property\r\n: a property to read from the scope, e.g.:<br>» ''location'': `href`, `host`, `pathname`, `protocol`<br>» ''navigator'': `appCodeName`, `language`, `platform`, `userAgent`<br>» ''document'': `contentType`, `domain`, `title`, `lastModified`\n\n!! Example\n\n`<<sysinfo location href>>`\n\n> <<sysinfo location href>>"
+    },
+    {
+        "title": "$:/plugins/tobibeer/value",
+        "description": "A filter to test input titles for a given value",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-value",
+        "documentation": "https://tobibeer.github.io/tw5-value",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/value provides:\n\n; value[]\r\n: a filter operator to test input titles for a fiven value\n\n<br>\n\n!! Syntax\n\n; value:is[foo]\r\n: returns `yes` or `no` depending on whether any input title is `foo`\r\n; value[foo]\r\n: returns `foo` when `foo` is an input title\r\n; !value[foo]\r\n: returns all those input titles that are not `foo`\r\n; !value:is[foo]\r\n: returns `yes` or `no` depending on whether one input titles is not `foo`\n\n\r\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#value"
     },
     {
         "title": "$:/plugins/tobibeer/xlist",
