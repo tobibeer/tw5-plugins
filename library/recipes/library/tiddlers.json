@@ -55,7 +55,7 @@
         "dependents": "",
         "list": "readme dictionary config",
         "type": "application/json",
-        "readme": "; docs\r\n: http://tobibeer.github.io/tw5-dict\n\nDefinitions for terms such as acronyms can be...\n\n; defined inline\r\n: `<<? term definition>>` => <<? term definition>>\r\n; fetched from text-references\r\n: `<<? term at:\"!!somefield\">>`\r\n; read from dictionary tiddlers\r\n: `<<? term>>` => <<? term>>\r\n: `<<? term dict:somedict>>`\r\n; displayed with alternative text\r\n: `<<? term as:Term>>`\r\n; displayed via custom template macros\r\n: `<<? term via:?dl>>`"
+        "readme": "; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#dict\n\nDefinitions for terms such as acronyms can be...\n\n; defined inline\r\n: `<<? term definition>>` => <<? term definition>>\r\n; fetched from text-references\r\n: `<<? term at:\"!!somefield\">>`\r\n; read from dictionary tiddlers\r\n: `<<? term>>` => <<? term>>\r\n: `<<? term dict:somedict>>`\r\n; displayed with alternative text\r\n: `<<? term as:Term>>`\r\n; displayed via custom template macros\r\n: `<<? term via:?dl>>`"
     },
     {
         "title": "$:/plugins/tobibeer/dom",
