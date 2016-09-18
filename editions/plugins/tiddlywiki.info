@@ -10,7 +10,6 @@
     ],
     "includeWikis": [
         "../../../defaults/editions/defaults",
-
         "../../../appear/editions/appear",
         "../../../contains/editions/contains",
         "../../../count/editions/count",
@@ -31,7 +30,6 @@
         "../../../setvars/editions/setvars",
         "../../../split/editions/split",
         "../../../sysinfo/editions/sysinfo",
-        "../../../value/editions/value",
         "../../../xlist/editions/xlist"
     ],
     "build": {
