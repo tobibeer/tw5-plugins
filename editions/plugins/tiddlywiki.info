@@ -15,6 +15,7 @@
         "../../../count/editions/count",
         "../../../dict/editions/dict",
         "../../../dom/editions/dom",
+        "../../../escape/editions/escape",
         "../../../eval/editions/eval",
         "../../../external/editions/external",
         "../../../filter/editions/filter",
