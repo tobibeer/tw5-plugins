@@ -1,13 +1,13 @@
 created: 20161005054316972
 creator: Tobias Beer
-modified: 20161005060522490
+modified: 20161005212617821
 modifier: Tobias Beer
 summary: extracting introductory content from tiddlers using the [[split]] filter
 tags: Examples filter split
 title: Extracting Introductions From Tiddlers
 type: text/vnd.tiddlywiki
 
-Here's how you can use the filter <<tb split>> to extract the introduction of a tiddler~~~~, assuming it is at the beginning and separated from the rest of the content using a separator like `~~~~`:
+Here's how you can use the filter <<tb split>> to extract the introduction of a tiddler~~~~, assuming it is at the beginning and separated from the rest of the content using a separator like `~~~~`.
 
 <$macrocall $name="`" text="""<$list filter="[all[current]get[text]split:first[~~~~]addsuffix[...]]">
 
@@ -16,13 +16,25 @@ Here's how you can use the filter <<tb split>> to extract the introduction of a 
 
 Take a look at the source of this tiddler to find the separator right where you expect it.
 
+!! First Paragraph
+
+You could also extract the first paragraph as the intro up to the first two line-breaks:
+
+<$macrocall $name="`" text="""<$list filter="[all[current]get[text]split:first[
+
+]addsuffix[...]]">
+
+//<<currentTiddler>>//
+</$list>"""/>
+
+
 !! Via HTML Comment
 
 Here's another method in those cases where you would not want an introduction or summary to actually / always be displayed in the tiddler where it is defined.
 
 Simply extract it from an html comment that otherwise does not get rendered unless you use the below.
 
-This is what the comment looks like:
+This is what the comment looks like.
 
 ```
 <!--INTRO:
