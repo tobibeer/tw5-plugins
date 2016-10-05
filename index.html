@@ -12239,8 +12239,8 @@ To disable the template, remove the tag $:/tags/ViewTemplate from it.
 
 This is the template wikitext for &lt;&lt;source &quot;$:/plugins/tobibeer/external/template&quot;&gt;&gt;</pre>
 </div>
-<div created="20161005054316972" creator="Tobias Beer" modified="20161005060522490" modifier="Tobias Beer" summary="extracting introductory content from tiddlers using the [[split]] filter" tags="Examples filter split" title="Extracting Introductions From Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>Here's how you can use the filter &lt;&lt;tb split&gt;&gt; to extract the introduction of a tiddler~~~~, assuming it is at the beginning and separated from the rest of the content using a separator like `~~~~`:
+<div created="20161005054316972" creator="Tobias Beer" modified="20161005212617821" modifier="Tobias Beer" summary="extracting introductory content from tiddlers using the [[split]] filter" tags="Examples filter split" title="Extracting Introductions From Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>Here's how you can use the filter &lt;&lt;tb split&gt;&gt; to extract the introduction of a tiddler~~~~, assuming it is at the beginning and separated from the rest of the content using a separator like `~~~~`.
 
 &lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$list filter=&quot;[all[current]get[text]split:first[~~~~]addsuffix[...]]&quot;&gt;
 
@@ -12249,13 +12249,25 @@ This is the template wikitext for &lt;&lt;source &quot;$:/plugins/tobibeer/exter
 
 Take a look at the source of this tiddler to find the separator right where you expect it.
 
+!! First Paragraph
+
+You could also extract the first paragraph as the intro up to the first two line-breaks:
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$list filter=&quot;[all[current]get[text]split:first[
+
+]addsuffix[...]]&quot;&gt;
+
+//&lt;&lt;currentTiddler&gt;&gt;//
+&lt;/$list&gt;&quot;&quot;&quot;/&gt;
+
+
 !! Via HTML Comment
 
 Here's another method in those cases where you would not want an introduction or summary to actually / always be displayed in the tiddler where it is defined.
 
 Simply extract it from an html comment that otherwise does not get rendered unless you use the below.
 
-This is what the comment looks like:
+This is what the comment looks like.
 
 ```
 &lt;!--INTRO:
