@@ -125,6 +125,8 @@ Error message and password prompt
 
 <li>$:/.tb/macros/=</li>
 
+<li>$:/.tb/macros/intro</li>
+
 <li>$:/.tb/macros/list-plugins</li>
 
 <li>$:/.tb/macros/list-search</li>
@@ -672,6 +674,21 @@ $text$
 <div created="20160112160043010" creator="Tobias Beer" modified="20160112160141725" modifier="Tobias Beer" summary="evaluates any given text as the macro body passing additional parameters" tags="$:/tags/Macro" title="$:/.tb/macros/=" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define =(text,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20)
 $text$
+\end</pre>
+</div>
+<div modified="20161009114604130" modifier="Tobias Beer" summary="extracts an introduction from a tiddler" tags="$:/tags/Macro" title="$:/.tb/macros/intro" revision="0" bag="default">
+<pre>\define intro(tiddler)
+&lt;$set name=&quot;tiddler&quot; filter=&quot;[field:title[$tiddler$]]&quot; emptyValue=&lt;&lt;currentTiddler&gt;&gt;&gt;
+&lt;$list filter=&quot;
+[&lt;tiddler&gt;get[text]split:pos=2[&lt;!--:]split:first[--&gt;]limit[1]]
+[&lt;tiddler&gt;get[summary]]
++[limit[1]]&quot;&gt;
+&lt;div style=&quot;color:grey;font-style:italic&quot;&gt;
+
+&lt;&lt;currentTiddler&gt;&gt;
+&lt;/div&gt;
+&lt;/$list&gt;
+&lt;/$set&gt;
 \end</pre>
 </div>
 <div summary="wrapping up the [[list-search]] macro for a category" tags="$:/tags/Macro" title="$:/.tb/macros/list-plugins" revision="0" bag="default">
@@ -12239,15 +12256,25 @@ To disable the template, remove the tag $:/tags/ViewTemplate from it.
 
 This is the template wikitext for &lt;&lt;source &quot;$:/plugins/tobibeer/external/template&quot;&gt;&gt;</pre>
 </div>
-<div created="20161005054316972" creator="Tobias Beer" modified="20161005212617821" modifier="Tobias Beer" summary="extracting introductory content from tiddlers using the [[split]] filter" tags="Examples filter split" title="Extracting Introductions From Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>Here's how you can use the filter &lt;&lt;tb split&gt;&gt; to extract the introduction of a tiddler~~~~, assuming it is at the beginning and separated from the rest of the content using a separator like `~~~~`.
+<div created="20161005054316972" creator="Tobias Beer" modified="20161009132225448" modifier="Tobias Beer" summary="extracting introductory content from tiddlers using the [[split]] filter" tags="Examples filter split" title="Extracting Introductions From Tiddlers" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>Here's how you can use the filter &lt;&lt;tb split&gt;&gt; to extract introductory lines at the beginning of a tiddler~~~~, separated from the rest of the content using a separator like `~~~~`.
 
 &lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$list filter=&quot;[all[current]get[text]split:first[~~~~]addsuffix[...]]&quot;&gt;
 
 //&lt;&lt;currentTiddler&gt;&gt;//
 &lt;/$list&gt;&quot;&quot;&quot;/&gt;
 
-Take a look at the source of this tiddler to find the separator right where you expect it.
+Take a look at the source of this tiddler to find the separator right where you expect it. 
+
+//''Note:'' One pitfall of this is that you cannot define &lt;&lt;tw Macros&gt;&gt; in the source tiddler. If you definitely want support for macro definitions, use the HTML comment method below.//
+
+!! Methods Of Extraction
+
+To extract a summary, abstract or excerpt for a tiddler you have a wide range of options.
+
+The first thing you want to decide is where you want to store the introduction. My preferred method so far has been to use a ''summary'' field which I could then transclude where needed or show using a [[Conditional ViewTemplate Section|http://tobibeer.github.io/tb5/#Conditional%20ViewTemplate%20Section]] at the current tiddler.
+
+However, TiddlyWiki currently lacks sufficient support for multi-line fields, especially under node.js. This means that if you want to have line breaks in such a field, you have to literally declare them as html elements, e.g. `&lt;br&gt;`.
 
 !! First Paragraph
 
@@ -12260,17 +12287,16 @@ You could also extract the first paragraph as the intro up to the first two line
 //&lt;&lt;currentTiddler&gt;&gt;//
 &lt;/$list&gt;&quot;&quot;&quot;/&gt;
 
+//''Note:'' Again, this method suffers from no support for leading macro definitions.//
 
 !! Via HTML Comment
 
-Here's another method in those cases where you would not want an introduction or summary to actually / always be displayed in the tiddler where it is defined.
+Another, safer method — avoiding the problem of leading macro definitions — is to simply extract an excerpt from an html comment that otherwise does not get rendered. It is perfect should you not necessarily always want a multi-line introduction to actually / always be displayed directly in the tiddler where it is defined.
 
-Simply extract it from an html comment that otherwise does not get rendered unless you use the below.
-
-This is what the comment looks like.
+This is what the comment might look like:
 
 ```
-&lt;!--INTRO:
+&lt;!--:
 
 This is a very hidden multi-line introduction:
 
@@ -12283,7 +12309,7 @@ And this is how you would display it:
 
 ```
 &lt;$list filter=&quot;[all[current]get[text]
-split:!first[&lt;!--INTRO:]
+split:pos=2[&lt;!--:]
 split:first[--&gt;]limit[1]]&quot;&gt;
 
 &lt;&lt;currentTiddler&gt;&gt;
@@ -12291,11 +12317,33 @@ split:first[--&gt;]limit[1]]&quot;&gt;
 ```
 
 &lt;&lt;&lt;
-&lt;$list filter=&quot;[all[current]get[text]split:!first[&lt;!--INTRO:]split:first[--&gt;]limit[1]]&quot;&gt;
+&lt;$list filter=&quot;[all[current]get[text]split:pos=2[&lt;!--:]split:first[--&gt;]limit[1]]&quot;&gt;
 
 &lt;&lt;currentTiddler&gt;&gt;
 &lt;/$list&gt;
-&lt;&lt;&lt;</pre>
+&lt;&lt;&lt;
+
+!! A Macro
+
+The following global macro provides a handy way to extract an excerpt from either the current tiddler or the one specified as the first parameter. It uses the method for hidden html comments, thus not interfering with macro definitions at the top of a tiddler. As a fallback, it retrieves the introduction from a ''summary'' field.
+
+&lt;&lt;source $:/.tb/macros/intro&gt;&gt;
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;&lt;intro&gt;&gt;&quot;&quot;&quot;/&gt;
+
+This one would fallback to extracting the ''summary'' field from the tiddler [[Library]] since it does not have any hidden html comment for the introduction:
+
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;&lt;intro Library&gt;&gt;&quot;&quot;&quot;/&gt;
+
+To show such a hidden intro or summary for every tiddler, you can use a [[Conditional ViewTemplate Section|http://tobibeer.github.io/tb5/#Conditional%20ViewTemplate%20Section]] like this:
+
+```
+title: $:/.tb/ui/ViewTemplate/intro
+tags: $:/tags/ViewTemplate
+list-before: $:/core/ui/ViewTemplate/body
+
+&lt;&lt;intro&gt;&gt;
+```</pre>
 </div>
 <div created="20151221060823167" creator="Tobias Beer" modified="20160110082225709" modifier="Tobias Beer" tabs="Info Syntax Evaluation Examples Errors Install" tags="Plugins Filters" title="filter" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs filter&gt;&gt;</pre>
