@@ -16,9 +16,9 @@
     },
     {
         "title": "$:/plugins/tobibeer/contains",
-        "description": "Filter titles/listfields containing a value or any/all values from a list",
+        "description": "Filter titles/listfields containing a value or any / all / exactly those values from a list",
         "author": "Tobias Beer",
-        "version": "0.5.0",
+        "version": "0.6.0",
         "core-version": ">=5.1.9",
         "source": "https://github.com/tobibeer/tw5-contains",
         "documentation": "https://tobibeer.github.io/tw5-contains",
@@ -26,7 +26,7 @@
         "dependents": "",
         "list": "readme",
         "type": "application/json",
-        "readme": "\\define intro(which) <br>&nbsp;&nbsp;&nbsp;//@@color:grey;returns $which$...@@//\r\n\\define case(code, summary)\r\n//@@color:grey;$summary$:@@//<br>\r\n`$code$`\r\n\\end\n\nProvides the ''contains[]'' [[filter operator|http://tiddlywiki.com#Filters]] returning those titles where the title or titles in a list field contain a value or any/all values from another list.\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#contains\r\n; variants\r\n: ''compare input titles against title(s) in the operand:''<<intro \"all ''input titles'', unmodified, if the input titles\">><ul style=\"margin:0;\">\r\n<li><<case \"contains[<value>]\" \"contain ''&lt;value>''\">></li>\r\n<li><<case \"contains:$any[<list>]\" \"contain ''any'' titles in ''&lt;list>''\">></li>\r\n<li><<case \"contains:$all[<list>]\" \"contain ''all'' titles in ''&lt;list>''\">></li>\r\n</ul>\r\n: ''compare list fields of input titles against title(s) in the operand:''<<intro \"those input titles where the ''&lt;listfield>''\">><ul style=\"margin:0;\">\r\n<li><<case \"contains:<listfield>[<value>]\" \"contains ''&lt;value>''\">></li>\r\n<li><<case \"contains:<listfield> $any[<list>]\" \"contains ''any'' titles in ''&lt;list>''\">></li>\r\n<li><<case \"contains:<listfield> $all[<list>]\" \"contains ''all'' titles in ''&lt;list>''\">></li>\r\n</ul>"
+        "readme": "\\define intro(which) <br>&nbsp;&nbsp;&nbsp;//@@color:grey;returns $which$...@@//\r\n\\define case(code, summary)\r\n//@@color:grey;$summary$:@@//<br>\r\n`$code$`\r\n\\end\n\nProvides the ''contains[]'' [[filter operator|http://tiddlywiki.com#Filters]] returning those titles where the title or titles in a list field contain a value or any/all values from another list.\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#contains\r\n; variants\r\n: ''note:'' all variants allow negation via `!contains ...[...]`\r\n: ''compare input titles against title(s) in the operand:''<<intro \"all ''input titles'', unmodified, if the input titles\">><ul style=\"margin:0;\">\r\n<li><<case \"contains[<value>]\" \"contain ''&lt;value>''\">></li>\r\n<li><<case \"contains:$any[<list>]\" \"contain ''any'' titles in ''&lt;list>''\">></li>\r\n<li><<case \"contains:$all[<list>]\" \"contain ''all'' titles in ''&lt;list>''\">></li>\r\n<li><<case \"contains:$exactly[<list>]\" \"contain ''exactly'' those titles in ''&lt;list>''\">></li>\r\n</ul>\r\n: ''compare list fields of input titles against title(s) in the operand:''<<intro \"those input titles where the ''&lt;listfield>''\">><ul style=\"margin:0;\">\r\n<li><<case \"contains:<listfield>[<value>]\" \"contains ''&lt;value>''\">></li>\r\n<li><<case \"contains:<listfield> $any[<list>]\" \"contains ''any'' titles in ''&lt;list>''\">></li>\r\n<li><<case \"contains:<listfield> $all[<list>]\" \"contains ''all'' titles in ''&lt;list>''\">></li>\r\n<li><<case \"contains:<listfield> $exactly[<list>]\" \"contains ''exactly'' those titles in ''&lt;list>''\">></li>\r\n</ul>"
     },
     {
         "title": "$:/plugins/tobibeer/count",
@@ -313,7 +313,7 @@
         "title": "$:/plugins/tobibeer/value",
         "description": "A filter to test input titles for a given value",
         "author": "Tobias Beer",
-        "version": "0.5.0",
+        "version": "0.5.1",
         "core-version": ">=5.1.9",
         "source": "https://github.com/tobibeer/tw5-value",
         "documentation": "https://tobibeer.github.io/tw5-value",
@@ -322,7 +322,7 @@
         "list": "readme",
         "dependents": "",
         "type": "application/json",
-        "readme": "The plugin $:/plugins/tobibeer/value provides:\n\n; value[]\r\n: a filter operator to test input titles for a fiven value\n\n<br>\n\n!! Syntax\n\n; value:is[foo]\r\n: returns `yes` or `no` depending on whether any input title is `foo`\r\n; value[foo]\r\n: returns `foo` when `foo` is an input title\r\n; !value[foo]\r\n: returns all those input titles that are not `foo`\r\n; !value:is[foo]\r\n: returns `yes` or `no` depending on whether one input titles is not `foo`\n\n\r\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#value"
+        "readme": "The plugin $:/plugins/tobibeer/value provides:\n\n; value[]\r\n: a filter operator to test input titles for a given value\n\n<br>\n\n!! Syntax\n\n; value:is[foo]\r\n: returns `yes` or `no` depending on whether any input title is `foo`\r\n; value[foo]\r\n: returns `foo` when `foo` is an input title\r\n; !value[foo]\r\n: returns all those input titles that are not `foo`\r\n; !value:is[foo]\r\n: returns `yes` or `no` depending on whether one input titles is not `foo`\n\n\r\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#value"
     },
     {
         "title": "$:/plugins/tobibeer/xlist",
