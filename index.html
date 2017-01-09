@@ -10124,11 +10124,11 @@ very-muted-foreground: #888888</pre>
     }
 }</pre>
 </div>
-<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="A filter to join titles via template, separator, prefix, suffix, trimmed" documentation="https://tobibeer.github.io/tw5-join" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-join" title="$:/plugins/tobibeer/join" type="application/json" version="0.5.0" revision="0" bag="default">
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="A filter to join titles via template, separator, prefix, suffix, trimmed" documentation="https://tobibeer.github.io/tw5-join" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-join" title="$:/plugins/tobibeer/join" type="application/json" version="0.5.1" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tobibeer/join/filter.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/join/filter.js\r\ntype: application/javascript\r\nmodule-type: filteroperator\r\n\r\nA filter to seamlessly join input titles\r\n\r\n@preserve\r\n\\*/\r\n(function(){\&quot;use strict\&quot;;exports.join=function(e,t,i){var r={sep:\&quot;\&quot;,prefix:\&quot;\&quot;,suffix:\&quot;\&quot;,trim:0,template:\&quot;%title%\&quot;},s=[],a=/\\%title\\%/gim,f=/^\\s*([\\$\\w\\d\\-\\_\\/]*):(.*)$/;$tw.utils.each((t.operand||\&quot;\&quot;).split(\&quot;\\\\\&quot;),function(e){var t;if(e.trim()!==\&quot;\&quot;){t=f.exec(e);if(t){switch(t[1].toLowerCase()){case\&quot;trim\&quot;:r.trim=(t[2]||\&quot;\&quot;).trim()===\&quot;each\&quot;?2:1;break;case\&quot;sep\&quot;:case\&quot;prefix\&quot;:case\&quot;suffix\&quot;:r[t[1].toLowerCase()]=t[2];break}}else{r.template=e}}});e(function(e,t){var i=r.template.replace(a,r.trim===2?t.trim():t);if(r.trim===2){i=i.trim()}s.push(i)});s=s.join(r.sep);if(r.trim){s=s.trim()}s=r.prefix+s+r.suffix;return[s]}})();&quot;,
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/join/filter.js\r\ntype: application/javascript\r\nmodule-type: filteroperator\r\n\r\nA filter to seamlessly join input titles\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;exports.join=function(e,i,t){var r={sep:\&quot;\&quot;,prefix:\&quot;\&quot;,suffix:\&quot;\&quot;,trim:0,template:\&quot;%title%\&quot;},s=[],n=/\\%title\\%/gim,o=/^\\s*([\\$\\w\\d\\-\\_\\/]*):((?:.|[\\r\\n])*)/;$tw.utils.each((i.operand||\&quot;\&quot;).split(\&quot;\\\\\&quot;),function(e){var i;if(e.trim()!==\&quot;\&quot;){i=o.exec(e);if(i){switch(i[1].toLowerCase()){case\&quot;trim\&quot;:r.trim=(i[2]||\&quot;\&quot;).trim()===\&quot;each\&quot;?2:1;break;case\&quot;sep\&quot;:case\&quot;prefix\&quot;:case\&quot;suffix\&quot;:r[i[1].toLowerCase()]=i[2];break;default:console.log(\&quot;tobibeer/join: unknown option in operand: \&quot;,i[1])}}else{r.template=e}}});e(function(e,i){var t=r.template.replace(n,r.trim===2?i.trim():i);if(r.trim===2){t=t.trim()}s.push(t)});s=s.join(r.sep);if(r.trim){s=s.trim()}s=r.prefix+s+r.suffix;return[s]}})();&quot;,
             &quot;title&quot;: &quot;$:/plugins/tobibeer/join/filter.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;filteroperator&quot;
@@ -12810,6 +12810,8 @@ Using the macro in a list widget:
 
 !! Version History
 
+; 0.5.1 / 2017-01-09
+: allow newlines in operand options, e.g. ''sep''
 ; 0.5.0 / 2015-12-21
 : initial version</pre>
 </div>

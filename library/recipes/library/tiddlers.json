@@ -165,7 +165,7 @@
         "title": "$:/plugins/tobibeer/join",
         "description": "A filter to join titles via template, separator, prefix, suffix, trimmed",
         "author": "Tobias Beer",
-        "version": "0.5.0",
+        "version": "0.5.1",
         "core-version": ">=5.1.9",
         "source": "https://github.com/tobibeer/tw5-join",
         "documentation": "https://tobibeer.github.io/tw5-join",
