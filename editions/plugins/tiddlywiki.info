@@ -31,7 +31,7 @@
         "../../../setvars/editions/setvars",
         "../../../split/editions/split",
         "../../../sysinfo/editions/sysinfo",
-        "../../../sysinfo/editions/toc",
+        "../../../toc/editions/toc",
         "../../../value/editions/value",
         "../../../xlist/editions/xlist"
     ],
