@@ -275,6 +275,8 @@ Error message and password prompt
 
 <li>$:/plugins/tobibeer/sysinfo</li>
 
+<li>$:/plugins/tobibeer/toc</li>
+
 <li>$:/plugins/tobibeer/value</li>
 
 <li>$:/plugins/tobibeer/xlist</li>
@@ -316,6 +318,10 @@ Error message and password prompt
 <li>appear-States</li>
 
 <li>appear-Styles</li>
+
+<li>Bar</li>
+
+<li>Baz</li>
 
 <li>contains</li>
 
@@ -449,7 +455,13 @@ Error message and password prompt
 
 <li>Filters</li>
 
+<li>Foo</li>
+
+<li>Frotz</li>
+
 <li>Generating A Unique Invoice Number</li>
+
+<li>Gronk</li>
 
 <li>hash</li>
 
@@ -502,6 +514,8 @@ Error message and password prompt
 <li>math.js-Install</li>
 
 <li>mklauber/math.js</li>
+
+<li>Mumble</li>
 
 <li>plantuml</li>
 
@@ -616,6 +630,16 @@ Error message and password prompt
 <li>Tobias Beer</li>
 
 <li>tobibeer: external-Install</li>
+
+<li>toc</li>
+
+<li>toc-Examples</li>
+
+<li>toc-Info</li>
+
+<li>toc-Install</li>
+
+<li>toc-Syntax</li>
 
 <li>value</li>
 
@@ -10421,6 +10445,22 @@ very-muted-foreground: #888888</pre>
     }
 }</pre>
 </div>
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="a filter to fetch tiddlers in a toc" documentation="https://tobibeer.github.io/tw5-toc" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-toc" title="$:/plugins/tobibeer/toc" type="application/json" version="0.5.0" revision="0" bag="default">
+<pre>{
+    &quot;tiddlers&quot;: {
+        &quot;$:/plugins/tobibeer/toc/filter.js&quot;: {
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/tobibeer/toc/filter.js\ntype: application/javascript\nmodule-type: filteroperator\n\na filter to...\n\n@preserve\n\\*/\n(function(){\&quot;use strict\&quot;;exports.toc=function(t,e,i){var r,s,l,n=[],u=\&quot;toc filter error: \&quot;,c=e.suffix||\&quot;\&quot;,f={level:-1,root:e.operand||i.widget.getVariable(\&quot;currentTiddler\&quot;)||\&quot;TableOfContents\&quot;,list:\&quot;tags\&quot;,exclude:\&quot;\&quot;,truncate:\&quot;\&quot;,sort:\&quot;\&quot;},o=[[/^\\s+/,function(){}],[/^(exclude|truncate)=\\s*([^\\s]+)(?:\\s|$)/i,function(t){f[t[1]]=i.widget.getVariable(t[2])}],[/^sort=\\s*([^\\s]+)(?:\\s|$)/i,function(t){var e=t[1];f.sort=e.charAt(0)!==\&quot;!\&quot;?\&quot;sort[\&quot;+e+\&quot;]\&quot;:\&quot;!sort[\&quot;+e.substr(1)+\&quot;]\&quot;}],[/^level=\\s*(-?\\d+)(?:\\s|$)/i,function(t){var e=parseInt(t[1],10);if(!isNaN(e)){f.level=e}}],[/^list\\=\\s*([^\\s]+)(?:\\s|$)/i,function(t){f.list=t[1]}]],a=function(t,e){e++;var i=f.list===\&quot;tags\&quot;?\&quot;[[\&quot;+t+\&quot;]tagging[]\&quot;+f.sort+\&quot;]\&quot;:\&quot;[[\&quot;+t+\&quot;]listed[\&quot;+f.list+\&quot;]\&quot;+f.sort+\&quot;]\&quot;;$tw.utils.each($tw.wiki.filterTiddlers(i),function(t){if(n.indexOf(t)&lt;0&amp;&amp;r.indexOf(t)&lt;0){n.push(t);if((f.level===-1||e&lt;f.level)&amp;&amp;s.indexOf(t)&lt;0){a(t,e)}}})};try{while(c){l=c;$tw.utils.each(o,function(t){var e=t[0].exec(c);if(e){t[1].call(this,e);c=c.substr(e[0].length);return false}});if(c===l){throw u+\&quot;invalid suffix(es) '\&quot;+c+\&quot;'\&quot;}}r=f.exclude?$tw.wiki.filterTiddlers(f.exclude):[];s=f.truncate?$tw.wiki.filterTiddlers(f.truncate):[];a(f.root,0);return n}catch(d){return[u+d]}}})();&quot;,
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/toc/filter.js&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;filteroperator&quot;
+        },
+        &quot;$:/plugins/tobibeer/toc/readme&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/toc/readme&quot;,
+            &quot;text&quot;: &quot;The plugin $:/plugins/tobibeer/toc provides:\n\n; toc[]\r\n: a filter to fetch tiddlers in a toc\n\n; Operand\r\n: defines the root title\r\n: defaults to the value of `&lt;&lt;currentTiddler&gt;&gt;`\n\n; Suffixes\r\n: are declared as `name=&lt;value&gt;`...\r\n: `level=&lt;number&gt;`\r\n: `exclude=variableName`\r\n: `truncate=variableName`\r\n: `list=field-name`\r\n: `sort=field-name` ASC or `sort=!field-name` DESC\n\n&lt;br&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#toc&quot;
+        }
+    }
+}</pre>
+</div>
 <div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="A filter to test input titles for a given value" documentation="https://tobibeer.github.io/tw5-value" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-value" title="$:/plugins/tobibeer/value" type="application/json" version="0.5.1" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -10975,6 +11015,12 @@ The following css classes are automatically set by the appear widget:
 : set at the button widget that closes the slider
 ; appear-once
 : set at both button and reveal when an appear widget is specified to only show the button once</pre>
+</div>
+<div parents="Gronk" summary="see [[toc-Examples]]" tags="Foo" title="Bar" revision="0" bag="default">
+<pre></pre>
+</div>
+<div list="Mumble Frotz Gronk" parents="Gronk" summary="see [[toc-Examples]]" tags="Bar" title="Baz" revision="0" bag="default">
+<pre></pre>
 </div>
 <div created="20151125113554731" creator="Tobias Beer" listfield="&lt;span class=&quot;intro&quot;&gt;returns those input titles where the ''&amp;lt;listfield&gt;''&lt;/span&gt;" modified="20161219184811037" modifier="Tobias Beer" negation="&lt;h2&gt;Negation&lt;/h2&gt;//The below examples demonstrate negated output...//" tabs="Info Examples Install" tags="Plugins Filters" title="contains" titles="&lt;span class=&quot;intro&quot;&gt;returns ''all input titles'', unmodified, if the input titles&lt;/span&gt;" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs contains&gt;&gt;</pre>
@@ -12580,6 +12626,12 @@ filter-tag=&quot;[tag&lt;inputTitle&gt;]&quot; &gt;
 <div summary="filter plugins by [[Tobias Beer]]" title="Filters" revision="0" bag="default">
 <pre>&lt;&lt;list-plugins&gt;&gt;</pre>
 </div>
+<div parents="Gronk" summary="see [[toc-Examples]]" tags="ToC TableOfContents" title="Foo" revision="0" bag="default">
+<pre></pre>
+</div>
+<div parents="Mumble" summary="see [[toc-Examples]]" tags="Baz" title="Frotz" revision="0" bag="default">
+<pre></pre>
+</div>
 <div created="20160107151116142" creator="Tobias Beer" customer="Company Foo" division="Doo" fiscal-year="2016" modified="20160107152843001" modifier="Tobias Beer" summary="using the [[setvars]] widget to generate the variables needed for an action button using the [[make]] filter to generate unique, zero-padded titles" tags="Examples make setvars" title="Generating A Unique Invoice Number" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>Below, the action details of a button are specified with a [[setvars]] widget that refreshes at every click and uses the [[make]] filter to join text-bits into the two variables that it sets, a description and a unique, zero-padded invoice number used as the title.
 
@@ -12599,6 +12651,9 @@ New Invoice
 &lt;/$setvars&gt;&quot;&quot;&quot;/&gt;
 
 {{{ [tag[Invoice]] }}}</pre>
+</div>
+<div parents="Frotz" summary="see [[toc-Examples]]" tags="Baz" title="Gronk" revision="0" bag="default">
+<pre></pre>
 </div>
 <div created="20151231085910632" creator="Tobias Beer" modified="20151231092048987" modifier="Tobias Beer" tabs="Info Syntax Install" tags="Plugins Filters" title="hash" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs hash&gt;&gt;</pre>
@@ -13122,6 +13177,9 @@ You can specify a title pattern based on whichever strings you desire and variou
 <div created="20151122175632743" creator="Tobias Beer" modified="20151122175811343" modifier="Tobias Beer" summary="a tiddlywiki plugin for calculating mathematcal expressions" title="mklauber/math.js" url="http://mklauber.github.io/tiddly-mathjs/" revision="0" bag="default">
 <pre>; repo
 : https://github.com/mklauber/tiddly-mathjs</pre>
+</div>
+<div parents="ToC TableOfContents" summary="see [[toc-Examples]]" tags="Baz" title="Mumble" revision="0" bag="default">
+<pre></pre>
 </div>
 <div created="20160114110937381" creator="Tobias Beer" modified="20160115135204059" modifier="Tobias Beer" tabs="Info WikiText Widget Examples Configure Styles Install" tags="Plugins Filters Macros Widgets" title="plantuml" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs plantuml&gt;&gt;</pre>
@@ -14803,6 +14861,125 @@ $state=&quot;tiddler-widget-slider&quot;&gt;
 </div>
 <div created="20160113130645970" creator="Tobias Beer" height="290px" modified="20160113160614484" modifier="Tobias Beer" summary="demonstrates &lt;&lt;tb external&gt;&gt; for [[external-Install]] in an iframe" tags="Examples external" title="tobibeer: external-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre></pre>
+</div>
+<div tabs="Info Syntax Examples Install" tags="Plugins Filters" title="toc" revision="0" bag="default">
+<pre>&lt;&lt;plugin-docs toc&gt;&gt;</pre>
+</div>
+<div created="20170111214112755" creator="Tobias Beer" modified="20170111224612924" modifier="Tobias Beer" title="toc-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The Examples are built around the following tagging- / list-hierarchies:
+
+&lt;table class=&quot;noborder&quot;&gt;
+&lt;tr&gt;
+&lt;th&gt;Tagging Via `tags` Field&lt;/th&gt;
+&lt;th&gt;Listed Via `parents` Field&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;
+
+* [[ToC]]
+** [[Foo]]
+*** [[Bar]]
+**** [[Baz]]
+***** [[Mumble]]
+***** [[Frotz]]
+***** [[Gronk]]
+
+&lt;/td&gt;
+
+&lt;td&gt;
+
+* [[ToC]]
+** [[Mumble]]
+*** [[Frotz]]
+**** [[Gronk]]
+***** [[Foo]]
+***** [[Bar]]
+***** [[Baz]]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [toc[ToC]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [toc:sort=title[ToC]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [toc:sort=!title[ToC]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [toc:level=1[ToC]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [toc:level=2[ToC]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;&lt;$vars X=&quot;Bar Baz&quot;&gt;
+
+{{{ [toc:exclude=X[ToC]] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;&lt;$vars X=&quot;Baz&quot;&gt;
+
+{{{ [toc:exclude=X[ToC]] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;&lt;$vars T=&quot;Bar Baz&quot;&gt;
+
+{{{ [toc:truncate=T[ToC]] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;&lt;$vars T=&quot;Baz&quot;&gt;
+
+{{{ [toc:truncate=T[ToC]] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [toc:list=parents[ToC]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [toc:list=parents sort=!title[ToC]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [toc:list=parents level=2[ToC]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;&lt;$vars X=&quot;Baz&quot;&gt;
+
+{{{ [toc:list=parents exclude=X[ToC]] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;&lt;$vars T=&quot;Gronk&quot;&gt;
+
+{{{ [toc:list=parents truncate=T[ToC]] }}}
+&lt;/$vars&gt;&quot;&quot;&quot;&gt;&gt;
+
+</pre>
+</div>
+<div created="20170111221625750" creator="Tobias Beer" modified="20170111221627357" modifier="Tobias Beer" title="toc-Info" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The plugin $:/plugins/tobibeer/toc provides:
+
+; toc[]
+: a filter to fetch tiddlers in a toc
+
+&lt;&lt;plugin-docs-cp toc&gt;&gt;</pre>
+</div>
+<div created="20170111221616987" creator="Tobias Beer" modified="20170111221618402" modifier="Tobias Beer" title="toc-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>&lt;&lt;plugin-install toc&gt;&gt;
+
+!! Version History
+
+; 0.5.0 / 2017-01-11
+: initial version</pre>
+</div>
+<div created="20170111221636274" creator="Tobias Beer" modified="20170111224511366" modifier="Tobias Beer" title="toc-Syntax" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The ''toc'' filter allows to specify a ''root'' element for your &lt;&lt;tw &quot;Table-of-Contents Macros&quot; &quot;table of contents&quot;&gt;&gt; in the &lt;&lt;tw Filters filter&gt;&gt; ''operand'', as well as a range of options in the ''suffix'':
+
+`toc:&lt;suffix&gt;[&lt;operand&gt;]`
+
+Both suffix and operand are optional. The default root element is the value of `&lt;&lt;currentTiddler&gt;&gt;` or `TableOfContents` when undefined.
+
+The ''toc'' filter supports the following suffixes that are declared as `name=&lt;value&gt;`, separated with spaces.
+
+| !Suffix | !Description | !Default |
+|''level''|the numeric level down to which the tree is calculated|`-1`&lt;br&gt;(none)|
+|''exclude''|a variable defining a filter of elements to be excluded| |
+|''truncate''|a variable defining a filter of elements to be truncated,&lt;br&gt;i.e. they are indexed but not further inspected for children| |
+|''list''|the field defining the tree, i.e. a tagging tree|`tags`|
+|''sort''|a field by which to sort the titles __for each level__ in ascending order&lt;br&gt;» prepend `!` to sort in descending order, e.g. `sort=!order`| |
+
+To see the available options in action, take a look at the [[examples|toc-Examples]].</pre>
 </div>
 <div created="20160918173736097" creator="Tobias Beer" modified="20160918173737787" modifier="Tobias Beer" tabs="Info Syntax Examples Install" tags="Filters Plugins" title="value" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs value&gt;&gt;</pre>

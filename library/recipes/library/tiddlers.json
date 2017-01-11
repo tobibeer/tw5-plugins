@@ -325,6 +325,21 @@
         "readme": "The plugin $:/plugins/tobibeer/sysinfo provides:\n\n; &lt;&lt;sysinfo scope property>>\r\n: a macro returning system information from the browser ''window'' object\n\n!! Parameters\n\n; scope\r\n: a toplevel scope of the window object, allowed are<br>» ''location'', ''navigator'', ''document''\r\n; property\r\n: a property to read from the scope, e.g.:<br>» ''location'': `href`, `host`, `pathname`, `protocol`<br>» ''navigator'': `appCodeName`, `language`, `platform`, `userAgent`<br>» ''document'': `contentType`, `domain`, `title`, `lastModified`\n\n!! Example\n\n`<<sysinfo location href>>`\n\n> <<sysinfo location href>>"
     },
     {
+        "title": "$:/plugins/tobibeer/toc",
+        "description": "a filter to fetch tiddlers in a toc",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-toc",
+        "documentation": "https://tobibeer.github.io/tw5-toc",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/toc provides:\n\n; toc[]\r\n: a filter to fetch tiddlers in a toc\n\n; Operand\r\n: defines the root title\r\n: defaults to the value of `<<currentTiddler>>`\n\n; Suffixes\r\n: are declared as `name=<value>`...\r\n: `level=<number>`\r\n: `exclude=variableName`\r\n: `truncate=variableName`\r\n: `list=field-name`\r\n: `sort=field-name` ASC or `sort=!field-name` DESC\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#toc"
+    },
+    {
         "title": "$:/plugins/tobibeer/value",
         "description": "A filter to test input titles for a given value",
         "author": "Tobias Beer",
