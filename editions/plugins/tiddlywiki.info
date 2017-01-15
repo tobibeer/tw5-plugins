@@ -29,6 +29,7 @@
         "../../../rate/editions/rate",
         "../../../random/editions/random",
         "../../../setvars/editions/setvars",
+        "../../../sparkl/editions/sparkl",
         "../../../split/editions/split",
         "../../../sysinfo/editions/sysinfo",
         "../../../toc/editions/toc",
