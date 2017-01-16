@@ -709,9 +709,11 @@ max: the max value of the scale
 width: the width of a bar
 margin: the left margin to a bar
 segments: the number of segments to the scale
-link: links bars to titles&lt;br&gt;» only when using a value filter</pre>
+link: links bars to titles&lt;br&gt;» only when using a values filter
+as: the default graph type, e.g. `bar` or `dots`
+dot-size: for `as=dots`, the size of dots in ''px''</pre>
 </div>
-<div title="$:/.tb/demo/sparkl/styles" type="text/css" revision="0" bag="default">
+<div tags="$:/tags/Stylesheet" title="$:/.tb/demo/sparkl/styles" type="text/css" revision="0" bag="default">
 <pre>.pinkish .tc-sparkl-bar b {
 border-bottom-color:deeppink;
 }
@@ -10456,7 +10458,11 @@ very-muted-foreground: #888888</pre>
         &quot;$:/plugins/tobibeer/sparkl/css&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/css&quot;,
             &quot;tags&quot;: &quot;$:/tags/Stylesheet&quot;,
-            &quot;text&quot;: &quot;\\define color(id) {{$:/plugins/tobibeer/sparkl/defaults/colors/$id$}}\n\n.tc-sparkl{\r\n\tborder: 0;\r\n\tbackground:  &lt;&lt;color bg&gt;&gt;;\r\n}\n\n.tc-sparkl-bar {\r\n\theight:1em;\r\n\tdisplay:inline-block;\r\n\toverflow:hidden;\r\n}\n\n.tc-sparkl-bar b {\r\n\toutline: 0;\r\n\theight:0;\r\n\tdisplay:inline-block;\r\n\tvertical-align: top;\r\n\tborder-left-color:transparent;\r\n\tborder-top-color:transparent;\r\n\tborder-top-style:solid;\r\n\tborder-bottom: 2em solid &lt;&lt;color fg&gt;&gt;;\r\n\tbackground: transparent;\r\n\tbox-sizing:content-box;\r\n}\n\n.tc-sparkl-bar:hover b{\r\n\tborder-top-color: &lt;&lt;color bg-hover&gt;&gt;;\r\n\tborder-bottom-color: &lt;&lt;color fg-hover&gt;&gt;;\r\n}&quot;
+            &quot;text&quot;: &quot;\\define color(id) {{$:/plugins/tobibeer/sparkl/defaults/colors/$id$}}\n\n.tc-sparkl{\r\n\tborder: 0;\r\n\tbackground: &lt;&lt;color bg&gt;&gt;;\r\n}\n\n.tc-sparkl-bar {\r\n\theight:1em;\r\n\tdisplay:inline-block;\r\n\toverflow:hidden;\r\n}\n\n.tc-sparkl-bar b {\r\n\toutline: 0;\r\n\theight:0;\r\n\tposition:relative;\r\n\tdisplay:inline-block;\r\n\tvertical-align: top;\r\n\tborder-left-color:transparent;\r\n\tborder-top-color:transparent;\r\n\tborder-top-style:solid;\r\n\tborder-bottom: 2em solid &lt;&lt;color fg&gt;&gt;;\r\n\tbackground: transparent;\r\n\tbox-sizing:content-box;\r\n}\n\n.tc-sparkl-bar:hover b{\r\n\tborder-top-color: &lt;&lt;color bg-hover&gt;&gt;;\r\n\tborder-bottom-color: &lt;&lt;color fg-hover&gt;&gt;;\r\n}\n\n.tc-sparkl-dots .tc-sparkl-bar b {\r\n\theight:2px;\r\n\tborder-bottom-color:transparent;\r\n}\n\n.tc-sparkl-dots .tc-sparkl-bar:hover b{\r\n\tborder-bottom-color: &lt;&lt;color bg-hover&gt;&gt;;\r\n}\n\n.tc-sparkl-dot {\r\n\tposition:absolute;\r\n\tbackground: &lt;&lt;color fg&gt;&gt;;\r\n}\n\n.tc-sparkl-bar:hover .tc-sparkl-dot{\r\n\tbackground: &lt;&lt;color fg-hover&gt;&gt;;\r\n}\r\n&quot;
+        },
+        &quot;$:/plugins/tobibeer/sparkl/defaults/as&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/defaults/as&quot;,
+            &quot;text&quot;: &quot;bars&quot;
         },
         &quot;$:/plugins/tobibeer/sparkl/defaults/default&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/defaults/default&quot;,
@@ -10476,7 +10482,7 @@ very-muted-foreground: #888888</pre>
         },
         &quot;$:/plugins/tobibeer/sparkl/defaults/width&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/defaults/width&quot;,
-            &quot;text&quot;: &quot;3px&quot;
+            &quot;text&quot;: &quot;5px&quot;
         },
         &quot;$:/plugins/tobibeer/sparkl/defaults/segments&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/defaults/segments&quot;,
@@ -10485,6 +10491,10 @@ very-muted-foreground: #888888</pre>
         &quot;$:/plugins/tobibeer/sparkl/defaults/link&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/defaults/link&quot;,
             &quot;text&quot;: &quot;yes&quot;
+        },
+        &quot;$:/plugins/tobibeer/sparkl/defaults/dot-size&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/defaults/dot-size&quot;,
+            &quot;text&quot;: &quot;4&quot;
         },
         &quot;$:/plugins/tobibeer/sparkl/defaults/colors/fg&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/defaults/colors/fg&quot;,
@@ -10509,18 +10519,18 @@ very-muted-foreground: #888888</pre>
         &quot;$:/plugins/tobibeer/sparkl/macro&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/macro&quot;,
             &quot;tags&quot;: &quot;$:/tags/Macro&quot;,
-            &quot;text&quot;: &quot;\\define sparkl(values,titles,class,default,min,max,width,margin,segments,link)\r\n&lt;$sparkl\r\nvalues=\&quot;\&quot;\&quot;$values$\&quot;\&quot;\&quot;\r\ntitles=\&quot;\&quot;\&quot;$titles$\&quot;\&quot;\&quot;\r\nclass=\&quot;\&quot;\&quot;$class$\&quot;\&quot;\&quot;\r\ndefault=\&quot;\&quot;\&quot;$default$\&quot;\&quot;\&quot;\r\nmin=\&quot;\&quot;\&quot;$min$\&quot;\&quot;\&quot;\r\nmax=\&quot;\&quot;\&quot;$max$\&quot;\&quot;\&quot;\r\nwidth=\&quot;\&quot;\&quot;$width$\&quot;\&quot;\&quot;\r\nmargin=\&quot;\&quot;\&quot;$margin$\&quot;\&quot;\&quot;\r\nsegments=\&quot;\&quot;\&quot;$segments$\&quot;\&quot;\&quot;\r\nlink=\&quot;\&quot;\&quot;$link$\&quot;\&quot;\&quot;/&gt;\r\n\\end&quot;
+            &quot;text&quot;: &quot;\\define sparkl(values,titles,class,default,min,max,width,margin,segments,link,as,dot-size)\r\n&lt;$sparkl\r\nvalues=\&quot;\&quot;\&quot;$values$\&quot;\&quot;\&quot;\r\ntitles=\&quot;\&quot;\&quot;$titles$\&quot;\&quot;\&quot;\r\nclass=\&quot;\&quot;\&quot;$class$\&quot;\&quot;\&quot;\r\ndefault=\&quot;\&quot;\&quot;$default$\&quot;\&quot;\&quot;\r\nmin=\&quot;\&quot;\&quot;$min$\&quot;\&quot;\&quot;\r\nmax=\&quot;\&quot;\&quot;$max$\&quot;\&quot;\&quot;\r\nwidth=\&quot;\&quot;\&quot;$width$\&quot;\&quot;\&quot;\r\nmargin=\&quot;\&quot;\&quot;$margin$\&quot;\&quot;\&quot;\r\nsegments=\&quot;\&quot;\&quot;$segments$\&quot;\&quot;\&quot;\r\nlink=\&quot;\&quot;\&quot;$link$\&quot;\&quot;\&quot;\r\nas=\&quot;\&quot;\&quot;$as$\&quot;\&quot;\&quot;\r\ndot-size=\&quot;\&quot;\&quot;$dot-size$\&quot;\&quot;\&quot;/&gt;\r\n\\end&quot;
         },
         &quot;$:/plugins/tobibeer/sparkl/readme&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/readme&quot;,
-            &quot;text&quot;: &quot;\\define D(v,d)\r\n&lt;$vars v=\&quot;$:/plugins/tobibeer/sparkl/defaults/$v$\&quot;&gt;\r\n''$v$'': $d$ &lt;$list filter=\&quot;[&lt;v&gt;shadowsource[]]\&quot; variable=\&quot;none\&quot;&gt; / default: &lt;code&gt;&lt;$view tiddler=&lt;&lt;v&gt;&gt;/&gt;&lt;/code&gt;&lt;/$list&gt;\r\n&lt;/$vars&gt;\r\n\\end\n\nThe plugin $:/plugins/tobibeer/sparkl provides:\n\n; &lt;$text text=\&quot;&lt;$sparkl/&gt;\&quot;/&gt;\r\n: a widget to render simple sparkline diagrams\n\n; Attributes\r\n: &lt;&lt;D values \&quot;space separated values&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;» or a filter like `[[%title%]get[number]]` for each `%title%` in ''titles''\&quot;&gt;&gt;\r\n: &lt;&lt;D titles \&quot;filter for titles\&quot;&gt;&gt;\r\n: &lt;&lt;D class \&quot;css class\&quot;&gt;&gt;\r\n: &lt;&lt;D default \&quot;default when no value for field\&quot;&gt;&gt;\r\n: &lt;&lt;D min \&quot;defined min for scale\&quot;&gt;&gt;\r\n: &lt;&lt;D max \&quot;defined max for scale\&quot;&gt;&gt;\r\n: &lt;&lt;D width \&quot;of a bar\&quot;&gt;&gt;\r\n: &lt;&lt;D margin \&quot;left margin for a bar\&quot;&gt;&gt;\r\n: &lt;&lt;D segments \&quot;accuracy of the scale\&quot;&gt;&gt;\r\n: &lt;&lt;D link \&quot;links bars to titles\&quot;&gt;&gt;\n\n; &lt;$text text=\&quot;&lt;&lt;sparkl values titles class default min max width margin segments&gt;&gt;\&quot;/&gt;\r\n: a simple macro wrapper\n\n&lt;br&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#sparkl&quot;
+            &quot;text&quot;: &quot;\\define D(v,d)\r\n&lt;$vars v=\&quot;$:/plugins/tobibeer/sparkl/defaults/$v$\&quot;&gt;\r\n''$v$'': $d$ &lt;$list filter=\&quot;[&lt;v&gt;shadowsource[]]\&quot; variable=\&quot;none\&quot;&gt; / default: &lt;code&gt;&lt;$view tiddler=&lt;&lt;v&gt;&gt;/&gt;&lt;/code&gt;&lt;/$list&gt;\r\n&lt;/$vars&gt;\r\n\\end\n\nThe plugin $:/plugins/tobibeer/sparkl provides:\n\n; &lt;$text text=\&quot;&lt;$sparkl/&gt;\&quot;/&gt;\r\n: a widget to render simple sparkline diagrams\n\n; Attributes\r\n: &lt;&lt;D values \&quot;space separated values&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;» or a filter like `[[%title%]get[number]]` for each `%title%` in ''titles''\&quot;&gt;&gt;\r\n: &lt;&lt;D titles \&quot;filter for titles\&quot;&gt;&gt;\r\n: &lt;&lt;D class \&quot;css class\&quot;&gt;&gt;\r\n: &lt;&lt;D default \&quot;default when no value for field\&quot;&gt;&gt;\r\n: &lt;&lt;D min \&quot;defined min for scale\&quot;&gt;&gt;\r\n: &lt;&lt;D max \&quot;defined max for scale\&quot;&gt;&gt;\r\n: &lt;&lt;D width \&quot;of a bar\&quot;&gt;&gt;\r\n: &lt;&lt;D margin \&quot;left margin for a bar\&quot;&gt;&gt;\r\n: &lt;&lt;D segments \&quot;accuracy of the scale\&quot;&gt;&gt;\r\n: &lt;&lt;D link \&quot;links bars to titles\&quot;&gt;&gt;\r\n: &lt;&lt;D as \&quot;the sparkline diagram as `bar` (default) or `dots`\&quot;&gt;&gt;\r\n: &lt;&lt;D dot-size \&quot;when `as=dots`, the size of dots in px\&quot;&gt;&gt;\n\n; &lt;$text text=\&quot;&lt;&lt;sparkl values titles class default min max width margin segments&gt;&gt;\&quot;/&gt;\r\n: a simple macro wrapper\n\n&lt;br&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#sparkl&quot;
         },
         &quot;$:/plugins/tobibeer/sparkl/styles&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/styles&quot;,
             &quot;text&quot;: &quot;$:/plugins/tobibeer/sparkl/styles\n\n&lt;pre&gt;&lt;$text text={{$:/plugins/tobibeer/sparkl/css}}/&gt;&lt;/pre&gt;&quot;
         },
         &quot;$:/plugins/tobibeer/sparkl/widget.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/sparkl/widget.js\r\ntype: application/javascript\r\nmodule-type: widget\r\n\r\nThe sparkl widget renders simple inline sparkline diagrams\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;var t=require(\&quot;$:/core/modules/widgets/widget.js\&quot;).widget,e=function(t,e){this.initialise(t,e)};e.prototype=new t;e.prototype.render=function(t,e){this.parentDomNode=t;this.nextSibling=e;this.computeAttributes();this.execute();var i=this,s,r,l,a,n,u,d,h,f,p,o,g=[],m,c,b=[],k,w,x=i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/default\&quot;);if(!i.values||!i.titles&amp;&amp;i.filter){return}if(i.titles){$tw.utils.each(i.wiki.filterTiddlers(i.titles,i),function(t){g.push(t)})}$tw.utils.each(i.filter?g:i.values.split(\&quot; \&quot;),function(t){if(i.filter){t=i.wiki.filterTiddlers(i.values.replace(/%title%/gm,t),i);if(!t.length||isNaN(parseFloat(t[0],10))){t=i.default||x}else{t=t[0]}}t=parseFloat(t,10);if(isNaN(t)){t=0}if(h===undefined){h=t;u=t}if(u&lt;t){u=t}if(h&gt;t){h=t}b.push(t)});if(!b.length){return}a=i.link||i.filter?i.link===\&quot;\&quot;?i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/link\&quot;):[\&quot;false\&quot;,\&quot;no\&quot;].indexOf(i.link)&gt;=0?0:1:0;d=i.max?i.max:i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/max\&quot;);if(d!==\&quot;max\&quot;){u=parseInt(d,10)}f=i.min?i.min:i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/min\&quot;);if(f!==\&quot;min\&quot;){if(f.charAt(f.length-1)===\&quot;%\&quot;){h=h-(u-h)*parseInt(f.substr(0,f.length-1),10)/100}else{h=parseInt(f,10)}}p=parseInt(i.segments,10);if(isNaN(p)){p=parseInt(i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/segments\&quot;),10)||20}n=i.margin||i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/margin\&quot;)||0;w=i.width||i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/width\&quot;)||\&quot;3px\&quot;;switch(b.length){case 1:w=\&quot;1em\&quot;;break;case 2:w=\&quot;0.5em\&quot;;break;case 3:w=\&quot;0.33em\&quot;;break}s=i.document.createElement(\&quot;span\&quot;);s.textContent=String.fromCharCode(160);l=i.classes?i.classes.split(\&quot; \&quot;):[];l.push(\&quot;tc-sparkl\&quot;);s.className=l.join(\&quot; \&quot;);t.insertBefore(s,e);for(m=0;m&lt;b.length;m++){o=g[m];if(a){k=document.createElement(\&quot;a\&quot;);k.setAttribute(\&quot;href\&quot;,\&quot;#\&quot;+g[m]);k.style.cursor=\&quot;pointer\&quot;}else{k=document.createElement(\&quot;span\&quot;)}k.className=\&quot;tc-sparkl-bar\&quot;;k.title=o?o+\&quot; (\&quot;+b[m]+\&quot;)\&quot;:b[m];r=document.createElement(\&quot;b\&quot;);r.style.width=w;c=u===h?0:1-(b[m]-h)/(u-h);c=Math.max(0,c);c=Math.round(p*c)/p;r.style.borderTopWidth=c+\&quot;em\&quot;;r.style.marginLeft=n;k.appendChild(r);s.appendChild(k)}};e.prototype.execute=function(){this.values=this.getAttribute(\&quot;values\&quot;);this.titles=this.getAttribute(\&quot;titles\&quot;);this.default=this.getAttribute(\&quot;default\&quot;);this.classes=this.getAttribute(\&quot;class\&quot;);this.min=this.getAttribute(\&quot;min\&quot;);this.max=this.getAttribute(\&quot;max\&quot;);this.segments=this.getAttribute(\&quot;segments\&quot;);this.width=this.getAttribute(\&quot;width\&quot;);this.margin=this.getAttribute(\&quot;margin\&quot;);this.link=(this.getAttribute(\&quot;link\&quot;)||\&quot;\&quot;).toLowerCase();if(this.values.indexOf(\&quot;%title%\&quot;)&gt;=0){this.filter=1}};e.prototype.refresh=function(){var t=this.computeAttributes();if(t.values||t.titles||t[\&quot;class\&quot;]||t.default||t.min||t.max||t.width||t.margin||t.segments||t.link){this.refreshSelf();return true}else{return false}};exports.sparkl=e})();&quot;,
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/sparkl/widget.js\r\ntype: application/javascript\r\nmodule-type: widget\r\n\r\nThe sparkl widget renders simple inline sparkline diagrams\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;var t=require(\&quot;$:/core/modules/widgets/widget.js\&quot;).widget,e=function(t,e){this.initialise(t,e)};e.prototype=new t;e.prototype.render=function(t,e){this.parentDomNode=t;this.nextSibling=e;this.computeAttributes();this.execute();var i=this,s,l,r,a,n,d,u,o,h,p,f,g,m,c,b,k,w,x=[],T,y,A=[],$,N,v,C,S=i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/default\&quot;);if(!i.values||!i.titles&amp;&amp;i.filter){return}if(i.titles){$tw.utils.each(i.wiki.filterTiddlers(i.titles,i),function(t){x.push(t)})}$tw.utils.each(i.filter?x:i.values.split(\&quot; \&quot;),function(t){if(i.filter){t=i.wiki.filterTiddlers(i.values.replace(/%title%/gm,t),i);if(!t.length||isNaN(parseFloat(t[0],10))){t=i.default||S}else{t=t[0]}}t=parseFloat(t,10);if(isNaN(t)){t=0}if(c===undefined){c=t;g=t}if(g&lt;t){g=t}if(c&gt;t){c=t}A.push(t)});if(!A.length){return}p=i.link||i.filter?i.link===\&quot;\&quot;?i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/link\&quot;):[\&quot;false\&quot;,\&quot;no\&quot;].indexOf(i.link)&gt;=0?0:i.link:0;m=i.max?i.max:i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/max\&quot;);if(m!==\&quot;max\&quot;){g=parseInt(m,10)}b=i.min?i.min:i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/min\&quot;);if(b!==\&quot;min\&quot;){if(b.charAt(b.length-1)===\&quot;%\&quot;){c=c-(g-c)*parseInt(b.substr(0,b.length-1),10)/100}else{c=parseInt(b,10)}}k=parseInt(i.segments,10);if(isNaN(k)){k=parseInt(i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/segments\&quot;),10)||20}f=i.margin||i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/margin\&quot;)||0;C=i.width||i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/width\&quot;)||\&quot;3px\&quot;;switch(A.length){case 1:C=\&quot;1em\&quot;;break;case 2:C=\&quot;0.5em\&quot;;break;case 3:C=\&quot;0.33em\&quot;;break}l=i.document.createElement(\&quot;span\&quot;);l.textContent=String.fromCharCode(160);a=i.classes?i.classes.split(\&quot; \&quot;):[];a.push(\&quot;tc-sparkl\&quot;);s=i.as||i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/as\&quot;);if(s===\&quot;dots\&quot;){a.push(\&quot;tc-sparkl-dots\&quot;);d=parseFloat(i.dotSize||i.wiki.getTiddlerText(\&quot;$:/plugins/tobibeer/sparkl/defaults/dot-size\&quot;),10);if(!d||isNaN(d)){d=2}}l.className=a.join(\&quot; \&quot;);t.insertBefore(l,e);for(T=0;T&lt;A.length;T++){w=x[T];if(p){v=document.createElement(\&quot;a\&quot;);w=(p||\&quot;\&quot;).indexOf(\&quot;%title%\&quot;)&lt;0?w:i.wiki.filterTiddlers(p.replace(/%title%/gm,x[T]),i)[0]||w;v.setAttribute(\&quot;href\&quot;,\&quot;#\&quot;+w);v.style.cursor=\&quot;pointer\&quot;}else{v=document.createElement(\&quot;span\&quot;)}v.className=\&quot;tc-sparkl-bar\&quot;;v.title=w?w+\&quot; (\&quot;+A[T]+\&quot;)\&quot;:A[T];r=document.createElement(\&quot;b\&quot;);r.style.width=C;y=g===c?0:1-(A[T]-c)/(g-c);y=Math.max(0,y);v.appendChild(r);l.appendChild(v);h=window.getComputedStyle(v,null).getPropertyValue(\&quot;height\&quot;);h=parseFloat(h.substr(0,h.length-2),10);h=s===\&quot;dots\&quot;?h-3*d/2:h;y=h*Math.round(k*y)/k;r.style.borderTopWidth=y+\&quot;px\&quot;;r.style.marginLeft=f;if(s===\&quot;dots\&quot;){u=d+\&quot;px\&quot;;o=d/2+\&quot;px\&quot;;n=document.createElement(\&quot;i\&quot;);n.setAttribute(\&quot;class\&quot;,\&quot;tc-sparkl-dot tc-sparkl-dot-\&quot;+i.dots);n.style.width=u;n.style.height=u;n.style.top=o;n.style.borderRadius=o;n.style.MozBorderRadius=o;n.style.WebkitBorderRadius=o;r.appendChild(n);$=window.getComputedStyle(r,null).getPropertyValue(\&quot;width\&quot;);N=window.getComputedStyle(n,null).getPropertyValue(\&quot;width\&quot;);$=parseFloat($.substr(0,$.length-2),10);N=parseFloat(N.substr(0,N.length-2),10);n.style.left=($-N)/2+\&quot;px\&quot;}}};e.prototype.execute=function(){this.values=this.getAttribute(\&quot;values\&quot;);this.titles=this.getAttribute(\&quot;titles\&quot;);this.default=this.getAttribute(\&quot;default\&quot;);this.classes=this.getAttribute(\&quot;class\&quot;);this.min=this.getAttribute(\&quot;min\&quot;);this.max=this.getAttribute(\&quot;max\&quot;);this.segments=this.getAttribute(\&quot;segments\&quot;);this.width=this.getAttribute(\&quot;width\&quot;);this.margin=this.getAttribute(\&quot;margin\&quot;);this.link=(this.getAttribute(\&quot;link\&quot;)||\&quot;\&quot;).toLowerCase();this.as=this.getAttribute(\&quot;as\&quot;);if(this.as&amp;&amp;this.as.indexOf(\&quot;dots\&quot;)===0){this.dots=this.as.substr(5)||\&quot;\&quot;;this.as=\&quot;dots\&quot;;if(!this.dots||[\&quot;circles\&quot;].indexOf(this.dots)&lt;0){this.dots=\&quot;circles\&quot;}}this.dotSize=this.getAttribute(\&quot;dot-size\&quot;);if(this.values.indexOf(\&quot;%title%\&quot;)&gt;=0){this.filter=1}};e.prototype.refresh=function(){var t=this.computeAttributes();if(t.values||t.titles||t[\&quot;class\&quot;]||t.default||t.min||t.max||t.width||t.margin||t.segments||t.link||t.as||t.dotSize){this.refreshSelf();return true}else{return false}};exports.sparkl=e})();&quot;,
             &quot;title&quot;: &quot;$:/plugins/tobibeer/sparkl/widget.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;widget&quot;
@@ -14470,7 +14480,7 @@ Defaults for colors, see [[Styles|sparkl-Styles]]
 &lt;/$list&gt;
 &lt;/table&gt;</pre>
 </div>
-<div created="20170115111008889" creator="Tobias Beer" modified="20170115164930547" modifier="Tobias Beer" number="3" summary="examples for generating simple sparkline diagrams using the [[sparkl]] widget" tags="sparkl Examples" title="sparkl-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170115111008889" creator="Tobias Beer" modified="20170116225115840" modifier="Tobias Beer" number="3" summary="examples for generating simple sparkline diagrams using the [[sparkl]] widget" tags="sparkl Examples" title="sparkl-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define default(id)
 ''$id$''=&lt;code&gt;&quot;{{$:/plugins/tobibeer/sparkl/defaults/$id$}}&quot;&lt;/code&gt;
 \end
@@ -14488,6 +14498,9 @@ values=&quot;[[%title%]get[number]]&quot;
 titles=&quot;[prefix[sparkl]sort[number]]&quot;
 link=&quot;no&quot;/&gt; after&quot;&quot;&quot;&gt;&gt;
 
+As dots...
+
+&lt;&lt;` &quot;&quot;&quot;before &lt;$sparkl values=&quot;2 4 8 2 4 8&quot; as=&quot;dots&quot;/&gt; after&quot;&quot;&quot;&gt;&gt;
 
 Low accuracy via few segments, margin suppressed...
 
@@ -14568,20 +14581,26 @@ segments=&quot;10&quot;/&gt; after&quot;&quot;&quot;&gt;&gt;
 
 &lt;&lt;plugin-docs-cp sparkl&gt;&gt;</pre>
 </div>
-<div created="20170113181742172" creator="Tobias Beer" modified="20170115162254042" modifier="Tobias Beer" number="7" title="sparkl-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170113181742172" creator="Tobias Beer" modified="20170116225824530" modifier="Tobias Beer" number="7" title="sparkl-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-install sparkl&gt;&gt;
 
 !! Version History
 
+; 0.5.1 / 2017-01-17
+: added ''link'' pattern via filter, similar to ''values''
+: added ''as'', ''as=dots'' &amp; ''dot-size''
+: slightly increased the default width
+: changed position computation to pixels, not ''em''
+:: browsers appear to inconsistently render the bar width when in ''em''
 ; 0.5.0 / 2017-01-15
 : initial version</pre>
 </div>
-<div created="20170115124514151" creator="Tobias Beer" modified="20170115170929795" modifier="Tobias Beer" number="6" title="sparkl-Macro" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170115124514151" creator="Tobias Beer" modified="20170116225431866" modifier="Tobias Beer" number="6" title="sparkl-Macro" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>The ''sparkle'' macro simply passes all attributes to the widget &lt;&lt;source $:/plugins/tobibeer/sparkl/macro&gt;&gt;
 
 So, you can do:
 
-&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;before &lt;&lt;sparkl &quot;1 2 3 4 5 4 3 2 1&quot;&gt;&gt; after&quot;&quot;&quot;/&gt;
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;before &lt;&lt;sparkl &quot;1 2 3 4 5 4 3 2 1&quot; as:dots&gt;&gt; after&quot;&quot;&quot;/&gt;
 </pre>
 </div>
 <div created="20170114113324642" creator="Tobias Beer" modified="20170115162228785" modifier="Tobias Beer" number="5" tags="" title="sparkl-Styles" type="text/vnd.tiddlywiki" revision="0" bag="default">
@@ -14593,7 +14612,7 @@ So, you can do:
 
 In the default styles, colors are defined via [[defaults|sparkl-Defaults]] so you don't need to modify the stylesheet just to change colors. They are shipped via &lt;&lt;source &quot;$:/plugins/tobibeer/sparkl/css&quot;&gt;&gt;</pre>
 </div>
-<div created="20170103192110769" creator="Tobias Beer" modified="20170115171908353" modifier="Tobias Beer" number="2" title="sparkl-Syntax" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20170103192110769" creator="Tobias Beer" modified="20170116225949522" modifier="Tobias Beer" number="2" title="sparkl-Syntax" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>\define defaults(d)
 [[defaults|sparkl-Defaults]][[/$d$|$:/plugins/tobibeer/sparkl/defaults/$d$]]:&lt;br&gt;&lt;code&gt;{{$:/plugins/tobibeer/sparkl/defaults/$d$}}&lt;/code&gt;
 \end
@@ -14608,13 +14627,15 @@ The ''sparkl'' widget allows for the following attributes:
 |''class''|a css class for the sparkl|always assigned:&lt;br&gt;`tc-sparkl` |
 |''default''|the default value should a tiddler not exist or not have the defined field |&lt;&lt;defaults default&gt;&gt;|
 |''min''|the minimum value for the scale&lt;br&gt;» when `min`, uses the minimum value&lt;br&gt; » when `30%`, sets min to the defined % value of the range between max and min, i.e. to suggest that values don't actually start at the bottom end |&lt;&lt;defaults min&gt;&gt;|
-|''max''|the maximum value for the scale&lt;br&gt; »  when `max`, uses the maximum value|&lt;&lt;defaults max&gt;&gt;|
-|''width''|the width for each value|&lt;&lt;defaults width&gt;&gt;|
+|''max''|the maximum value for the scale&lt;br&gt; » when `max`, uses the maximum value|&lt;&lt;defaults max&gt;&gt;|
+|''width''|the width for each value&lt;br&gt;''note:'' I would have preferred ''em'' but that would make browsers display bars at irregular widths|&lt;&lt;defaults width&gt;&gt;|
 |''margin''|the left margin for each value|&lt;&lt;defaults margin&gt;&gt;|
 |''segments''|the number of segments for values, i.e. the accuracy |&lt;&lt;defaults segments&gt;&gt;|
-|''link''|turns bars into clickable links to the title&lt;br&gt;» the default only applies when ''value'' is determined via filter|&lt;&lt;defaults link&gt;&gt;|
+|''link''|when `yes`, turns a bars into a clickable link to a title&lt;br&gt; » use a filter like  `[[%title%]addprefix[$:/foo/]]` to compute the link target for each `%title%` in ''titles''&lt;br&gt;» the default only applies when ''values'' are determined via filter|&lt;&lt;defaults link&gt;&gt;|
+|''as''|by default, sparklines are rendered as a bar graph&lt;br&gt;» outputs a dotted graph for `as=dots`|&lt;&lt;defaults as&gt;&gt;|
+|''dot-size''|when ''as=dots'', the size of each dot in ''px''|&lt;&lt;defaults dot-size&gt;&gt;|
 
-For example...
+For [[example|sparkl-Examples]]...
 
 &lt;&lt;` &quot;&quot;&quot;before &lt;$sparkl
 values=&quot;11 12 13 14 15 16 17 18 19 20&quot;
