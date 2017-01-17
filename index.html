@@ -9485,13 +9485,11 @@ exports.fakeDocument = document;
 </pre>
 </div>
 <div issue="2245" subtitle="{{$:/core/images/download-button}} {{$:/language/ControlPanel/Plugins/Add/Caption}}" title="$:/core/ui/ControlPanel/Modals/AddPlugins" revision="0" bag="default">
-<pre>\define lingo-base() $:/language/ControlPanel/Plugins/
-
-\define install-plugin-button()
+<pre>\define install-plugin-button()
 &lt;$button&gt;
 &lt;$action-sendmessage $message=&quot;tm-load-plugin-from-library&quot; url={{$(connectionTiddler)$!!url}} title={{$(assetInfo)$!!original-title}}/&gt;
-&lt;$list filter=&quot;[&lt;assetInfo&gt;get[original-title]get[version]]&quot; variable=&quot;installedVersion&quot; emptyMessage=&quot;&quot;&quot;{{$:/language/ControlPanel/Plugins/Install}}&quot;&quot;&quot;&gt;
-{{$:/language/ControlPanel/Plugins/Reinstall}}
+&lt;$list filter=&quot;[&lt;assetInfo&gt;get[original-title]get[version]]&quot; variable=&quot;installedVersion&quot; emptyMessage=&quot;&quot;&quot;{{$:/language/ControlPanel/Plugins/Install/Caption}}&quot;&quot;&quot;&gt;
+{{$:/language/ControlPanel/Plugins/Reinstall/Caption}}
 &lt;/$list&gt;
 &lt;/$button&gt;
 \end
@@ -9532,9 +9530,9 @@ $:/state/add-plugin-info/$(connectionTiddler)$/$(assetInfo)$
 &lt;$reveal type=&quot;match&quot; text=&quot;yes&quot; state=&lt;&lt;popup-state&gt;&gt;&gt;
 &lt;div class=&quot;tc-plugin-info-dropdown&quot;&gt;
 &lt;div class=&quot;tc-plugin-info-dropdown-message&quot;&gt;
-&lt;$list filter=&quot;[&lt;assetInfo&gt;get[original-title]get[version]]&quot; variable=&quot;installedVersion&quot; emptyMessage=&quot;&quot;&quot;This plugin is not currently installed&quot;&quot;&quot;&gt;
+&lt;$list filter=&quot;[&lt;assetInfo&gt;get[original-title]get[version]]&quot; variable=&quot;installedVersion&quot; emptyMessage=&quot;&quot;&quot;{{$:/language/ControlPanel/Plugins/NotInstalled/Hint}}&quot;&quot;&quot;&gt;
 &lt;em&gt;
-This plugin is already installed at version &lt;$text text=&lt;&lt;installedVersion&gt;&gt;/&gt;
+{{$:/language/ControlPanel/Plugins/AlreadyInstalled/Hint}}
 &lt;/em&gt;
 &lt;/$list&gt;
 &lt;/div&gt;
