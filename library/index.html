@@ -310,7 +310,7 @@ var assetList = [
         "title": "$:/plugins/tobibeer/split",
         "description": "A filter to split input titles and slice-up the results",
         "author": "Tobias Beer",
-        "version": "0.7.0",
+        "version": "0.7.2",
         "core-version": ">=5.1.9",
         "source": "https://github.com/tobibeer/tw5-split",
         "documentation": "https://tobibeer.github.io/tw5-split",
@@ -318,7 +318,7 @@ var assetList = [
         "dependents": "",
         "list": "readme",
         "type": "application/json",
-        "readme": "Provides the filter `split[by]`, splitting input titles `by` a string defined in the operand, allowing you to slice and dice output elements as needed.\n\n; suffixes\r\n: `$` — return input titles that yield split items\r\n: `$all` — return all input titles if any yield split items\r\n: `+` — append operand to split titles\r\n: `+\\x\\` — append x to split titles\r\n: `\\x\\+` — prepend x to split titles\r\n: `unique` — prevents duplicate titles in the output\r\n: `trim` — no leading/trailing blanks in split titles\r\n: `first` — first title of the split => `!first` — all but first\r\n: `last` — last title of the split => `!last` — all but last\r\n: `at` — split in two at number in the operand\r\n: `pos=2` — 2nd split item of each input title in turn\r\n: `pos=1 num=3` — first three each\r\n: `pos=2 num=n` — 2nd to last each\r\n: `pos=-2 num=-n` — first to 2nd last each\r\n: `strict` — specified `num` is mandatory\r\n: `$pos`, `$num`, `$strict`, `$first`, `$!first`,`$last`, `$!last` — for final list\r\n: `keep` — return title even if not split\r\n: `list[]` — parse list field of input titles\r\n: `list=tags[]` — parse tags field of input titles\r\n: `list<foo>` — parse (soft) operand as list, e.g. variables or text-references\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#split"
+        "readme": "Provides the filter `split[by]`, splitting input titles `by` a string defined in the operand, allowing you to slice and dice output elements as needed.\n\n; suffixes\r\n: `$` — return input titles that yield split items\r\n: `$all` — return all input titles if any yield split items\r\n: `+` — append operand to split titles\r\n: `+\\x\\` — append x to split titles\r\n: `\\x\\+` — prepend x to split titles\r\n: `unique` — prevents duplicate titles in the output\r\n: `trim` — no leading/trailing blanks in split titles\r\n: `first` — first title of the split => `!first` — all but first\r\n: `last` — last title of the split => `!last` — all but last\r\n: `at[<num>]` — split in two at number in the operand\r\n: `at[<num>,<len>]` — slice out ''len'' characters starting at character ''num''\r\n: `!at[<num>,<len>]` — cutting the above out of the input title\r\n: `pos=2` — 2nd split item of each input title in turn\r\n: `pos=1 num=3` — first three each\r\n: `pos=2 num=n` — 2nd to last each\r\n: `pos=-2 num=-n` — first to 2nd last each\r\n: `strict` — specified `num` is mandatory\r\n: `$pos`, `$num`, `$strict`, `$first`, `$!first`,`$last`, `$!last` — for final list\r\n: `keep` — return title even if not split\r\n: `list[]` — parse list field of input titles\r\n: `list=tags[]` — parse tags field of input titles\r\n: `list<foo>` — parse (soft) operand as list, e.g. variables or text-references\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#split"
     },
     {
         "title": "$:/plugins/tobibeer/sysinfo",
