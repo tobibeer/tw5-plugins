@@ -13031,8 +13031,10 @@ Specify any of these options as `key:value` pairs:
 <div summary="library plugins by [[Tobias Beer]]" title="Libraries" revision="0" bag="default">
 <pre>&lt;&lt;list-plugins&gt;&gt;</pre>
 </div>
-<div created="20160120130410512" creator="Tobias Beer" modified="20160120163605991" modifier="Tobias Beer" summary="keeping up to date and fetching the latest and greatest from [[tobibeer/plugins|Plugins]]" tags="" title="Library" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>Drag this tiddler to your wiki to access my plugin library from your [[control panel|$:/ControlPanel]]: $:/pluginlibrary/tobibeer/official
+<div created="20160120130410512" creator="Tobias Beer" modified="20170119184251169" modifier="Tobias Beer" summary="keeping up to date and fetching the latest and greatest from [[tobibeer/plugins|Plugins]]" tags="" title="Library" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>@@color:purple;''Important'': Adding my library does not pre-install any of my plugins in your wiki but just adds a reference to it, i.e. you need internet access to actually install plugins from it.@@
+
+Drag this tiddler to your wiki to access my plugin library from your [[control panel|$:/ControlPanel]]: $:/pluginlibrary/tobibeer/official
 
 &lt;&lt;&lt;
 
@@ -14895,10 +14897,6 @@ a [[reply to Danielo Rodriguez|https://groups.google.com/d/msg/tiddlywiki/wC2uxr
 !! Version History
 
 ; 0.8.0 / 2017-01-19
-: fixed bugs with suffixes introduced in ''0.7.5'' where...
-:: input titles would be returned where no split occurs
-:: the output would be wrong for an operand with a length &gt; 1
-; 0.7.5 / 2017-01-19
 : `split:before[.]` to return input title ''up until'' the ''first'' match of `.`
 : `split:after[.]` to return input title ''after'' the ''first'' match of `.`
 : `split:beforelast[.]` to return input title ''up until'' the ''last'' match of `.`
