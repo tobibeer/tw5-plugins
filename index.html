@@ -10536,18 +10536,18 @@ very-muted-foreground: #888888</pre>
     }
 }</pre>
 </div>
-<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="A filter to split input titles and slice-up the results" documentation="https://tobibeer.github.io/tw5-split" list="readme" plugin-type="plugin" source="https://github.com/tobibeer/tw5-split" title="$:/plugins/tobibeer/split" type="application/json" version="0.7.2" revision="0" bag="default">
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="A filter to split input titles and slice-up the results" documentation="https://tobibeer.github.io/tw5-split" list="readme" plugin-type="plugin" source="https://github.com/tobibeer/tw5-split" title="$:/plugins/tobibeer/split" type="application/json" version="0.7.5" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tobibeer/split/filter.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/split/filter.js\r\ntype: application/javascript\r\nmodule-type: filteroperator\r\n\r\nFilter operator that splits each item at a specified separator.\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;exports.split=function(s,t,i){var e,a,n=i.wiki,r=t.suffix||\&quot;\&quot;,f=[],l=[],u=[],p=[],o={negate:t.prefix===\&quot;!\&quot;,split:t.operand,prefix:\&quot;\&quot;,suffix:\&quot;\&quot;,num:1,$num:1},c=[[/^\\s+/,function(){}],[/^(num|pos|\\$num|\\$pos)=(n|-n|\\d+|-\\d+)(?:\\s|$)/i,function(s){o[s[1]]=s[2];if(s[1].charAt(0)===\&quot;$\&quot;){o.mode=\&quot;$pos\&quot;}if(s[1]===\&quot;$num\&quot;&amp;&amp;!o.$pos){o.$pos=1}if(s[1]===\&quot;num\&quot;&amp;&amp;!o.pos){o.pos=1}}],[/^(\\+|at|!at|first|!first|last|!last|list|keep|strict|\\$strict|trim|unique)(?:\\s|$)/i,function(s){var t=s[1];o[t]=1;switch(t){case\&quot;+\&quot;:o.suffix=o.split;break;case\&quot;!at\&quot;:o.nat=1;case\&quot;at\&quot;:e=o.split.match(/(\\d+),(\\d+)/);if(e){o.at=parseInt(e[1]);o.to=parseInt(e[2])}else{o.at=parseInt(o.split)}if(isNaN(o.at)){throw\&quot;suffix 'at' must be numeric: \&quot;+o.at}else{o.at=o.at-1}break;case\&quot;list\&quot;:o.list=\&quot;list\&quot;;break;case\&quot;first\&quot;:o.pos=1;break;case\&quot;!first\&quot;:o.pos=2;o.num=\&quot;n\&quot;;break;case\&quot;last\&quot;:o.pos=\&quot;n\&quot;;break;case\&quot;!last\&quot;:o.pos=\&quot;-2\&quot;;o.num=\&quot;-n\&quot;;break}}],[/^list\\=\\s*([^\\s]+)(?:\\s|$)/i,function(s){o.list=s[1]}],[/^(\\!)?(\\$|\\$all|\\$first|\\$last)(?:\\s|$)/i,function(s){var t=s[2];o.mode=t;o.neg=s[1]?1:0;if(t===\&quot;$first\&quot;){if(o.neg){o.$pos=2;o.$num=\&quot;n\&quot;}else{o.$pos=1}}else if(t===\&quot;$last\&quot;){if(o.neg){o.$pos=\&quot;-2\&quot;;o.$num=\&quot;-n\&quot;}else{o.$pos=\&quot;n\&quot;}}}],[/^(?:\\+\\\\([^\\\\]+)\\\\|\\\\([^\\\\]+)\\\\\\+)/,function(s){if(s[1]){o.prefix=s[1]}else{o.suffix=s[2]}}]];try{while(r){a=r;$tw.utils.each(c,function(s){var t=s[0].exec(r);if(t){s[1].call(this,t);r=r.substr(t[0].length);return false}});if(r===a){throw\&quot;invalid suffix(es) '\&quot;+r+\&quot;'\&quot;}}if(o.list&amp;&amp;o.split){p=$tw.utils.parseStringArray(o.split)}else{s(function(s,t){var i,e,a;l.push(t);if(o.at){if(o.to){a=o.nat?[t.substr(0,o.at)+t.substr(o.at+o.to)]:[t.substr(o.at,o.to)];if(o.keep&amp;&amp;a[0]===\&quot;\&quot;){a[0]=t}}else{a=[t.substr(0,o.at)];e=t.substr(o.at);if(e){a.push(e)}}}else if(o.list){a=n.getTiddlerList(t,o.list)}else{a=t.split(o.split)}i=a.length&gt;1||o.list||o.to&amp;&amp;a.length&gt;0;if(o.pos){a=$tw.utils.getArrayItems(a,o.pos,o.num,o.strict)}if(a.length&amp;&amp;(i||o.keep)){f.push(t);$tw.utils.each(a,function(s){if(o.trim){s=s.trim()}if(s){if(!o.unique||o.unique&amp;&amp;p.indexOf(s)&lt;0){p.push(o.prefix+s+o.suffix)}}})}else{u.push(t)}})}if(t.suffix){switch(o.mode){case\&quot;$\&quot;:p=f;break;case\&quot;$all\&quot;:if(p.length){if(o.negate){u=[]}else{p=l}}else if(o.negate){u=l}break;case\&quot;$first\&quot;:case\&quot;$last\&quot;:case\&quot;$pos\&quot;:p=$tw.utils.getArrayItems(p,o.$pos,o.$num,o.$strict);break}}}catch($){return[\&quot;split syntax error:\&quot;+$]}return o.negate?u:p}})();&quot;,
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/split/filter.js\r\ntype: application/javascript\r\nmodule-type: filteroperator\r\n\r\nFilter operator that splits each item at a specified separator.\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;exports.split=function(s,t,e){var i,a,f=e.wiki,r=t.suffix||\&quot;\&quot;,n=[],l=[],u=[],o=[],p={negate:t.prefix===\&quot;!\&quot;,split:t.operand,prefix:\&quot;\&quot;,suffix:\&quot;\&quot;,num:1,$num:1},c=[[/^\\s+/,function(){}],[/^(num|pos|\\$num|\\$pos)=(n|-n|\\d+|-\\d+)(?:\\s|$)/i,function(s){p[s[1]]=s[2];if(s[1].charAt(0)===\&quot;$\&quot;){p.mode=\&quot;$pos\&quot;}if(s[1]===\&quot;$num\&quot;&amp;&amp;!p.$pos){p.$pos=1}if(s[1]===\&quot;num\&quot;&amp;&amp;!p.pos){p.pos=1}}],[/^(\\+|at|!at|first|!first|last|!last|list|keep|strict|\\$strict|trim|unique)(?:\\s|$)/i,function(s){var t=s[1];p[t]=1;switch(t){case\&quot;+\&quot;:p.suffix=p.split;break;case\&quot;!at\&quot;:p.nat=1;case\&quot;at\&quot;:i=p.split.match(/(\\d+),(\\d+)/);if(i){p.at=parseInt(i[1]);p.to=parseInt(i[2])}else{p.at=parseInt(p.split)}if(isNaN(p.at)){throw\&quot;suffix 'at' must be numeric: \&quot;+p.at}else{p.at=p.at-1}break;case\&quot;list\&quot;:p.list=\&quot;list\&quot;;break;case\&quot;first\&quot;:p.pos=1;break;case\&quot;!first\&quot;:p.pos=2;p.num=\&quot;n\&quot;;break;case\&quot;last\&quot;:p.pos=\&quot;n\&quot;;break;case\&quot;!last\&quot;:p.pos=\&quot;-2\&quot;;p.num=\&quot;-n\&quot;;break}}],[/^(before|after|beforelast|afterlast)(?:\\s|$)/i,function(s){var t=s[1];p.before=(t.toLowerCase().indexOf(\&quot;before\&quot;)===0?1:2)+(t.toLowerCase().indexOf(\&quot;last\&quot;)===t.length-4?2:0)}],[/^list\\=\\s*([^\\s]+)(?:\\s|$)/i,function(s){p.list=s[1]}],[/^(\\!)?(\\$|\\$all|\\$first|\\$last)(?:\\s|$)/i,function(s){var t=s[2];p.mode=t;p.neg=s[1]?1:0;if(t===\&quot;$first\&quot;){if(p.neg){p.$pos=2;p.$num=\&quot;n\&quot;}else{p.$pos=1}}else if(t===\&quot;$last\&quot;){if(p.neg){p.$pos=\&quot;-2\&quot;;p.$num=\&quot;-n\&quot;}else{p.$pos=\&quot;n\&quot;}}}],[/^(?:\\+\\\\([^\\\\]+)\\\\|\\\\([^\\\\]+)\\\\\\+)/,function(s){if(s[1]){p.prefix=s[1]}else{p.suffix=s[2]}}]];try{while(r){a=r;$tw.utils.each(c,function(s){var t=s[0].exec(r);if(t){s[1].call(this,t);r=r.substr(t[0].length);return false}});if(r===a){throw\&quot;invalid suffix(es) '\&quot;+r+\&quot;'\&quot;}}if(p.list&amp;&amp;p.split){o=$tw.utils.parseStringArray(p.split)}else{s(function(s,t){var e,a,r;l.push(t);if(p.before){i=1+(p.before&lt;3?t.indexOf(p.split):t.lastIndexOf(p.split));if(i&lt;=t.length){r=[p.before%2===1?t.substr(0,i-1):t.substr(i)]}if(p.keep&amp;&amp;i===0){r[0]=t}}else if(p.at){if(p.to){r=p.nat?[t.substr(0,p.at)+t.substr(p.at+p.to)]:[t.substr(p.at,p.to)];if(p.keep&amp;&amp;r[0]===\&quot;\&quot;){r[0]=t}}else{r=[t.substr(0,p.at)];a=t.substr(p.at);if(a){r.push(a)}}}else if(p.list){r=f.getTiddlerList(t,p.list)}else{r=t.split(p.split)}e=r.length&gt;1||p.list||(p.before||p.to&amp;&amp;r.length&gt;0);if(p.pos){r=$tw.utils.getArrayItems(r,p.pos,p.num,p.strict)}if(r.length&amp;&amp;(e||p.keep)){n.push(t);$tw.utils.each(r,function(s){if(p.trim){s=s.trim()}if(s){if(!p.unique||p.unique&amp;&amp;o.indexOf(s)&lt;0){o.push(p.prefix+s+p.suffix)}}})}else{u.push(t)}})}if(t.suffix){switch(p.mode){case\&quot;$\&quot;:o=n;break;case\&quot;$all\&quot;:if(o.length){if(p.negate){u=[]}else{o=l}}else if(p.negate){u=l}break;case\&quot;$first\&quot;:case\&quot;$last\&quot;:case\&quot;$pos\&quot;:o=$tw.utils.getArrayItems(o,p.$pos,p.$num,p.$strict);break}}}catch($){return[\&quot;split syntax error:\&quot;+$]}return p.negate?u:o}})();&quot;,
             &quot;title&quot;: &quot;$:/plugins/tobibeer/split/filter.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;filteroperator&quot;
         },
         &quot;$:/plugins/tobibeer/split/readme&quot;: {
             &quot;title&quot;: &quot;$:/plugins/tobibeer/split/readme&quot;,
-            &quot;text&quot;: &quot;Provides the filter `split[by]`, splitting input titles `by` a string defined in the operand, allowing you to slice and dice output elements as needed.\n\n; suffixes\r\n: `$` — return input titles that yield split items\r\n: `$all` — return all input titles if any yield split items\r\n: `+` — append operand to split titles\r\n: `+\\x\\` — append x to split titles\r\n: `\\x\\+` — prepend x to split titles\r\n: `unique` — prevents duplicate titles in the output\r\n: `trim` — no leading/trailing blanks in split titles\r\n: `first` — first title of the split =&gt; `!first` — all but first\r\n: `last` — last title of the split =&gt; `!last` — all but last\r\n: `at[&lt;num&gt;]` — split in two at number in the operand\r\n: `at[&lt;num&gt;,&lt;len&gt;]` — slice out ''len'' characters starting at character ''num''\r\n: `!at[&lt;num&gt;,&lt;len&gt;]` — cutting the above out of the input title\r\n: `pos=2` — 2nd split item of each input title in turn\r\n: `pos=1 num=3` — first three each\r\n: `pos=2 num=n` — 2nd to last each\r\n: `pos=-2 num=-n` — first to 2nd last each\r\n: `strict` — specified `num` is mandatory\r\n: `$pos`, `$num`, `$strict`, `$first`, `$!first`,`$last`, `$!last` — for final list\r\n: `keep` — return title even if not split\r\n: `list[]` — parse list field of input titles\r\n: `list=tags[]` — parse tags field of input titles\r\n: `list&lt;foo&gt;` — parse (soft) operand as list, e.g. variables or text-references\n\n&lt;br&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#split&quot;
+            &quot;text&quot;: &quot;Provides the filter `split[by]`, splitting input titles `by` a string defined in the operand, allowing you to slice and dice output elements as needed.\n\n; suffixes\r\n: `$` — return input titles that yield split items\r\n: `$all` — return all input titles if any yield split items\r\n: `+` — append operand to split titles\r\n: `+\\x\\` — append x to split titles\r\n: `\\x\\+` — prepend x to split titles\r\n: `unique` — prevents duplicate titles in the output\r\n: `trim` — no leading/trailing blanks in split titles\r\n: `first` — first title of the split =&gt; `!first` — all but first\r\n: `last` — last title of the split =&gt; `!last` — all but last\r\n: `at[&lt;num&gt;]` — split in two at number in the operand\r\n: `at[&lt;num&gt;,&lt;len&gt;]` — slice out ''len'' characters starting at character ''num''\r\n: `!at[&lt;num&gt;,&lt;len&gt;]` — cutting the above out of the input title\r\n: `before[x]` / `after[x]` — up until / after first match of `x`\r\n: `beforelast[x]` / `afterlast[x]`— up until / fter last match of `x`\r\n: `pos=2` — 2nd split item of each input title in turn\r\n: `pos=1 num=3` — first three each\r\n: `pos=2 num=n` — 2nd to last each\r\n: `pos=-2 num=-n` — first to 2nd last each\r\n: `strict` — specified `num` is mandatory\r\n: `$pos`, `$num`, `$strict`, `$first`, `$!first`,`$last`, `$!last` — for final list\r\n: `keep` — return title even if not split\r\n: `list[]` — parse list field of input titles\r\n: `list=tags[]` — parse tags field of input titles\r\n: `list&lt;foo&gt;` — parse (soft) operand as list, e.g. variables or text-references\n\n&lt;br&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#split&quot;
         },
         &quot;$:/plugins/tobibeer/split/utils.js&quot;: {
             &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/split/utils.js\r\ntype: application/javascript\r\nmodule-type: utils\r\n\r\n@preserve\r\n\\*/\n(function(){\&quot;use strict\&quot;;exports.getArrayItems=function(e,t,n,s){var i,a=parseInt(n),f=parseInt(t),r=e.length;if(t===\&quot;n\&quot;){f=r}else if(t===\&quot;-n\&quot;){f=1}else if(!t){f=1}if(n===\&quot;n\&quot;){a=r}else if(n===\&quot;-n\&quot;){a=-(f&lt;0?r+f+1:f)}else if(!n){a=1}f=Math.max(1,f&lt;0?r+f+(a&lt;0?a+2:1):a&lt;0?f+a+1:f);a=Math.max(1,Math.abs(a));i=e.splice(f-1,a);if(i.length&lt;a&amp;&amp;s){i=[]}return i}})();&quot;,
@@ -14652,7 +14652,7 @@ The styles to that &lt;&lt;source $:/.tb/demo/sparkl/styles&gt;&gt;</pre>
 <div authors="[[Tobias Beer]]" created="20151230083108819" creator="Tobias Beer" modified="20151230103829768" modifier="Tobias Beer" tabs="Info Syntax Items Lists Examples Install" tags="Plugins Filters" title="split" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-docs split&gt;&gt;</pre>
 </div>
-<div authors="[[Tobias Beer]] [[Just Tobi]]" created="20151127145153951" creator="Tobias Beer" list="a [[b c]] d" modified="20170117220815454" modifier="Tobias Beer" summary="examples for the [[split]] filter" tags="split Examples" title="split-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div authors="[[Tobias Beer]] [[Just Tobi]]" created="20151127145153951" creator="Tobias Beer" list="a [[b c]] d" modified="20170119074453131" modifier="Tobias Beer" summary="examples for the [[split]] filter" tags="split Examples" title="split-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>For details, see [[split syntax|split-Syntax]]...
 
 !! Basics
@@ -14664,6 +14664,16 @@ The styles to that &lt;&lt;source $:/.tb/demo/sparkl/styles&gt;&gt;</pre>
 &lt;&lt;` &quot;&quot;&quot;{{{ &quot;foo-bar&quot; baz +[split[-]] }}}&quot;&quot;&quot;&gt;&gt;
 
 &lt;&lt;` &quot;&quot;&quot;{{{ &quot;foo-bar&quot; baz +[split:keep[-]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [[foo.bar.baz]split:before[.]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [[foo.bar.baz]split:after[.]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [[foo.bar.baz]split:beforelast[.]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [[foo.bar.baz]split:afterlast[.]] }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [[foo.bar.baz]split:keep before[?]] }}}&quot;&quot;&quot;&gt;&gt;
 
 !! [[Operand List and List Fields|split-Lists]]
 
@@ -14879,11 +14889,17 @@ a [[reply to Danielo Rodriguez|https://groups.google.com/d/msg/tiddlywiki/wC2uxr
 
 &lt;&lt;plugin-docs-cp split&gt;&gt;</pre>
 </div>
-<div created="20151127143704922" creator="Tobias Beer" modified="20170117221451942" modifier="Tobias Beer" tags="" title="split-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151127143704922" creator="Tobias Beer" modified="20170119074329763" modifier="Tobias Beer" tags="" title="split-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>&lt;&lt;plugin-install split&gt;&gt;
 
 !! Version History
 
+; 0.7.5 / 2017-01-19
+: `split:before[.]` to return input title ''up until'' the ''first'' match of `.`
+: `split:after[.]` to return input title ''after'' the ''first'' match of `.`
+: `split:beforelast[.]` to return input title ''up until'' the ''last'' match of `.`
+: `split:afterlast[.]` return input title ''after'' the ''last'' match of `.`
+: unit tests for the above &amp; `split:at[1,2]`
 ; 0.7.2 / 2017-01-17
 : added `at[&lt;character&gt;,&lt;length&gt;]` to emulate substr (starting at 1, though)
 : added `!at[&lt;character&gt;,&lt;length&gt;]` to cut out what substr would have fetched
@@ -15035,7 +15051,7 @@ color: #909;
 ;`split:list&lt;bar&gt;`
 : splits the &quot;soft&quot; &lt;&lt;x &quot;Filter Parameter&quot; operand&gt;&gt; in the form of the variable ''bar'' into listed titles&lt;div class=&quot;note&quot;&gt;''Note:'' Since no input titles are considered above, use ''$pos'', ''$num'', ''$first'', etc... to further constrain the final list, see [[Items|split-Items]].&lt;/div&gt;</pre>
 </div>
-<div created="20151127150718797" creator="Tobias Beer" modified="20170117221139526" modifier="Tobias Beer" tags="" title="split-Syntax" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<div created="20151127150718797" creator="Tobias Beer" modified="20170119074217721" modifier="Tobias Beer" tags="" title="split-Syntax" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>!! Operand
 
 Unless used with the suffix `list`, the operand of ''split[]'' defines the characters by which to split input titles.
@@ -15048,28 +15064,44 @@ You can define a number of suffix elements some of which can be meaningfully com
 
 ; $
 : instead of the split items, returns all those input titles that yield split items
+
 ; $all
 : instead of the split items, if any of the input titles that yield split items, returns all input titles, unmodified
+
 ; +
 : adds the operand to the split items
+
 ; +\string\
 : appends `string` to the split items
+
 ; \string\+
 : prepends `string` to the split items
+
 ; trim
 : trims all blanks from split items
+
 ; pos, num, first, !first, last, !last, strict&lt;br/&gt;$pos, $num, $first, !$first, $last, !$last, $strict
 : see [[Items|split-Items]]
+
 ; at
 : splits the input title in two items at the character specified as a number in the operand
 : returns nothing should the input title be shorter than the specified number
 : `at[4,2]` splits at the `4`th character for a length of `2` characters
 : `!at[4,2]` returns the input title with the above return value being cut out
+
+; before, after
+: return input title ''up until'' or ''after'' the ''first'' match of the operand
+
+; beforelast, afterlast
+: return input title ''up until'' or ''after'' the ''last'' match of the operand
+
 ; keep
 : returns the input title even it was not split as requested
+
 ; unique
 : prevents duplicates in the output
 :: this would be the default behavior of ~TiddlyWiki filters that treat titles more as sets of unique titles rather than lists of arbitrary strings
+
 ; list
 : see [[Lists|split-Lists]]</pre>
 </div>
