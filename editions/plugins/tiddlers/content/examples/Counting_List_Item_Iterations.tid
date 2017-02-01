@@ -2,7 +2,7 @@ created: 20170201071817313
 creator: Tobias Beer
 modified: 20170201073100274
 modifier: Tobias Beer
-summary: this example demonstrates how to generate counts for list iterations using <<tb make>> and <<tb split>> filters
+summary: this example demonstrates how to generate counts for list iterations using the filters <<tb make>> and <<tb split>>
 tags: make Examples split
 title: Counting List Item Iterations
 type: text/vnd.tiddlywiki
