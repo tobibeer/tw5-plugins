@@ -1,0 +1,26 @@
+created: 20170201071817313
+creator: Tobias Beer
+modified: 20170201073100274
+modifier: Tobias Beer
+summary: this example demonstrates how to generate counts for list iterations using <<tb make>> and <<tb split>> filters
+tags: make Examples split
+title: Counting List Item Iterations
+type: text/vnd.tiddlywiki
+
+In the below example, we iterate through the simple filter of the titles `A B C` and use:
+
+; <<tb make>>
+: to add a counter as a prefix separated by colons `::` to each title
+; <<tb split>>
+: to extract the ''count'' into a variable by that name using 
+: to extract the original ''title'' into a variable by that name
+
+<$macrocall $name="`" text="""<$list filter="A B C +[make[%count%::%title%]]">
+<$set name="count" filter="[all[current]split:first[::]]">
+<$set name="title" filter="[all[current]split:last[::]]">
+<code><$text text=<<currentTiddler>>/></code>
+=>
+__<$text text=<<count>>/>__: ''<$text text=<<title>>/>''<br>
+</$set>
+</$set>
+</$list>"""/>
