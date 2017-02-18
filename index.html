@@ -10669,7 +10669,7 @@ width:120px;
 height:120px;
 }</pre>
 </div>
-<div created="20170218111619328" creator="Tobias Beer" modified="20170218111636884" modifier="Tobias Beer" title="$:/temp/appear-handler/popups" revision="89" bag="default">
+<div created="20170218153821423" creator="Tobias Beer" modified="20170218153839564" modifier="Tobias Beer" title="$:/temp/appear-handler/popups" revision="89" bag="default">
 <pre>$:/temp/appear/Widgets-879909734/popup/block/</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json" revision="0" bag="default">
@@ -15173,9 +15173,18 @@ Instead of just...
 ''Test'': Try to open a new tiddler in this wiki. You should see the first option update while the second will not.</pre>
 </div>
 <div created="20151126185932784" creator="Tobias Beer" modified="20160107113950907" modifier="Tobias Beer" summary="usage and examples of the [[sysinfo]] macro" title="sysinfo-Usage" type="text/vnd.tiddlywiki" revision="0" bag="default">
-<pre>To test whether you're in a node or browser environment, use:
+<pre>To test whether you're in a node or browser environment you could use:
 
-&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;&lt;sysinfo env&gt;&gt;&quot;&quot;&quot;/&gt;
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;&lt;$vars env=&lt;&lt;sysinfo env&gt;&gt;&gt;
+&lt;$list filter=&quot;[&lt;env&gt;!prefix[node]]&quot;&gt;
+only shown when not under node, i.e. when in the browser
+&lt;/$list&gt;
+&lt;$list filter=&quot;[&lt;env&gt;prefix[node]]&quot;&gt;
+only shown when under node, e.g. when rendering static pages
+&lt;/$list&gt;
+&lt;/$vars&gt;&quot;&quot;&quot;/&gt;
+
+You can use the above along with some [[Conditional ViewTemplate Section|http://tobibeer.github.io/tb5/#Conditional%20ViewTemplate%20Section]]
 
 The next example demonstrates how to show content depending on whether we're local or over the web:
 
