@@ -324,7 +324,7 @@ var assetList = [
         "title": "$:/plugins/tobibeer/sysinfo",
         "description": "Retrieve system & browser information, e.g. window.location.href",
         "author": "Tobias Beer",
-        "version": "0.5.0",
+        "version": "0.6.0",
         "core-version": ">=5.1.9",
         "source": "https://github.com/tobibeer/tw5-sysinfo",
         "documentation": "https://tobibeer.github.io/tw5-plugins#sysinfo",
@@ -332,7 +332,7 @@ var assetList = [
         "dependents": "",
         "list": "readme",
         "type": "application/json",
-        "readme": "The plugin $:/plugins/tobibeer/sysinfo provides:\n\n; &lt;&lt;sysinfo scope property>>\r\n: a macro returning system information from the browser ''window'' object\n\n!! Parameters\n\n; scope\r\n: a toplevel scope of the window object, allowed are<br>» ''location'', ''navigator'', ''document''\r\n; property\r\n: a property to read from the scope, e.g.:<br>» ''location'': `href`, `host`, `pathname`, `protocol`<br>» ''navigator'': `appCodeName`, `language`, `platform`, `userAgent`<br>» ''document'': `contentType`, `domain`, `title`, `lastModified`\n\n!! Example\n\n`<<sysinfo location href>>`\n\n> <<sysinfo location href>>"
+        "readme": "The plugin $:/plugins/tobibeer/sysinfo provides:\n\n; &lt;&lt;sysinfo scope property>>\r\n: a macro returning system information from the browser ''window'' object\n\n!! Parameters\n\n; scope\r\n: either ''env'', which returns `browser` or `node`\r\n: or a toplevel scope of the window object, allowed are<br>» ''location'', ''navigator'', ''document''\r\n; property\r\n: a property to read from the scope, e.g.:<br>» ''location'': `href`, `host`, `pathname`, `protocol`<br>» ''navigator'': `appCodeName`, `language`, `platform`, `userAgent`<br>» ''document'': `contentType`, `domain`, `title`, `lastModified`\n\n!! Example\n\n`<<sysinfo location href>>`\n\n> <<sysinfo location href>>"
     },
     {
         "title": "$:/plugins/tobibeer/toc",
