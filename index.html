@@ -11326,7 +11326,7 @@ width:120px;
 height:120px;
 }</pre>
 </div>
-<div created="20171203215659235" creator="Tobias Beer" modified="20171203215730582" modifier="Tobias Beer" title="$:/temp/appear-handler/popups" revision="97" bag="default">
+<div created="20171203220516260" creator="Tobias Beer" modified="20171203220548245" modifier="Tobias Beer" title="$:/temp/appear-handler/popups" revision="95" bag="default">
 <pre>$:/temp/appear/Widgets-879909734/popup/block/</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json" revision="0" bag="default">
@@ -11607,7 +11607,6 @@ I will close as well when you click inside me.&lt;/$appear&gt; after&quot;&quot;
 
 &lt;&lt;` &quot;&quot;&quot;before &lt;$appear show=&quot;slide down&quot; $state=&quot;slider-button&quot;&gt;
 
-
 ! Sliding
 
 Some content for you.&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;
@@ -11643,6 +11642,14 @@ Can have different states.&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;
 Any non-standard mode is interpreted as //block// mode, however without applying the default slider-styles:
 
 &lt;&lt;` &quot;&quot;&quot;before &lt;$appear hide=&quot;&amp;laquo;&quot; mode=&quot;custom&quot; $state=&quot;custom-block&quot;&gt;//And I am a &quot;plain block&quot;.//&lt;/$appear&gt; after&quot;&quot;&quot;&gt;&gt;
+
+!! Custom Button With HTML Markup
+
+Click on the heading to see it unfold...
+
+&lt;&lt;` &quot;&quot;&quot;&lt;$appear show=&quot;&lt;h1&gt;A heading!&lt;/h1&gt;&quot; mode=&quot;custom&quot; $state=&quot;html-markup&quot;&gt;
+
+And some content for you.&lt;/$appear&gt;&quot;&quot;&quot;&gt;&gt;
 
 !! Inline Slider Only Showing Once
 
@@ -11689,8 +11696,7 @@ text=&quot;&quot;&quot;before &lt;$appear type=&quot;popup&quot; $state=&quot;li
 
 // Actually renders the popup into the &lt;&lt;x SystemTags PageTemplate&gt;&gt; [[$:/.tb/ui/PageTemplate/popups]]://
 
-&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;| &lt;$appear show=&quot;click to show&quot; type=&quot;popup&quot; $state=&quot;popups-handler&quot; handler=&quot;popups&quot;&gt;I [[appear]] when you tell me to.&lt;/$appear&gt; |eenie meenie miney mo |eenie meenie miney mo &lt;br/&gt;&lt;br/&gt; |&quot;&quot;&quot;/&gt;
-</pre>
+&lt;$macrocall $name=&quot;`&quot; text=&quot;&quot;&quot;| &lt;$appear show=&quot;click to show&quot; type=&quot;popup&quot; $state=&quot;popups-handler&quot; handler=&quot;popups&quot;&gt;I [[appear]] when you tell me to.&lt;/$appear&gt; |eenie meenie miney mo |eenie meenie miney mo &lt;br/&gt;&lt;br/&gt; |&quot;&quot;&quot;/&gt;</pre>
 </div>
 <div created="20151209180941139" creator="Tobias Beer" modified="20151229094127992" modifier="Tobias Beer" title="appear-Info" type="text/vnd.tiddlywiki" revision="0" bag="default">
 <pre>The ''appear'' widget displays a button which when clicked reveals hidden content to produce the following results:
