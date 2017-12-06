@@ -15,6 +15,21 @@
         "readme": "This plugin provides the ''$appear'' widget that can render popups and sliders (inline or block) as well as accordion menus.\n\n!! Attributes\r\n; type\r\n: set to `popup` to have the content appear as a popup\r\n; show\r\n: the button label\r\n; hide\r\n: the hide button label\r\n; mode\r\n: either `block` or `inline`, with respect to the inner content\r\n: any other mode is interpreted as block mode, without the default styles applying, e.g. drop-shadows\r\n; once\r\n: allows to click the button once, then hides it (unless the state is deleted)\r\n; $state\r\n: the widget calculates a state for you, use this to append a simple id\r\n; state\r\n: alternatively, specify a fully qualified state\r\n; keep\r\n: make popups sticky when `yes` or `true`\r\n; handle / handler / variables\r\n: allows to take the popup contents out of the flow and render them elsewhere on the page\r\n: required to properly create popups in table cells and other constained elements\r\n: specify variables to take along\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#appear\r\n"
     },
     {
+        "title": "$:/plugins/tobibeer/base64",
+        "description": "base64 encoding and decoding for ~TiddlyWiki",
+        "author": "Tobias Beer",
+        "version": "0.5.0",
+        "core-version": ">=5.1.9",
+        "source": "https://github.com/tobibeer/tw5-base64",
+        "documentation": "https://tobibeer.github.io/tw5-base64",
+        "plugin-type": "plugin",
+        "requires": "",
+        "list": "readme",
+        "dependents": "",
+        "type": "application/json",
+        "readme": "The plugin $:/plugins/tobibeer/base64 provides:\n\n; base64[]\r\n: a filter to encode text to base64\n\n; base64:decode[]\r\n: and dencode base64 to text\n\n<br>\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#base64"
+    },
+    {
         "title": "$:/plugins/tobibeer/contains",
         "description": "Filter titles/listfields containing a value or any / all / exactly those values from a list",
         "author": "Tobias Beer",

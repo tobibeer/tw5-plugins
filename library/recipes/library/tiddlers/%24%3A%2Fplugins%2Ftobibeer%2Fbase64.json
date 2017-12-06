@@ -1,0 +1,15 @@
+{
+    "title": "$:/plugins/tobibeer/base64",
+    "description": "base64 encoding and decoding for ~TiddlyWiki",
+    "author": "Tobias Beer",
+    "version": "0.5.0",
+    "core-version": ">=5.1.9",
+    "source": "https://github.com/tobibeer/tw5-base64",
+    "documentation": "https://tobibeer.github.io/tw5-base64",
+    "plugin-type": "plugin",
+    "requires": "",
+    "list": "readme",
+    "dependents": "",
+    "type": "application/json",
+    "text": "{\n    \"tiddlers\": {\n        \"$:/plugins/tobibeer/base64/filter.js\": {\n            \"title\": \"$:/plugins/tobibeer/base64/filter.js\",\n            \"text\": \"/*\\\\\\r\\ntitle: $:/plugins/tobibeer/base64/filter.js\\r\\ntype: application/javascript\\r\\nmodule-type: filteroperator\\r\\n\\r\\nA filter to encode and decode base64\\r\\n\\r\\n@preserve\\r\\n\\\\*/\\r\\n(function(){\\\"use strict\\\";exports.base64=function(e,r,t){var n=\\\"\\\",o=r.suffix==\\\"decode\\\";try{if(r.operand){n=r.operand}else{e(function(e,r){n+=r})}n=o?atob(n):btoa(n)}catch(i){return[\\\"Error in base64 filter trying to \\\"+(o?\\\"de\\\":\\\"en\\\")+\\\"code'\\\"+n+\\\"':\\\\n\\\"+i]}return[n]}})();\",\n            \"type\": \"application/javascript\",\n            \"module-type\": \"filteroperator\"\n        },\n        \"$:/plugins/tobibeer/base64/readme\": {\n            \"title\": \"$:/plugins/tobibeer/base64/readme\",\n            \"text\": \"The plugin $:/plugins/tobibeer/base64 provides:\\n\\n; base64[]\\r\\n: a filter to encode text to base64\\n\\n; base64:decode[]\\r\\n: and dencode base64 to text\\n\\n<br>\\n\\n; documentation / examples / demos...\\r\\n: http://tobibeer.github.io/tw5-plugins#base64\"\n        }\n    }\n}"
+}
