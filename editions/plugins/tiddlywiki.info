@@ -11,6 +11,7 @@
     "includeWikis": [
         "../../../defaults/editions/defaults",
         "../../../appear/editions/appear",
+        "../../../base64/editions/base64",
         "../../../contains/editions/contains",
         "../../../count/editions/count",
         "../../../dict/editions/dict",
