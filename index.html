@@ -232,6 +232,8 @@ Error message and password prompt
 
 <li>$:/plugins/tobibeer/appear</li>
 
+<li>$:/plugins/tobibeer/base64</li>
+
 <li>$:/plugins/tobibeer/contains</li>
 
 <li>$:/plugins/tobibeer/count</li>
@@ -302,6 +304,8 @@ Error message and password prompt
 
 <li>$:/temp/info-plugin</li>
 
+<li>$:/templates/text</li>
+
 <li>$:/themes/tiddlywiki/snowwhite</li>
 
 <li>$:/themes/tiddlywiki/vanilla</li>
@@ -329,6 +333,16 @@ Error message and password prompt
 <li>appear-Styles</li>
 
 <li>Bar</li>
+
+<li>base64</li>
+
+<li>base64-Examples</li>
+
+<li>base64-Info</li>
+
+<li>base64-Install</li>
+
+<li>base64-Syntax</li>
 
 <li>Baz</li>
 
@@ -10574,6 +10588,22 @@ very-muted-foreground: #888888</pre>
     }
 }</pre>
 </div>
+<div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="base64 encoding and decoding for ~TiddlyWiki" documentation="https://tobibeer.github.io/tw5-base64" list="readme" plugin-type="plugin" requires="" source="https://github.com/tobibeer/tw5-base64" title="$:/plugins/tobibeer/base64" type="application/json" version="0.5.0" revision="0" bag="default">
+<pre>{
+    &quot;tiddlers&quot;: {
+        &quot;$:/plugins/tobibeer/base64/filter.js&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/base64/filter.js&quot;,
+            &quot;text&quot;: &quot;/*\\\r\ntitle: $:/plugins/tobibeer/base64/filter.js\r\ntype: application/javascript\r\nmodule-type: filteroperator\r\n\r\nA filter to encode and decode base64\r\n\r\n@preserve\r\n\\*/\r\n(function(){\&quot;use strict\&quot;;exports.base64=function(e,r,t){var n=\&quot;\&quot;,o=r.suffix==\&quot;decode\&quot;;try{if(r.operand){n=r.operand}else{e(function(e,r){n+=r})}n=o?atob(n):btoa(n)}catch(i){return[\&quot;Error in base64 filter trying to \&quot;+(o?\&quot;de\&quot;:\&quot;en\&quot;)+\&quot;code'\&quot;+n+\&quot;':\\n\&quot;+i]}return[n]}})();&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;filteroperator&quot;
+        },
+        &quot;$:/plugins/tobibeer/base64/readme&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/tobibeer/base64/readme&quot;,
+            &quot;text&quot;: &quot;The plugin $:/plugins/tobibeer/base64 provides:\n\n; base64[]\r\n: a filter to encode text to base64\n\n; base64:decode[]\r\n: and dencode base64 to text\n\n&lt;br&gt;\n\n; documentation / examples / demos...\r\n: http://tobibeer.github.io/tw5-plugins#base64&quot;
+        }
+    }
+}</pre>
+</div>
 <div author="Tobias Beer" core-version="&gt;=5.1.9" dependents="" description="Filter titles/listfields containing a value or any / all / exactly those values from a list" documentation="https://tobibeer.github.io/tw5-contains" list="readme" plugin-type="plugin" source="https://github.com/tobibeer/tw5-contains" title="$:/plugins/tobibeer/contains" type="application/json" version="0.6.0" revision="0" bag="default">
 <pre>{
     &quot;tiddlers&quot;: {
@@ -11326,7 +11356,7 @@ width:120px;
 height:120px;
 }</pre>
 </div>
-<div created="20171206213438574" creator="Tobias Beer" modified="20171206213509247" modifier="Tobias Beer" title="$:/temp/appear-handler/popups" revision="95" bag="default">
+<div created="20171206213712857" creator="Tobias Beer" modified="20171206213743166" modifier="Tobias Beer" title="$:/temp/appear-handler/popups" revision="95" bag="default">
 <pre>$:/temp/appear/Widgets-879909734/popup/block/</pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json" revision="0" bag="default">
@@ -11342,6 +11372,9 @@ height:120px;
         }
     }
 }</pre>
+</div>
+<div title="$:/templates/text" revision="0" bag="default">
+<pre>&lt;$text text=&lt;&lt;currentTiddler&gt;&gt;/&gt;</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="Emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.15" revision="0" bag="default">
 <pre>{
@@ -11818,6 +11851,88 @@ The following css classes are automatically set by the appear widget:
 </div>
 <div parents="Gronk" summary="see [[toc-Examples]]" tags="Foo" title="Bar" revision="0" bag="default">
 <pre></pre>
+</div>
+<div tabs="Info Syntax Examples Install" tags="Plugins Filters" title="base64" revision="0" bag="default">
+<pre>&lt;&lt;plugin-docs base64&gt;&gt;</pre>
+</div>
+<div created="20171206202625540" creator="Tobias Beer" modified="20171206202741328" modifier="Tobias Beer" title="base64-Examples" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The below examples all make use of &lt;&lt;source $:/templates/text&gt;&gt;
+
+!! Encode Operand
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [base64[foo]] || $:/templates/text }}}&quot;&quot;&quot;&gt;&gt;
+
+!! Decode Operand
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [base64:decode[Zm9v]] || $:/templates/text }}}&quot;&quot;&quot;&gt;&gt;
+
+!! Encode Title(s)
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [[foo]base64[]] || $:/templates/text }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ foo bar +[base64[]] || $:/templates/text }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [[foo]] [[bar]] +[base64[]] || $:/templates/text }}}&quot;&quot;&quot;&gt;&gt;
+
+!! Decode Title[s]
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [[Zm9v]base64:decode[]] || $:/templates/text }}}&quot;&quot;&quot;&gt;&gt;
+
+&lt;&lt;` &quot;&quot;&quot;{{{ [[Zm9v]] [[YmFy]] +[base64:decode[]] || $:/templates/text }}}&quot;&quot;&quot;&gt;&gt;</pre>
+</div>
+<div created="20171206202759546" creator="Tobias Beer" modified="20171206202801220" modifier="Tobias Beer" title="base64-Info" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>The plugin $:/plugins/tobibeer/base64 provides:
+
+; base64[]
+: a filter to encode text to base64
+
+; base64:decode[]
+: and dencode base64 to text
+
+&lt;&lt;plugin-docs-cp base64&gt;&gt;</pre>
+</div>
+<div created="20171206202753528" creator="Tobias Beer" modified="20171206202755165" modifier="Tobias Beer" title="base64-Install" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>&lt;&lt;plugin-install base64&gt;&gt;
+
+!! Version History
+
+; 0.5.0 / 2017-12-06
+: initial version</pre>
+</div>
+<div created="20171206200130135" creator="Tobias Beer" modified="20171206204519713" modifier="Tobias Beer" title="base64-Syntax" type="text/vnd.tiddlywiki" revision="0" bag="default">
+<pre>Simply use the following to...
+
+; Encode
+: the operand:&lt;div&gt;
+
+```
+[base64[someText]]
+```
+
+//This is a set creating operation, i.e. any input titles are ignored / discarded.//
+&lt;/div&gt;
+: the input title(s):&lt;div&gt;
+
+```
+[[some text]base64[]]
+```
+&lt;/div&gt;
+
+; Decode
+: the operand:&lt;div&gt;
+
+```
+[base64:decode[some base64 string]]
+```
+
+//This is a set creating operation, i.e. any input titles are ignored / discarded.//
+&lt;/div&gt;
+: the input title(s):&lt;div&gt;
+
+```
+[[some base64 string]base64:decode[]]
+```
+&lt;/div&gt;</pre>
 </div>
 <div list="Mumble Frotz Gronk" parents="Gronk" summary="see [[toc-Examples]]" tags="Bar" title="Baz" revision="0" bag="default">
 <pre></pre>
